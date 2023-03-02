@@ -2,55 +2,46 @@
 #define __ABILITY_HPP__
 
 class Ability{
+protected:
+    int abilityType;    //might need map
 public:
-    virtual int getType();
+    int getType();
 };
 
 class ReRoll : Ability{
+// protected:
+//     Player* owner;   //masi gatau
 private:
     int abilityType = 1;
-public:
-    int getType();
 };
 
 class Quadruple : Ability {
 private:
     int abilityType = 2;
-public:
-    int getType();
 };
 
 class Quarter : Ability {
 private:
     int abilityType = 3;
-public:
-    int getType();
 };
 
 class ReverseDirection : Ability {
 private:
     int abilityType = 4;
-public:
-    int getType();
 };
 
 class SwapCard : Ability {
 private:
     int abilityType = 5;
-public:
-    int getType();
 };
 
 class Switch : Ability {
 private:
     int abilityType = 6;
-    int getType();
 };
 
 class Abilityless : Ability {
 private:
     int abilityType = 7;
-public:
-    int getType();
 };
 #endif
