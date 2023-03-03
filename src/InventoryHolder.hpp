@@ -1,32 +1,27 @@
 #ifndef __INVENTORYHOLDER_HPP__
 #define __INVENTORYHOLDER_HPP__
 
-#include "Valueable.hpp"
-#include "Ability.hpp"
+#include "Card.hpp"
 #include <vector>
 #include <string>
 using namespace std;
 
-class InventoryHolder{
+
+//Kelas abstract yang di-inherit ke GameState dan Player
+//Berkaitan dalam hal kepemilikan kartu
+class InventoryHolder : Card{
 protected:
-    vector<Card*> inventory;
-public:
-    virtual Card* getInventory();
+    vector<Card> inventory;
+// public:
+    // virtual Card* getInventory();
 };
 
-class Player : InventoryHolder, Valueable, Ability{
+class GameState: InventoryHolder, Card {
 private:
-    Player(string);
-    string playerName;
-    long int point;
-};
-
-class GameState: InventoryHolder, Valueable {
-private:
+    //vector <Card> inventory dari inventoryholder
     int round;
     static long int prize;
     static bool isOngoing;
-    vector<Card*> tableCard;
 };
 
 #endif
