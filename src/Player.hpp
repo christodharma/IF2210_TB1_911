@@ -8,7 +8,7 @@ using namespace std;
 
 class Player : 
     InventoryHolder, 
-    Card, //antara inherit card / valueable / gapake (soalnya ada inventoryholder)
+    // Card, //antara inherit card / valueable / gapake (soalnya ada inventoryholder)
     Ability
     {
 private:

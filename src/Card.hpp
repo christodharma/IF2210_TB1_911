@@ -19,7 +19,7 @@ public:
     char getWarna();
     double getValue();
     void printCard() const;
-    bool operator<(const Card& other);
+    bool operator<(const Card&);
     bool operator>(const Card&);
     bool operator==(const Card&);
 };
