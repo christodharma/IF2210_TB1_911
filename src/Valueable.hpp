@@ -1,27 +1,34 @@
-#ifndef __CARDMECHANIC_HPP__
-#define __CARDMECHANIC_HPP__
+#ifndef __VALUEABLE_HPP__
+#define __VALUEABLE_HPP__
 
 #include <vector>
 #include <map>
+
 using namespace std;
 
 
 //Kelas abstrak yang diinherit oleh Card sebagai singular
 //dan Combination sebagai bentuk Card plural
 class Valueable{
-protected:
-    float value;
 public:
-    Valueable();
-    virtual float getValue();
-    map<char,float> valueMap;
+    Valueable(){};
+    static map<char,double> valueMap;
+    virtual double getValue() = 0;
 };
 
-class Combination : Valueable{
-private:
-    vector<Valueable*> combo;
+class Value : public Valueable {
+protected:
+    double value;
 public:
-    float getValue();
+    // Value(Combination* co);
+    Value(double);
+    double getValue();
 };
+
+//belum
+// class Combination : Valueable{
+// private:
+//     vector<Valueable*> combo;
+// };
 
 #endif

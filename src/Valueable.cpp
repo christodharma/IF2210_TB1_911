@@ -1,15 +1,29 @@
 #include <vector>
 #include <map>
 #include "Valueable.hpp"
+#include "Card.hpp"
 using namespace std;
 
-Valueable::Valueable(){
-    valueMap['h'] = 0;
-    valueMap['H'] = 0;
-    valueMap['b'] = 0.3;
-    valueMap['B'] = 0.3;
-    valueMap['k'] = 0.6;
-    valueMap['K'] = 0.6;
-    valueMap['m'] = 0.9;
-    valueMap['M'] = 0.9;
+map<char,double> Valueable::valueMap = {
+    {'H', 0.0},
+    {'B', 0.03},
+    {'K', 0.06},
+    {'M', 0.09},
+};
+
+Value::Value(double x)
+{
+    this->value = x;
+}
+    // map<char,double>::iterator i = valueMap.find(x.getWarna());
+    // if (i != valueMap.end()){
+    //     this->value = x.getAngka() * 0.1 + i->second;
+    // }
+    // else {
+    //     // throw invalidCardCharInputError
+    //     this->value = 0;
+    // }
+
+double Value::getValue(){
+    return this->value;
 }

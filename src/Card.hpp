@@ -5,17 +5,23 @@
 #include <iostream>
 using namespace std;
 
-class Card : Valueable{
+class Card : public Valueable {
 protected:
+    Valueable* val;
     int angka;
     char warna;
 public:
-    Card();
+    //ctor, dtor
     Card(int,char);
+    Card(char,int);
+    ~Card();
     int getAngka();
     char getWarna();
-    float getValue();
+    double getValue();
     void printCard() const;
+    bool operator<(const Card& other);
+    bool operator>(const Card&);
+    bool operator==(const Card&);
 };
 
 #endif
