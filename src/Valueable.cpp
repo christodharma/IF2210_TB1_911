@@ -9,6 +9,10 @@ map<char,double> Valueable::valueMap = {
     {'B', 0.03},
     {'K', 0.06},
     {'M', 0.09},
+    {'h', 0.0},
+    {'b', 0.03},
+    {'k', 0.06},
+    {'m', 0.09},
 };
 
 Value::Value(double x)

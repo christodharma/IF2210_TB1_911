@@ -5,14 +5,24 @@
 using namespace std;
 
 Player::Player(){
-    this->playerName = "NoName";
+    string name;
+    cout<<"Please insert player name: ";
+    cin >> name;
+    this->playerName = name;
     this->point = 0;
-    // this->inventory = kosong
+    // this->inventory = null soalnya undefined
 }
 
 Player::Player(string name){
     this->playerName = name;
     this->point = 0;
+    this->playerInventory = new CardInventory();
+}
+
+Player::~Player(){
+    //call ulang delete (for contents of playerInventory?) atau udah dipanggil dari dtor cardInventory object? contoh:
+    // this->playerInventory->~CardInventory();
+    delete this->playerInventory;
 }
 
 string Player::getPlayerName(){
@@ -23,8 +33,12 @@ long int Player::getPlayerPoint(){
     return this->point;
 }
 
-void Player::showInventory(){
-    for (vector<Card>::const_iterator i = this->inventory.begin(); i != this->inventory.end(); ++i){
-        i->printCard();
-    }
+bool Player::isEmpty(){
+    return playerInventory->isEmpty();
 }
+
+// void Player::showInventory(){
+//     for (vector<Card>::const_iterator i = this->playerInventory->begin(); i != this->playerInventory->end(); ++i){
+//         i->printCard();
+//     }
+// }

@@ -15,24 +15,32 @@ template <class T>
 class InventoryHolder{
 public:
     InventoryHolder(){};
-    virtual vector<T*> getInventory();
+    // virtual ~InventoryHolder();
+    virtual bool isEmpty(){};
+    // virtual vector<T*> getInventory();
 };
 
-class CardInventory : InventoryHolder<Card>{
+class CardInventory : public InventoryHolder<Card>{
 protected:
     vector<Card*> inv;
 public:
     CardInventory();
     ~CardInventory();
-    vector<Card*> getInventory();
+    bool isEmpty();
+    // vector<Card*> getInventory();
 };
 
-class GameState: InventoryHolder<Card>{
+class GameState: public InventoryHolder<Card>{
 private:
     //vector <Card> inventory dari inventoryholder
     int round;
     static long int prize;
     static bool isOngoing;
+public:
+    int getRound();
+    long int getPrize();
+    bool isGameOngoing();
+    bool isEmpty();
 };
 
 #endif
