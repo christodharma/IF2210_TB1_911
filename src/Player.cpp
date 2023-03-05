@@ -34,7 +34,7 @@ long int Player::getPlayerPoint(){
 }
 
 bool Player::isEmpty(){
-    return playerInventory->isEmpty();
+    return this->playerInventory->isEmpty();
 }
 
 vector<Card*>& Player::operator+(Card& input){
@@ -59,8 +59,13 @@ void Player::showInventory(){
     //     cout << *i << endl; //cuman print Card*
     // }
     cout << this->playerName << "'s Inventory:" << endl;
-    for (int i = 0; i < this->playerInventory->getInventory().size(); i++)
-    {
-        this->playerInventory->getInventory()[i]->printCard();
+    if (this->isEmpty()){
+        cout << "-" << endl;
+    } else {
+        this->playerInventory->showInventory();
     }
+}
+
+vector<Card*>& Player::getInventory(){
+    return this->playerInventory->getInventory();
 }

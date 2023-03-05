@@ -12,18 +12,11 @@ int main(){
     Player p1("Alice");
     cout << "Player name: "<<p1.getPlayerName() << endl;
     cout << "Player point: "<<p1.getPlayerPoint() << endl;
-    if (p1.isEmpty()){
-        cout << p1.getPlayerName() << " is not holding any card" << endl;
-    } else {
-        cout << p1.getPlayerName() << " have something" << endl;
-    }
+    p1.showInventory();
     Card h13('h', 13);
+    Card b13('b', 13);
+    p1 + b13;
     p1 + h13;
-    if (p1.isEmpty()){
-        cout << p1.getPlayerName() << " is not holding any card" << endl;
-    } else {
-        cout << p1.getPlayerName() << " have something" << endl;
-    }
     p1.showInventory();
     // p1 - h13; //error di erase()
     // p1.showInventory();

@@ -18,7 +18,7 @@ private:
 public:
     Player();
     Player(string);
-    ~Player(); //need virtual to call playerInventory dtor
+    ~Player();
 
     //getter
     string getPlayerName();
@@ -33,6 +33,7 @@ public:
     /*Inventory member functions*/
     void showInventory();
     bool isEmpty();
+    vector<Card*>& getInventory();
 };
 
 #endif
