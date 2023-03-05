@@ -22,7 +22,6 @@ Player::Player(string name){
 Player::~Player(){
     //call ulang delete (for contents of playerInventory?) atau udah dipanggil dari dtor cardInventory object? contoh:
     // this->playerInventory->~CardInventory();
-    cout << "Player delete" << endl;
     delete this->playerInventory;
 }
 

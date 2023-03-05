@@ -13,6 +13,7 @@ class Valueable{
 public:
     Valueable(){};
     static map<char,double> valueMap;
+    // virtual ~Valueable(){}; //?? this stucked the prog
     virtual double getValue() = 0;
 };
 
@@ -22,6 +23,7 @@ protected:
 public:
     // Value(Combination* co);
     Value(double);
+    ~Value(){};
     double getValue();
 };
 
