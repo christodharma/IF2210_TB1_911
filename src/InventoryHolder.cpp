@@ -20,10 +20,35 @@ CardInventory::~CardInventory(){
     // }
 }
 
+vector<Card*>& CardInventory::operator+(Card& input){
+    Card* inputPtr(&input);
+    this->inv.push_back(inputPtr);
+    return this->inv;
+}
+vector<Card*>& CardInventory::operator-(Card& input){
+    // Card* inputPtr(&input);
+    // this->inv.erase(inputPtr);
+    for (auto i = inv.begin(); i != inv.end(); i++)
+    {
+        if (**i == input){
+            // Card* inputPtr(*i);
+            cout << "found card to be erased" << endl;
+            this->inv.erase(i);
+        }
+    }
+    return this->inv;
+}
+
 bool CardInventory::isEmpty(){
     return inv.empty();
 }
+void CardInventory::showInventory(){
+    for (int i = 0; i < inv.size(); i++)
+    {
+        inv[i]->printCard();
+    }
+}
 
-// vector<Card*> CardInventory::getInventory(){
-//     return this->inv;
-// }
+vector<Card*>& CardInventory::getInventory(){
+    return this->inv;
+}

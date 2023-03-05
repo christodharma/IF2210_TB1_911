@@ -4,7 +4,7 @@
 using namespace std;
 
 //compile
-//g++ -o driver driver_Card.cpp ../Card.cpp ../Valueable.cpp
+//g++ -o driver_Card driver_Card.cpp ../../src/Card.cpp ../../src/Valueable.cpp
 int main(){
     Card a('B', 6);
     Card b('k', 13);

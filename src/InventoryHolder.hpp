@@ -17,17 +17,29 @@ public:
     InventoryHolder(){};
     // virtual ~InventoryHolder();
     virtual bool isEmpty(){};
-    // virtual vector<T*> getInventory();
+    virtual void showInventory(){};
+    virtual vector<T*>& getInventory(){};
 };
 
 class CardInventory : public InventoryHolder<Card>{
 protected:
     vector<Card*> inv;
 public:
+    /*ctor, dtor*/
     CardInventory();
     ~CardInventory();
+
+    /*operator overloadings*/
+    //menambahkan kartu ke dalam inventory
+    vector<Card*>& operator+(Card&);
+    //menghilangkan kartu yang bernilai sesuai dengan input
+    vector<Card*>& operator-(Card&); //bisa rancu karena input bisa berupa kartu yang memang berada di inventory, atau bisa berupa kartu yang bernilai sama persis (bingung apa yang diminta)
+    // friend vector<Card*>& Player::operator+(Card&);
+    // friend vector<Card*>& Player::operator-(Card&);
+    /*inheritance methods*/
+    void showInventory();
     bool isEmpty();
-    // vector<Card*> getInventory();
+    vector<Card*>& getInventory();
 };
 
 class GameState: public InventoryHolder<Card>{
@@ -40,6 +52,9 @@ public:
     int getRound();
     long int getPrize();
     bool isGameOngoing();
+
+    //inheritance methods
+    void showInventory();
     bool isEmpty();
 };
 

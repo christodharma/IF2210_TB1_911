@@ -37,8 +37,30 @@ bool Player::isEmpty(){
     return playerInventory->isEmpty();
 }
 
-// void Player::showInventory(){
-//     for (vector<Card>::const_iterator i = this->playerInventory->begin(); i != this->playerInventory->end(); ++i){
-//         i->printCard();
-//     }
-// }
+vector<Card*>& Player::operator+(Card& input){
+    Card* inputPtr(&input);
+    this->playerInventory->getInventory().push_back(inputPtr);
+    return this->playerInventory->getInventory();
+}
+vector<Card*>& Player::operator-(Card& input){
+    for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); i++)
+    {
+        if (**i == input){
+            // Card* inputPtr(*i);
+            cout << "found card to be erased" << endl;
+            this->playerInventory->getInventory().erase(i);
+        }
+    }
+    return this->playerInventory->getInventory();
+}
+
+void Player::showInventory(){
+    // for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); ++i){
+    //     cout << *i << endl; //cuman print Card*
+    // }
+    cout << this->playerName << "'s Inventory:" << endl;
+    for (int i = 0; i < this->playerInventory->getInventory().size(); i++)
+    {
+        this->playerInventory->getInventory()[i]->printCard();
+    }
+}

@@ -24,8 +24,13 @@ public:
     string getPlayerName();
     long int getPlayerPoint();
 
-    //function from parent class inheritance
-    //inventory member functions
+    /*operator overloads*/
+    //REMEMBER TO "DRY"
+    vector<Card*>& operator+(Card&);
+    vector<Card*>& operator-(Card&);
+    
+    /*function from parent class inheritance*/
+    /*Inventory member functions*/
     void showInventory();
     bool isEmpty();
 };
