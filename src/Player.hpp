@@ -18,7 +18,7 @@ private:
 public:
     Player();
     Player(string);
-    virtual ~Player(); //need virtual to call playerInventory dtor
+    ~Player(); //need virtual to call playerInventory dtor
 
     //getter
     string getPlayerName();

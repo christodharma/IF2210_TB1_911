@@ -25,7 +25,7 @@ int main(){
         cout << p1.getPlayerName() << " have something" << endl;
     }
     p1.showInventory();
-    p1 - h13; //error di erase()
-    p1.showInventory();
+    // p1 - h13; //error di erase()
+    // p1.showInventory();
     return 0;
 }

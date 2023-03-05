@@ -12,6 +12,7 @@ CardInventory::CardInventory(){
 CardInventory::~CardInventory(){
     for (auto i = this->inv.begin(); i != this->inv.end(); i++)
     {
+        cout << "CardInventory delete" << endl;
         delete *i;
     }
     // perlu coba kalo pakai c++ 11 / pakai linux

@@ -1,5 +1,5 @@
-#include "../Card.hpp"
-#include "../Valueable.hpp"
+#include "../../src/Card.hpp"
+#include "../../src/Valueable.hpp"
 #include <iostream>
 using namespace std;
 

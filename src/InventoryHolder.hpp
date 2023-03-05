@@ -15,7 +15,7 @@ template <class T>
 class InventoryHolder{
 public:
     InventoryHolder(){};
-    // virtual ~InventoryHolder();
+    virtual ~InventoryHolder() {};
     virtual bool isEmpty(){};
     virtual void showInventory(){};
     virtual vector<T*>& getInventory(){};
