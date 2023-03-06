@@ -31,9 +31,9 @@ public:
 
     /*operator overloadings*/
     //menambahkan kartu ke dalam inventory
-    vector<Card*>& operator+(Card&);
+    vector<Card*>& operator+=(Card&);
     //menghilangkan kartu yang bernilai sesuai dengan input
-    vector<Card*>& operator-(Card&); //bisa rancu karena input bisa berupa kartu yang memang berada di inventory, atau bisa berupa kartu yang bernilai sama persis (bingung apa yang diminta)
+    vector<Card*>& operator-=(Card&); //bisa rancu karena input bisa berupa kartu yang memang berada di inventory, atau bisa berupa kartu yang bernilai sama persis (bingung apa yang diminta)
     // friend vector<Card*>& Player::operator+(Card&);
     // friend vector<Card*>& Player::operator-(Card&);
     /*inheritance methods*/

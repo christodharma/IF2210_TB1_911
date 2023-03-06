@@ -37,12 +37,12 @@ bool Player::isEmpty(){
     return this->playerInventory->isEmpty();
 }
 
-vector<Card*>& Player::operator+(Card& input){
+vector<Card*>& Player::operator+=(Card& input){
     Card* inputPtr(&input);
     this->playerInventory->getInventory().push_back(inputPtr);
     return this->playerInventory->getInventory();
 }
-vector<Card*>& Player::operator-(Card& input){
+vector<Card*>& Player::operator-=(Card& input){
     for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); i++)
     {
         if (**i == input){

@@ -15,8 +15,8 @@ int main(){
     p1.showInventory();
     Card h13('h', 13);
     Card b13('b', 13);
-    p1 + b13;
-    p1 + h13;
+    p1 += b13;
+    p1 += h13;
     p1.showInventory();
     // p1 - h13; //error di erase()
     // p1.showInventory();

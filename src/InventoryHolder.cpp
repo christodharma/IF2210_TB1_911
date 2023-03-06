@@ -20,12 +20,12 @@ CardInventory::~CardInventory(){
     // }
 }
 
-vector<Card*>& CardInventory::operator+(Card& input){
+vector<Card*>& CardInventory::operator+=(Card& input){
     Card* inputPtr(&input);
     this->inv.push_back(inputPtr);
     return this->inv;
 }
-vector<Card*>& CardInventory::operator-(Card& input){
+vector<Card*>& CardInventory::operator-=(Card& input){
     // Card* inputPtr(&input);
     // this->inv.erase(inputPtr);
     for (auto i = inv.begin(); i != inv.end(); i++)

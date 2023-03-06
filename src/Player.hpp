@@ -26,8 +26,8 @@ public:
 
     /*operator overloads*/
     //REMEMBER TO "DRY"
-    vector<Card*>& operator+(Card&);
-    vector<Card*>& operator-(Card&);
+    vector<Card*>& operator+=(Card&);
+    vector<Card*>& operator-=(Card&);
     
     /*function from parent class inheritance*/
     /*Inventory member functions*/
