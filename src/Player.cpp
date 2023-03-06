@@ -38,20 +38,18 @@ bool Player::isEmpty(){
 }
 
 vector<Card*>& Player::operator+=(Card& input){
-    Card* inputPtr(&input);
-    this->playerInventory->getInventory().push_back(inputPtr);
-    return this->playerInventory->getInventory();
+    return *this->playerInventory += input;
 }
 vector<Card*>& Player::operator-=(Card& input){
-    for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); i++)
-    {
-        if (**i == input){
-            // Card* inputPtr(*i);
-            cout << "found card to be erased" << endl;
-            this->playerInventory->getInventory().erase(i);
-        }
-    }
-    return this->playerInventory->getInventory();
+    // for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); i++)
+    // {
+    //     if (**i == input){
+    //         // Card* inputPtr(*i);
+    //         cout << "found card to be erased" << endl;
+    //         i = this->playerInventory->getInventory().erase(i);
+    //     }
+    // }
+    return *this->playerInventory -= input;
 }
 
 void Player::showInventory(){

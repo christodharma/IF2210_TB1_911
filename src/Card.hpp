@@ -3,13 +3,15 @@
 
 #include "Valueable.hpp"
 #include <iostream>
+// #include <utility> //stl-nya pair
 using namespace std;
 
 class Card : public Valueable {
 protected:
     Valueable* val;
-    int angka;
+    /*implementasi pair STL aja? pair<int,char> atau pair<int,string>*/
     char warna;
+    int angka;
 public:
     //ctor, dtor
     Card(int,char);

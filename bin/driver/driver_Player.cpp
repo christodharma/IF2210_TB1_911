@@ -18,6 +18,9 @@ int main(){
     p1 += b13;
     p1 += h13;
     p1.showInventory();
+    p1 -= h13;
+    p1 -= b13;
+    p1.showInventory();
     // p1 - h13; //error di erase()
     // p1.showInventory();
     return 0;

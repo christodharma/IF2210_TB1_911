@@ -28,13 +28,14 @@ vector<Card*>& CardInventory::operator+=(Card& input){
 vector<Card*>& CardInventory::operator-=(Card& input){
     // Card* inputPtr(&input);
     // this->inv.erase(inputPtr);
-    for (auto i = inv.begin(); i != inv.end(); i++)
+    auto i = this->inv.begin();
+    while (i!=this->inv.end())
     {
-        if (**i == input){
-            // Card* inputPtr(*i);
-            cout << "found card to be erased" << endl;
-            this->inv.erase(i);
+        if (**i==input/*&& *i == &input*/){
+            i = this->inv.erase(i);
+            break;
         }
+        i++;
     }
     return this->inv;
 }
@@ -48,6 +49,13 @@ void CardInventory::showInventory(){
         inv[i]->printCard();
     }
 }
+
+// vector<Card*>& operator+ (vector<Card*>& a, Card& b){
+//     return a += b;
+// }
+// vector<Card*>& operator- (vector<Card*>& a, Card& b){
+//     return a -= b;
+// }
 
 vector<Card*>& CardInventory::getInventory(){
     return this->inv;
