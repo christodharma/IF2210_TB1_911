@@ -12,8 +12,8 @@ using namespace std;
 class Valueable{
 public:
     Valueable(){};
-    static map<char,double> valueMap;
     // virtual ~Valueable(){}; //?? this stucked the prog
+    static map<char,double> valueMap;
     virtual double getValue() = 0;
 };
 
@@ -31,6 +31,9 @@ public:
 // class Combination : Valueable{
 // private:
 //     vector<Valueable*> combo;
+// public:
+//     Combination();
+//     ~Combination();
 // };
 
 #endif

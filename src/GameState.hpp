@@ -1,10 +1,25 @@
 #ifndef __GAMESTATE_HPP__
 #define __GAMESTATE_HPP__
 
-class GameState{
+#include "InventoryHolder.hpp"
+#include "Card.hpp"
+
+class GameState: public InventoryHolder<Card>{
 private:
-    int round = 0;
-    long prize = 64;
+    //vector <Card> inventory dari inventoryholder
+    int round;
+    static long int prize;
+    static bool isOngoing;
+public:
+    GameState();
+    ~GameState();
+    int getRound();
+    long int getPrize();
+    bool isGameOngoing();
+
+    //inheritance methods
+    void showInventory();
+    bool isEmpty();
 };
 
 #endif

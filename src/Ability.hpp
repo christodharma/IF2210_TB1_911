@@ -5,6 +5,8 @@ class Ability{
 protected:
     int abilityType;    //might need map
 public:
+    Ability();
+    virtual ~Ability(){};
     int getType();
 };
 
