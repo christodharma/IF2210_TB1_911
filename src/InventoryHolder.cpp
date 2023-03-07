@@ -4,49 +4,50 @@
 #include <iostream>
 using namespace std;
 
-CardInventory::CardInventory(){
-    vector<Card*> x;
-    this->inv = x;
+Inventory::Inventory(){
+    vector<Card> x;
+    this->inventory = x;
 };
 
-CardInventory::~CardInventory(){
-    for (auto i = this->inv.begin(); i != this->inv.end(); i++)
-    {
-        delete *i;
-    }
-    // perlu coba kalo pakai c++ 11 / pakai linux
-    // for (auto p : this->inv){
-    //     delete p
-    // }
+
+Inventory::~Inventory(){}
+
+vector<Card>& Inventory::operator+=(Card& input){
+    this->inventory.push_back(input); //WARNING push_back Card&
+    return this->inventory;
 }
 
-vector<Card*>& CardInventory::operator+=(Card& input){
-    Card* inputPtr(&input);
-    this->inv.push_back(inputPtr);
-    return this->inv;
-}
-vector<Card*>& CardInventory::operator-=(Card& input){
-    // Card* inputPtr(&input);
-    // this->inv.erase(inputPtr);
-    auto i = this->inv.begin();
-    while (i!=this->inv.end())
+//removing input Card object from inventory
+vector<Card>& Inventory::operator-=(Card& input){
+    auto itr = this->inventory.begin();
+    // this->inventory.erase(itr+3);
+    // while (itr!=this->inventory.end())
+    // {
+    //     if (*itr==input){
+    //         itr = this->inventory.erase(itr);
+    //         break;
+    //     } else {
+    //         itr++;
+    //     }
+    // }
+    for (int i = 0; i < this->inventory.size(); i++)
     {
-        if (**i==input/*&& *i == &input*/){
-            i = this->inv.erase(i);
+        if(this->inventory[i] == input){
+            this->inventory.erase(itr+i);
             break;
         }
-        i++;
     }
-    return this->inv;
+    return this->inventory;
 }
 
-bool CardInventory::isEmpty(){
-    return inv.empty();
+bool Inventory::isEmpty(){
+    return this->inventory.empty();
 }
-void CardInventory::showInventory(){
-    for (int i = 0; i < inv.size(); i++)
+
+void Inventory::showInventory(){
+    for (int i = 0; i < this->inventory.size(); i++)
     {
-        inv[i]->printCard();
+        cout << i+1 << ". " << this->inventory[i] << endl;
     }
 }
 
@@ -57,6 +58,6 @@ void CardInventory::showInventory(){
 //     return a -= b;
 // }
 
-vector<Card*>& CardInventory::getInventory(){
-    return this->inv;
+vector<Card>& Inventory::getInventory(){
+    return this->inventory;
 }

@@ -1,66 +1,63 @@
-#include <map>
-#include <vector>
 #include "Card.hpp"
-#include <iostream>
-using namespace std;
 
 Card::Card(int a, char w){
-    this->angka = a;
-    this->warna = toupper(w);
-    // this->val = v;
+    kartu = make_pair(a,toupper(w));
+    // this->value = v;
     map<char,double>::iterator i = valueMap.find(w);
     if (i != valueMap.end()){
-        this->val = new Value(a * 0.1 + i->second);
+        this->value = new Value(a * 0.1 + i->second);
     }
     // else {
     //     // throw invalidCardCharInputError
-    //     // this->val = 0;
+    //     // this->value = 0;
     // }
 }
 
 Card::Card(char w, int a){
-    this->angka = a;
-    this->warna = toupper(w);
-    // this->val = v;
+    kartu = make_pair(a,toupper(w));
+    // this->value = v;
     map<char,double>::iterator i = valueMap.find(w);
     if (i != valueMap.end()){
-        this->val = new Value(a * 0.1 + i->second);
+        this->value = new Value(a * 0.1 + i->second);
     }
     // else {
     //     // throw invalidCardCharInputError
-    //     // this->val = 0;
+    //     // this->value = 0;
     // }
 }
 
 Card::~Card(){
-    delete val;
+    delete this->value;
 }
 
 int Card::getAngka(){
-    return this->angka;
+    return kartu.first;
 }
 
 char Card::getWarna(){
-    return this->warna;
+    return kartu.second;
 }
 
 double Card::getValue(){
-    return this->val->getValue();
+    return this->value->getValue();
 }
 
 void Card::printCard() const{
-    cout << "(" << this->angka << "," << this->warna << ")" << endl;
+    cout << "(" << kartu.first << "," << kartu.second << ")" << endl;
 }
 
 bool Card::operator<(const Card& other)
 {
-    return this->val->getValue() < other.val->getValue();
+    return this->value->getValue() < other.value->getValue();
 }
 bool Card::operator>(const Card& other)
 {
-    return this->val->getValue() > other.val->getValue();
+    return this->value->getValue() > other.value->getValue();
 }
 bool Card::operator==(const Card& other)
 {
-    return this->val->getValue() == other.val->getValue();
+    return this->value->getValue() == other.value->getValue();
+}
+ostream& operator<<(ostream& os, const Card& card){
+    os << "(" << card.kartu.first << "," << card.kartu.second << ")";
 }

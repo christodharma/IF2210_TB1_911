@@ -7,12 +7,12 @@
 using namespace std;
 
 class Player : 
-    public InventoryHolder<Card> 
+    public InventoryHolder 
     // ,public Card, //antara inherit card / valueable / gapake (soalnya ada inventoryholder)
     // public Ability
     {
 private:
-    InventoryHolder<Card>* playerInventory;
+    InventoryHolder* playerInventory;
     string playerName;
     long int point;
 public:
@@ -25,15 +25,14 @@ public:
     long int getPlayerPoint();
 
     /*operator overloads*/
-    //REMEMBER TO "DRY"
-    vector<Card*>& operator+=(Card&);
-    vector<Card*>& operator-=(Card&);
+    vector<Card>& operator+=(Card&);
+    vector<Card>& operator-=(Card&);
     
     /*function from parent class inheritance*/
     /*Inventory member functions*/
     void showInventory();
     bool isEmpty();
-    vector<Card*>& getInventory();
+    vector<Card>& getInventory();
 };
 
 #endif

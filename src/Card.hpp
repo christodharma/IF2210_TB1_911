@@ -3,15 +3,14 @@
 
 #include "Valueable.hpp"
 #include <iostream>
-// #include <utility> //stl-nya pair
+#include <utility>
+#include <string>
 using namespace std;
 
 class Card : public Valueable {
 protected:
-    Valueable* val;
-    /*implementasi pair STL aja? pair<int,char> atau pair<int,string>*/
-    char warna;
-    int angka;
+    Valueable* value;
+    pair<int,char> kartu;
 public:
     //ctor, dtor
     Card(int,char);
@@ -24,6 +23,7 @@ public:
     bool operator<(const Card&);
     bool operator>(const Card&);
     bool operator==(const Card&);
+    friend ostream& operator<< (ostream& os, const Card& card);
 };
 
 #endif

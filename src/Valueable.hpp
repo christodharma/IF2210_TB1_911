@@ -12,7 +12,7 @@ using namespace std;
 class Valueable{
 public:
     Valueable(){};
-    // virtual ~Valueable(){}; //?? this stucked the prog
+    virtual ~Valueable(){}; //?? this stucked the prog
     static map<char,double> valueMap;
     virtual double getValue() = 0;
 };
