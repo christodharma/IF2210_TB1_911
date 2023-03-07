@@ -15,11 +15,11 @@ class InventoryHolder{
 public:
     InventoryHolder(){};
     virtual ~InventoryHolder() {};
-    virtual bool isEmpty(){};
-    virtual void showInventory(){};
-    virtual vector<Card>& getInventory(){};
-    virtual vector<Card>& operator+=(Card&){};
-    virtual vector<Card>& operator-=(Card&){};
+    virtual bool isEmpty()=0;
+    virtual void showInventory()=0;
+    virtual vector<Card>& getInventory()=0;
+    virtual vector<Card>& operator+=(Card&)=0;
+    virtual vector<Card>& operator-=(Card&)=0;
 };
 
 class Inventory : public InventoryHolder{
