@@ -10,33 +10,32 @@ CardInventory::CardInventory(){
 };
 
 CardInventory::~CardInventory(){
-    for (auto i = this->inv.begin(); i != this->inv.end(); i++)
+    for (int i = 0; i < this->inv.size(); i++)
     {
-        delete *i;
+        delete this->inv[i];
     }
     // perlu coba kalo pakai c++ 11 / pakai linux
     // for (auto p : this->inv){
-    //     delete p
+    //     delete p;
     // }
 }
 
 vector<Card*>& CardInventory::operator+=(Card& input){
-    Card* inputPtr(&input);
-    this->inv.push_back(inputPtr);
+    this->inv.push_back(new Card(input));
     return this->inv;
 }
 vector<Card*>& CardInventory::operator-=(Card& input){
-    // Card* inputPtr(&input);
-    // this->inv.erase(inputPtr);
-    auto i = this->inv.begin();
-    while (i!=this->inv.end())
+    int pos;
+    for (int i = 0; i < this->inv.size(); i++)
     {
-        if (**i==input/*&& *i == &input*/){
-            i = this->inv.erase(i);
+        if (*this->inv[i] == input){
+            pos = i;
             break;
         }
-        i++;
     }
+    // delete this->inv[pos]; //ada ini malah melambat, justru karena didelete harus gitu atau ada error
+    //// mungkin karena ada dtor dan ada itu, jadi 2 kali delete?
+    this->inv.erase(this->inv.begin()+pos);
     return this->inv;
 }
 
@@ -50,12 +49,12 @@ void CardInventory::showInventory(){
     }
 }
 
-// vector<Card*>& operator+ (vector<Card*>& a, Card& b){
-//     return a += b;
-// }
-// vector<Card*>& operator- (vector<Card*>& a, Card& b){
-//     return a -= b;
-// }
+vector<Card*>& CardInventory::operator+ (Card& b){
+    return *this += b;
+}
+vector<Card*>& CardInventory::operator- (Card& b){
+    return *this -= b;
+}
 
 vector<Card*>& CardInventory::getInventory(){
     return this->inv;

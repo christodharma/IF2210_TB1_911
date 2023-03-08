@@ -21,6 +21,8 @@ public:
     virtual vector<T*>& getInventory()=0;
     virtual vector<T*>& operator+=(T&)=0;
     virtual vector<T*>& operator-=(T&)=0;
+    virtual vector<T*>& operator+(T&)=0;
+    virtual vector<T*>& operator-(T&)=0;
 };
 
 class CardInventory : public InventoryHolder<Card>{
@@ -41,8 +43,8 @@ public:
     vector<Card*>& operator-=(Card&); //bisa rancu karena input bisa berupa kartu yang memang berada di inventory, atau bisa berupa kartu yang bernilai sama persis (bingung apa yang diminta)
     /*Belum bisa soalnya operator+= -= eksklusif buat CardInventory class, tapi friend nerima vector<Card*>& aja
     Maksudnya dibikin friend supaya bisa diimplement ke Player class tanpa harus redefine (not DRY)*/
-    // friend vector<Card*>& operator+ (vector<Card*>&,Card&);
-    // friend vector<Card*>& operator- (vector<Card*>&,Card&);
+    vector<Card*>& operator+ (Card&);
+    vector<Card*>& operator- (Card&);
     /*inheritance methods*/
     void showInventory();
     bool isEmpty();

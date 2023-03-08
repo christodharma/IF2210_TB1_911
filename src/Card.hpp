@@ -3,27 +3,26 @@
 
 #include "Valueable.hpp"
 #include <iostream>
-// #include <utility> //stl-nya pair
+#include <utility> //stl-nya pair
 using namespace std;
 
 class Card : public Valueable {
 protected:
     Valueable* val;
-    /*implementasi pair STL aja? pair<int,char> atau pair<int,string>*/
-    char warna;
-    int angka;
+    pair<char,int> kartu; //pair warna dan angka
 public:
     //ctor, dtor
     Card(int,char);
     Card(char,int);
     ~Card();
-    int getAngka();
-    char getWarna();
-    double getValue();
+    char getWarna() const;
+    int getAngka() const;
+    double getValue() const;
     void printCard() const;
     bool operator<(const Card&);
     bool operator>(const Card&);
     bool operator==(const Card&);
+    friend ostream& operator<< (ostream& os, const Card& card);
 };
 
 #endif

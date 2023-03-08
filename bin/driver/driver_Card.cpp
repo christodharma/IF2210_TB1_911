@@ -8,20 +8,22 @@ using namespace std;
 int main(){
     Card a('B', 6);
     Card b('k', 13);
+    Card b1('k', 13);
     cout << b.getWarna() << endl;
     cout << b.getValue() << endl;
     if (a > b){
-        a.printCard();
-        cout << ">" << endl;
-        b.printCard();
+        cout << a << " > " << b << endl;
     } else if ( a < b) {
-        a.printCard();
-        cout << "<" << endl;
-        b.printCard();
+        cout << a << " < " << b << endl;
     } else if (a == b){
-        a.printCard();
-        cout << "==" << endl;
-        b.printCard();
+        cout << a << " == " << b << endl;
+    }
+    if (b1 > b){
+        cout << b1 << " >"  << b << endl;
+    } else if ( b1< b) {
+        cout << b1 << " < " << b << endl;
+    } else if (b1== b){
+        cout << b1 << " == " << b << endl;
     }
     return 0;
 }

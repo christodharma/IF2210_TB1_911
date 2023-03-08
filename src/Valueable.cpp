@@ -28,6 +28,6 @@ Value::Value(double x)
     //     this->value = 0;
     // }
 
-double Value::getValue(){
+double Value::getValue() const{
     return this->value;
 }

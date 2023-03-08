@@ -7,7 +7,7 @@ protected:
 public:
     Ability();
     virtual ~Ability(){};
-    int getType();
+    int getType(); //const
 };
 
 class ReRoll : Ability{

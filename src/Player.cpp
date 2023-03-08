@@ -25,11 +25,11 @@ Player::~Player(){
     delete this->playerInventory;
 }
 
-string Player::getPlayerName(){
+string Player::getPlayerName()const {
     return this->playerName;
 }
 
-long int Player::getPlayerPoint(){
+long int Player::getPlayerPoint()const {
     return this->point;
 }
 
@@ -50,6 +50,13 @@ vector<Card*>& Player::operator-=(Card& input){
     //     }
     // }
     return *this->playerInventory -= input;
+}
+
+vector<Card*>& Player::operator+(Card& input){
+    return *this->playerInventory + input;
+}
+vector<Card*>& Player::operator-(Card& input){
+    return *this->playerInventory - input;
 }
 
 void Player::showInventory(){

@@ -13,8 +13,8 @@ private:
 public:
     GameState();
     ~GameState();
-    int getRound();
-    long int getPrize();
+    int getRound() const;
+    long int getPrize() const;
     bool isGameOngoing();
 
     //inheritance methods

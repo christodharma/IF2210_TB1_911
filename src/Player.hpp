@@ -21,13 +21,14 @@ public:
     ~Player();
 
     //getter
-    string getPlayerName();
-    long int getPlayerPoint();
+    string getPlayerName() const;
+    long int getPlayerPoint() const;
 
     /*operator overloads*/
-    //REMEMBER TO "DRY"
     vector<Card*>& operator+=(Card&);
     vector<Card*>& operator-=(Card&);
+    vector<Card*>& operator+(Card&);
+    vector<Card*>& operator-(Card&);
     
     /*function from parent class inheritance*/
     /*Inventory member functions*/

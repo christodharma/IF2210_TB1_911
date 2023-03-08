@@ -12,9 +12,9 @@ using namespace std;
 class Valueable{
 public:
     Valueable(){};
-    // virtual ~Valueable(){}; //?? this stucked the prog
+    virtual ~Valueable(){}; //?? this stucked the prog
     static map<char,double> valueMap;
-    virtual double getValue() = 0;
+    virtual double getValue() const = 0;
 };
 
 class Value : public Valueable {
@@ -24,7 +24,7 @@ public:
     // Value(Combination* co);
     Value(double);
     ~Value(){};
-    double getValue();
+    double getValue() const;
 };
 
 //belum

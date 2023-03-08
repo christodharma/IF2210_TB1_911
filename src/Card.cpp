@@ -5,8 +5,7 @@
 using namespace std;
 
 Card::Card(int a, char w){
-    this->angka = a;
-    this->warna = toupper(w);
+    this->kartu = make_pair(toupper(w),a);
     // this->val = v;
     map<char,double>::iterator i = valueMap.find(w);
     if (i != valueMap.end()){
@@ -19,8 +18,7 @@ Card::Card(int a, char w){
 }
 
 Card::Card(char w, int a){
-    this->angka = a;
-    this->warna = toupper(w);
+    this->kartu = make_pair(toupper(w), a);
     // this->val = v;
     map<char,double>::iterator i = valueMap.find(w);
     if (i != valueMap.end()){
@@ -36,20 +34,20 @@ Card::~Card(){
     delete val;
 }
 
-int Card::getAngka(){
-    return this->angka;
+char Card::getWarna() const{
+    return kartu.first;
+}
+int Card::getAngka() const{
+    return kartu.second;
 }
 
-char Card::getWarna(){
-    return this->warna;
-}
 
-double Card::getValue(){
+double Card::getValue() const{
     return this->val->getValue();
 }
 
 void Card::printCard() const{
-    cout << "(" << this->angka << "," << this->warna << ")" << endl;
+    cout << "(" << kartu.first << "," << kartu.second << ")" << endl;
 }
 
 bool Card::operator<(const Card& other)
@@ -62,5 +60,8 @@ bool Card::operator>(const Card& other)
 }
 bool Card::operator==(const Card& other)
 {
-    return this->val->getValue() == other.val->getValue();
+    return this->kartu == other.kartu;
+}
+ostream& operator<<(ostream& os, const Card& card){
+    os << "(" << card.kartu.first << "," << card.kartu.second << " -> " << card.getValue() << ")";
 }
