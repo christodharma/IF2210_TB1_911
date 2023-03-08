@@ -46,7 +46,7 @@ bool CardInventory::isEmpty(){
 void CardInventory::showInventory(){
     for (int i = 0; i < this->inventory.size(); i++)
     {
-        cout << i+1 << ". " << this->inventory[i] << endl;
+        cout << i+1 << ". " << *this->inventory[i] << endl;
     }
 }
 
