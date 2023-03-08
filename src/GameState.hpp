@@ -4,9 +4,10 @@
 #include "InventoryHolder.hpp"
 #include "Card.hpp"
 
-class GameState: public InventoryHolder<Card>{
+class GameState: public InventoryHolder{
 private:
     //vector <Card> inventory dari inventoryholder
+    InventoryHolder* table;
     int round;
     static long int prize;
     static bool isOngoing;
