@@ -8,7 +8,7 @@ using namespace std;
 
 class Card : public Valueable {
 protected:
-    Valueable* val;
+    Valueable* value;
     pair<char,int> kartu; //pair warna dan angka
 public:
     //ctor, dtor

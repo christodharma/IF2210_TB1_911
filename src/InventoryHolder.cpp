@@ -6,46 +6,47 @@ using namespace std;
 
 CardInventory::CardInventory(){
     vector<Card*> x;
-    this->inv = x;
+    this->inventory = x;
 };
 
 CardInventory::~CardInventory(){
-    for (int i = 0; i < this->inv.size(); i++)
+    for (int i = 0; i < this->inventory.size(); i++)
     {
-        delete this->inv[i];
+        delete this->inventory[i];
     }
     // perlu coba kalo pakai c++ 11 / pakai linux
-    // for (auto p : this->inv){
+    // for (auto p : this->inventory){
     //     delete p;
     // }
 }
 
 vector<Card*>& CardInventory::operator+=(Card& input){
-    this->inv.push_back(new Card(input));
-    return this->inv;
+    this->inventory.push_back(new Card(input));
+    return this->inventory;
 }
 vector<Card*>& CardInventory::operator-=(Card& input){
     int pos;
-    for (int i = 0; i < this->inv.size(); i++)
+    for (int i = 0; i < this->inventory.size(); i++)
     {
-        if (*this->inv[i] == input){
+        if (*this->inventory[i] == input){
             pos = i;
             break;
         }
     }
-    // delete this->inv[pos]; //ada ini malah melambat, justru karena didelete harus gitu atau ada error
+    // delete this->inventory[pos]; //ada ini malah melambat, justru karena didelete harus gitu atau ada error
     //// mungkin karena ada dtor dan ada itu, jadi 2 kali delete?
-    this->inv.erase(this->inv.begin()+pos);
-    return this->inv;
+    this->inventory.erase(this->inventory.begin()+pos);
+    return this->inventory;
 }
 
 bool CardInventory::isEmpty(){
-    return inv.empty();
+    return this->inventory.empty();
 }
+
 void CardInventory::showInventory(){
-    for (int i = 0; i < inv.size(); i++)
+    for (int i = 0; i < this->inventory.size(); i++)
     {
-        inv[i]->printCard();
+        cout << i+1 << ". " << this->inventory[i] << endl;
     }
 }
 
@@ -57,5 +58,5 @@ vector<Card*>& CardInventory::operator- (Card& b){
 }
 
 vector<Card*>& CardInventory::getInventory(){
-    return this->inv;
+    return this->inventory;
 }

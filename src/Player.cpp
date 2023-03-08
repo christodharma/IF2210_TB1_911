@@ -10,13 +10,13 @@ Player::Player(){
     cin >> name;
     this->playerName = name;
     this->point = 0;
-    // this->inventory = null soalnya undefined
+    this->playerInventory = new Inventory;
 }
 
 Player::Player(string name){
     this->playerName = name;
     this->point = 0;
-    this->playerInventory = new CardInventory();
+    this->playerInventory = new Inventory;
 }
 
 Player::~Player(){
@@ -37,10 +37,10 @@ bool Player::isEmpty(){
     return this->playerInventory->isEmpty();
 }
 
-vector<Card*>& Player::operator+=(Card& input){
+vector<Card>& Player::operator+=(Card& input){
     return *this->playerInventory += input;
 }
-vector<Card*>& Player::operator-=(Card& input){
+vector<Card>& Player::operator-=(Card& input){
     // for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); i++)
     // {
     //     if (**i == input){
@@ -71,6 +71,6 @@ void Player::showInventory(){
     }
 }
 
-vector<Card*>& Player::getInventory(){
+vector<Card>& Player::getInventory(){
     return this->playerInventory->getInventory();
 }

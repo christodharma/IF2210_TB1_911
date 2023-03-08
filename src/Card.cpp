@@ -1,19 +1,15 @@
-#include <map>
-#include <vector>
 #include "Card.hpp"
-#include <iostream>
-using namespace std;
 
 Card::Card(int a, char w){
     this->kartu = make_pair(toupper(w),a);
     // this->val = v;
     map<char,double>::iterator i = valueMap.find(w);
     if (i != valueMap.end()){
-        this->val = new Value(a * 0.1 + i->second);
+        this->value = new Value(a * 0.1 + i->second);
     }
     // else {
     //     // throw invalidCardCharInputError
-    //     // this->val = 0;
+    //     // this->value = 0;
     // }
 }
 
@@ -22,16 +18,16 @@ Card::Card(char w, int a){
     // this->val = v;
     map<char,double>::iterator i = valueMap.find(w);
     if (i != valueMap.end()){
-        this->val = new Value(a * 0.1 + i->second);
+        this->value = new Value(a * 0.1 + i->second);
     }
     // else {
     //     // throw invalidCardCharInputError
-    //     // this->val = 0;
+    //     // this->value = 0;
     // }
 }
 
 Card::~Card(){
-    delete val;
+    delete this->value;
 }
 
 char Card::getWarna() const{
@@ -43,7 +39,7 @@ int Card::getAngka() const{
 
 
 double Card::getValue() const{
-    return this->val->getValue();
+    return this->value->getValue();
 }
 
 void Card::printCard() const{
@@ -52,11 +48,11 @@ void Card::printCard() const{
 
 bool Card::operator<(const Card& other)
 {
-    return this->val->getValue() < other.val->getValue();
+    return this->value->getValue() < other.value->getValue();
 }
 bool Card::operator>(const Card& other)
 {
-    return this->val->getValue() > other.val->getValue();
+    return this->value->getValue() > other.value->getValue();
 }
 bool Card::operator==(const Card& other)
 {
