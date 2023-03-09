@@ -60,4 +60,5 @@ bool Card::operator==(const Card& other)
 }
 ostream& operator<<(ostream& os, const Card& card){
     os << "(" << card.kartu.first << "," << card.kartu.second /*<< " -> " << card.getValue()*/ << ")";
+    return os;
 }

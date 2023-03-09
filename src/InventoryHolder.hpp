@@ -4,6 +4,7 @@
 #include "Card.hpp"
 #include <vector>
 #include <string>
+#include <utility>
 using namespace std;
 
 
@@ -17,11 +18,11 @@ public:
     virtual ~InventoryHolder() {};
     virtual bool isEmpty()=0;
     virtual void showInventory()=0;
-    virtual vector<Card*>& getInventory()=0;
-    virtual vector<Card*>& operator+=(Card&)=0;
-    virtual vector<Card*>& operator-=(Card&)=0;
-    virtual vector<Card*>& operator+(Card&)=0;
-    virtual vector<Card*>& operator-(Card&)=0;
+    virtual vector<pair<char,int>>& getInventory()=0;
+    virtual vector<pair<char,int>>& operator+=(Card&)=0;
+    virtual vector<pair<char,int>>& operator-=(Card&)=0;
+    virtual vector<pair<char,int>>& operator+(Card&)=0;
+    virtual vector<pair<char,int>>& operator-(Card&)=0;
 };
 
 class CardInventory : public InventoryHolder{
@@ -29,7 +30,7 @@ protected:
     /*pake card pointer masi belum tentu ide bagus
     soalnya semua kartu jadi harus unik(punya address yang beda2), jadi ga memungkinkan buat fleksibilitas? 
     tapi dengan cuman oper2 pointer jadinya game lebih efisien (ngoper alamat doang) + kalo mau jadi fleksibel, berarti cuman arahin supaya deklarasi di main yang diubah aturannya*/
-    vector<Card*> inventory;
+    vector<pair<char,int>> inventory;
 public:
     /*ctor, dtor*/
     CardInventory();
@@ -37,17 +38,15 @@ public:
 
     /*operator overloadings*/
     //menambahkan kartu ke dalam inventory
-    vector<Card*>& operator+=(Card&);
+    vector<pair<char,int>>& operator+=(Card&);
     //menghilangkan kartu yang bernilai sesuai dengan input
-    vector<Card*>& operator-=(Card&); //bisa rancu karena input bisa berupa kartu yang memang berada di inventory, atau bisa berupa kartu yang bernilai sama persis (bingung apa yang diminta)
-    /*Belum bisa soalnya operator+= -= eksklusif buat Inventory class, tapi friend nerima vector<T*>& aja
-    Maksudnya dibikin friend supaya bisa diimplement ke Player class tanpa harus redefine (not DRY)*/
-    vector<Card*>& operator+ (Card&);
-    vector<Card*>& operator- (Card&);
+    vector<pair<char,int>>& operator-=(Card&); //bisa rancu karena input bisa berupa kartu yang memang berada di inventory, atau bisa berupa kartu yang bernilai sama persis (bingung apa yang diminta)
+    vector<pair<char,int>>& operator+ (Card&);
+    vector<pair<char,int>>& operator- (Card&);
     /*inheritance methods*/
     void showInventory();
     bool isEmpty();
-    vector<Card*>& getInventory();
+    vector<pair<char,int>>& getInventory();
 };
 
 #endif

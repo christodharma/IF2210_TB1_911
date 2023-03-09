@@ -37,14 +37,14 @@ bool Player::isEmpty(){
     return this->playerInventory->isEmpty();
 }
 
-vector<Card*>& Player::operator+=(Card& input){
+vector<pair<char,int>>& Player::operator+=(Card& input){
     return *this->playerInventory += input;
 }
-vector<Card*>& Player::operator-=(Card& input){
+vector<pair<char,int>>& Player::operator-=(Card& input){
     // for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); i++)
     // {
     //     if (**i == input){
-    //         // Card* inputPtr(*i);
+    //         // pair<char,int> inputPtr(*i);
     //         cout << "found card to be erased" << endl;
     //         i = this->playerInventory->getInventory().erase(i);
     //     }
@@ -52,16 +52,16 @@ vector<Card*>& Player::operator-=(Card& input){
     return *this->playerInventory -= input;
 }
 
-vector<Card*>& Player::operator+(Card& input){
+vector<pair<char,int>>& Player::operator+(Card& input){
     return *this->playerInventory + input;
 }
-vector<Card*>& Player::operator-(Card& input){
+vector<pair<char,int>>& Player::operator-(Card& input){
     return *this->playerInventory - input;
 }
 
 void Player::showInventory(){
     // for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); ++i){
-    //     cout << *i << endl; //cuman print Card*
+    //     cout << *i << endl; //cuman print pair<char,int>
     // }
     cout << this->playerName << "'s Inventory:" << endl;
     if (this->isEmpty()){
@@ -71,6 +71,6 @@ void Player::showInventory(){
     }
 }
 
-vector<Card*>& Player::getInventory(){
+vector<pair<char,int>>& Player::getInventory(){
     return this->playerInventory->getInventory();
 }

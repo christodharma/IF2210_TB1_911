@@ -5,30 +5,31 @@
 using namespace std;
 
 CardInventory::CardInventory(){
-    vector<Card*> x;
+    vector<pair<char,int>> x;
     this->inventory = x;
 };
 
 CardInventory::~CardInventory(){
-    for (int i = 0; i < this->inventory.size(); i++)
-    {
-        delete this->inventory[i];
-    }
-    // perlu coba kalo pakai c++ 11 / pakai linux
-    // for (auto p : this->inventory){
-    //     delete p;
+    // for (int i = 0; i < this->inventory.size(); i++)
+    // {
+    //     delete this->inventory[i];
     // }
+    // // perlu coba kalo pakai c++ 11 / pakai linux
+    // // for (auto p : this->inventory){
+    // //     delete p;
+    // // }
 }
 
-vector<Card*>& CardInventory::operator+=(Card& input){
-    this->inventory.push_back(new Card(input));
+vector<pair<char,int>>& CardInventory::operator+=(Card& input){
+    pair<char,int> inputPair(input.getWarna(), input.getAngka());
+    this->inventory.push_back(inputPair);
     return this->inventory;
 }
-vector<Card*>& CardInventory::operator-=(Card& input){
+vector<pair<char,int>>& CardInventory::operator-=(Card& input){
     int pos;
     for (int i = 0; i < this->inventory.size(); i++)
     {
-        if (*this->inventory[i] == input){
+        if (this->inventory[i].first == input.getWarna() && this->inventory[i].second == input.getAngka()){
             pos = i;
             break;
         }
@@ -46,17 +47,17 @@ bool CardInventory::isEmpty(){
 void CardInventory::showInventory(){
     for (int i = 0; i < this->inventory.size(); i++)
     {
-        cout << i+1 << ". " << *this->inventory[i] << endl;
+        cout << i+1 << ".(" << this->inventory[i].first << "," << this->inventory[i].second << ")" << endl;
     }
 }
 
-vector<Card*>& CardInventory::operator+ (Card& b){
+vector<pair<char,int>>& CardInventory::operator+ (Card& b){
     return *this += b;
 }
-vector<Card*>& CardInventory::operator- (Card& b){
+vector<pair<char,int>>& CardInventory::operator- (Card& b){
     return *this -= b;
 }
 
-vector<Card*>& CardInventory::getInventory(){
+vector<pair<char,int>>& CardInventory::getInventory(){
     return this->inventory;
 }

@@ -25,16 +25,16 @@ public:
     long int getPlayerPoint() const;
 
     /*operator overloads*/
-    vector<Card*>& operator+=(Card&);
-    vector<Card*>& operator-=(Card&);
-    vector<Card*>& operator+(Card&);
-    vector<Card*>& operator-(Card&);
+    vector<pair<char,int>>& operator+=(Card&);
+    vector<pair<char,int>>& operator-=(Card&);
+    vector<pair<char,int>>& operator+(Card&);
+    vector<pair<char,int>>& operator-(Card&);
     
     /*function from parent class inheritance*/
     /*Inventory member functions*/
     void showInventory();
     bool isEmpty();
-    vector<Card*>& getInventory();
+    vector<pair<char,int>>& getInventory();
 };
 
 #endif
