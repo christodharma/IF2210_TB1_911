@@ -20,8 +20,6 @@ Player::Player(string name){
 }
 
 Player::~Player(){
-    //call ulang delete (for contents of playerInventory?) atau udah dipanggil dari dtor cardInventory object? contoh:
-    // this->playerInventory->~CardInventory();
     delete this->playerInventory;
 }
 
@@ -37,32 +35,21 @@ bool Player::isEmpty(){
     return this->playerInventory->isEmpty();
 }
 
-vector<pair<char,int>>& Player::operator+=(Card& input){
+vector<Card>& Player::operator+=(Card& input){
     return *this->playerInventory += input;
 }
-vector<pair<char,int>>& Player::operator-=(Card& input){
-    // for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); i++)
-    // {
-    //     if (**i == input){
-    //         // pair<char,int> inputPtr(*i);
-    //         cout << "found card to be erased" << endl;
-    //         i = this->playerInventory->getInventory().erase(i);
-    //     }
-    // }
+vector<Card>& Player::operator-=(Card& input){
     return *this->playerInventory -= input;
 }
 
-vector<pair<char,int>>& Player::operator+(Card& input){
+vector<Card>& Player::operator+(Card& input){
     return *this->playerInventory + input;
 }
-vector<pair<char,int>>& Player::operator-(Card& input){
+vector<Card>& Player::operator-(Card& input){
     return *this->playerInventory - input;
 }
 
 void Player::showInventory(){
-    // for (auto i = this->playerInventory->getInventory().begin(); i != this->playerInventory->getInventory().end(); ++i){
-    //     cout << *i << endl; //cuman print pair<char,int>
-    // }
     cout << this->playerName << "'s Inventory:" << endl;
     if (this->isEmpty()){
         cout << "-" << endl;
@@ -71,6 +58,6 @@ void Player::showInventory(){
     }
 }
 
-vector<pair<char,int>>& Player::getInventory(){
+vector<Card>& Player::getInventory(){
     return this->playerInventory->getInventory();
 }

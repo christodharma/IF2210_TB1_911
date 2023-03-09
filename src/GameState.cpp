@@ -4,6 +4,7 @@ GameState::GameState()
 {
     this->round = 0;
     this->prize = 64;
+    this->table = new CardInventory;
     this->isOngoing = true;
 }
 

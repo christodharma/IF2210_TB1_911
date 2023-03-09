@@ -18,19 +18,17 @@ public:
     virtual ~InventoryHolder() {};
     virtual bool isEmpty()=0;
     virtual void showInventory()=0;
-    virtual vector<pair<char,int>>& getInventory()=0;
-    virtual vector<pair<char,int>>& operator+=(Card&)=0;
-    virtual vector<pair<char,int>>& operator-=(Card&)=0;
-    virtual vector<pair<char,int>>& operator+(Card&)=0;
-    virtual vector<pair<char,int>>& operator-(Card&)=0;
+    virtual vector<Card>& getInventory()=0;
+    virtual vector<Card>& operator+=(Card&)=0;
+    virtual vector<Card>& operator-=(Card&)=0;
+    virtual vector<Card>& operator+(Card&)=0;
+    virtual vector<Card>& operator-(Card&)=0;
 };
 
+//maybe ini yang bakal jadi template class, rename Container
 class CardInventory : public InventoryHolder{
 protected:
-    /*pake card pointer masi belum tentu ide bagus
-    soalnya semua kartu jadi harus unik(punya address yang beda2), jadi ga memungkinkan buat fleksibilitas? 
-    tapi dengan cuman oper2 pointer jadinya game lebih efisien (ngoper alamat doang) + kalo mau jadi fleksibel, berarti cuman arahin supaya deklarasi di main yang diubah aturannya*/
-    vector<pair<char,int>> inventory;
+    vector<Card> inventory;
 public:
     /*ctor, dtor*/
     CardInventory();
@@ -38,15 +36,15 @@ public:
 
     /*operator overloadings*/
     //menambahkan kartu ke dalam inventory
-    vector<pair<char,int>>& operator+=(Card&);
+    vector<Card>& operator+=(Card&);
     //menghilangkan kartu yang bernilai sesuai dengan input
-    vector<pair<char,int>>& operator-=(Card&); //bisa rancu karena input bisa berupa kartu yang memang berada di inventory, atau bisa berupa kartu yang bernilai sama persis (bingung apa yang diminta)
-    vector<pair<char,int>>& operator+ (Card&);
-    vector<pair<char,int>>& operator- (Card&);
+    vector<Card>& operator-=(Card&); //bisa rancu karena input bisa berupa kartu yang memang berada di inventory, atau bisa berupa kartu yang bernilai sama persis (bingung apa yang diminta)
+    vector<Card>& operator+ (Card&);
+    vector<Card>& operator- (Card&);
     /*inheritance methods*/
     void showInventory();
     bool isEmpty();
-    vector<pair<char,int>>& getInventory();
+    vector<Card>& getInventory();
 };
 
 #endif
