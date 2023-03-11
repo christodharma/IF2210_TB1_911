@@ -27,13 +27,4 @@ public:
     double getValue() const;
 };
 
-//belum
-// class Combination : Valueable{
-// private:
-//     vector<Valueable*> combo;
-// public:
-//     Combination();
-//     ~Combination();
-// };
-
 #endif

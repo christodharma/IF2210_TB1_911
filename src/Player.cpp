@@ -11,12 +11,14 @@ Player::Player(){
     this->playerName = name;
     this->point = 0;
     this->playerInventory = new CardInventory;
+    cout << "Player " << name << " initiated" << endl;
 }
 
 Player::Player(string name){
     this->playerName = name;
     this->point = 0;
     this->playerInventory = new CardInventory;
+    cout << "Player " << name << " initiated" << endl;
 }
 
 Player::~Player(){

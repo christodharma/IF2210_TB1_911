@@ -1,5 +1,7 @@
 #include "Card.hpp"
 
+Card::Card(){}
+
 Card::Card(int a, char w){
     this->kartu = make_pair(toupper(w),a);
 }
