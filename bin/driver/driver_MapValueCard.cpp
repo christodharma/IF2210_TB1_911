@@ -1,7 +1,7 @@
-
 #include "../../src/MapValueCard.hpp"
 #include "../../src/Card.hpp"
 #include "../../src/InventoryHolder.hpp"
+#include "../../src/Valueable.hpp"
 #include <iostream>
 using namespace std;
 
