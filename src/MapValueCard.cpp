@@ -1,6 +1,4 @@
 #include "MapValueCard.hpp"
-#include "Card.hpp"
-#include "InventoryHolder.hpp"
 #include <iostream>
 #include <string>
 
@@ -33,7 +31,7 @@ void MapValueCard::removeCard(Card input){
 }
 
 int MapValueCard::getCardValue(string input){
-    return this->mapcard[to_string(input.getAngka())];
+    return this->mapcard[input];
 }
 
 void MapValueCard::showMapValueCard(){

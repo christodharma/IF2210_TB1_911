@@ -4,6 +4,8 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include "Valueable.hpp"
+#include "Card.hpp"
 #include "InventoryHolder.hpp"
 using namespace std;
 
