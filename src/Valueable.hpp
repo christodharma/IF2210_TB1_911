@@ -14,6 +14,7 @@ public:
     Valueable(){};
     virtual ~Valueable(){}; //?? this stucked the prog
     static map<char,double> valueMap;
+    static map<char,string> dictWarna;
     virtual double getValue() const = 0;
 };
 

@@ -9,6 +9,8 @@
 class Combination : Valueable{
 private:
     Card* combo;
+    map<char,int> warna;
+    map<int,int> angka;
 public:
     Combination(vector<Card> table, vector<Card> inventory);
     ~Combination();
