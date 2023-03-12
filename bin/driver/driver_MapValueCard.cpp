@@ -53,9 +53,12 @@ int main(){
     invTable += r;
     invTable += s;
     MapValueCard map;
+    invP1.showInventory();
+    invTable.showInventory();
     map.setMap(invP1, invTable);
     map.showMapValueCard();
-    cout << map.getCardValue("12");
+    cout << map.getCardValue("12") << endl;
+    cout << map.getCardColor('H') << endl;
 
     return 0;
 }
