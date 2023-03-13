@@ -61,7 +61,7 @@ void Combination::removeCard(Card input){
     this->hold -= input;
 }
 
-CardInventory Combination::getByParameter(string) {
+CardInventory Combination::getByParameter(string parameter) {
     return this->mapcard[parameter];
 } // mengembalikan inventory berdasarkan parameter
 
@@ -148,7 +148,7 @@ bool Combination::isThereFlush() {
 bool Combination::isThereStraight() {
     int count = 0;
     for (int i=0; i<13; i++) {
-        if (this->mapcard[to_string(i)].getInventory.size() >= 1) {
+        if (this->mapcard[to_string(i)].getInventory().size() >= 1) {
             count++;
         } else {
             count = 0;
