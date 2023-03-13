@@ -6,22 +6,22 @@ using namespace std;
 
 Combination::Combination(){
     for (int i = 1; i <= 13; i++) {
-        this->mapcard[to_string(i)] = CardInventory();
+        this->mapcard[to_string(i)] = InventoryHolder();
     }
-    this->mapcard["M"] = CardInventory();
-    this->mapcard["K"] = CardInventory();
-    this->mapcard["H"] = CardInventory();
-    this->mapcard["B"] = CardInventory();
+    this->mapcard["M"] = InventoryHolder();
+    this->mapcard["K"] = InventoryHolder();
+    this->mapcard["H"] = InventoryHolder();
+    this->mapcard["B"] = InventoryHolder();
 }
 
-Combination::Combination(CardInventory hand, CardInventory table) {
+Combination::Combination(InventoryHolder hand, InventoryHolder table) {
     for (int i = 1; i <= 13; i++) {
-        this->mapcard[to_string(i)] = CardInventory();
+        this->mapcard[to_string(i)] = InventoryHolder();
     }
-    this->mapcard["M"] = CardInventory();
-    this->mapcard["K"] = CardInventory();
-    this->mapcard["H"] = CardInventory();
-    this->mapcard["B"] = CardInventory();
+    this->mapcard["M"] = InventoryHolder();
+    this->mapcard["K"] = InventoryHolder();
+    this->mapcard["H"] = InventoryHolder();
+    this->mapcard["B"] = InventoryHolder();
 
     for (int i = 0; i < hand.getInventory().size(); i++) {
         this->addCard(hand.getInventory()[i]);
@@ -31,12 +31,34 @@ Combination::Combination(CardInventory hand, CardInventory table) {
         this->addCard(table.getInventory()[i]);
         this->hold += table.getInventory()[i];
     }
+
+    if (this->isThere4Angka()) {
+        int i = 1;
+        while (this->mapcard[to_string(i)].getInventory().size() < 4) {
+            i++;
+        }
+        this->value = new FourOfAKind(i); 
+    }
+    else if (this->isThere3Angka() == 2) {
+        int i = 13;
+        while (this->mapcard[to_string(i)].getInventory().size() < 3) {
+            i--;
+        }
+        this->value = new FullHouse(i);
+    }
+    else if (this->isThere3Angka() && this->isThere2Angka()) {
+        int i = 1;
+        while (this->mapcard[to_string(i)].getInventory().size() < 3) {
+            i++;
+        }
+        this->value = new FullHouse(i);
+    }
 }
 
 Combination::~Combination(){
 }
 
-void Combination::setMap(CardInventory hand, CardInventory table){
+void Combination::setMap(InventoryHolder hand, InventoryHolder table){
     for (int i=0; i<hand.getInventory().size(); i++){
         this->addCard(hand.getInventory()[i]);
         this->hold += hand.getInventory()[i];
@@ -61,7 +83,7 @@ void Combination::removeCard(Card input){
     this->hold -= input;
 }
 
-CardInventory Combination::getByParameter(string) {
+InventoryHolder Combination::getByParameter(string parameter) {
     return this->mapcard[parameter];
 } // mengembalikan inventory berdasarkan parameter
 
@@ -88,7 +110,7 @@ void Combination::showCombination(){
     printVectorCard(this->mapcard["B"].getInventory());
 }
 
-CardInventory Combination::getHold() {
+InventoryHolder Combination::getHold() {
     return this->hold;
 } // mengembalikan inventory di tangan dan table
 
@@ -100,31 +122,34 @@ void Combination::setValue(Value *value) {
     this->value = value;
 } // mengeset pointer value
 
-bool Combination::isThere2Angka() {
-    for (int i=1; i<=13; i++) {
+int Combination::isThere2Angka() {
+    int i = 0;
+    for (int i = 1; i <= 13; i++) {
         if (this->mapcard[to_string(i)].getInventory().size() == 2) {
-            return true;
+            return i++;
         }
     }
-    return false;
-}
+    return i;
+} // cek apakah ada 2 kartu yang sama
 
-bool Combination::isThere3Angka() {
-    for (int i=1; i<=13; i++) {
+int Combination::isThere3Angka() {
+    int i = 0;
+    for (int i = 1; i <= 13; i++) {
         if (this->mapcard[to_string(i)].getInventory().size() == 3) {
-            return true;
+            return i++;
         }
     }
-    return false;
+    return i;
 } // cek apakah ada 3 kartu yang sama
 
-bool Combination::isThere4Angka() {
-    for (int i=1; i<=13; i++) {
+int Combination::isThere4Angka() {
+    int i = 0;
+    for (int i = 1; i <= 13; i++) {
         if (this->mapcard[to_string(i)].getInventory().size() == 4) {
-            return true;
+            return i++;
         }
     }
-    return false;
+    return i;
 } // cek apakah ada 4 kartu yang sama
 
 bool Combination::isThereFlush() {
@@ -148,7 +173,7 @@ bool Combination::isThereFlush() {
 bool Combination::isThereStraight() {
     int count = 0;
     for (int i=0; i<13; i++) {
-        if (this->mapcard[to_string(i)].getInventory.size() >= 1) {
+        if (this->mapcard[to_string(i)].getInventory().size() >= 1) {
             count++;
         } else {
             count = 0;
@@ -159,3 +184,4 @@ bool Combination::isThereStraight() {
     }
     return false;
 } // cek apakah ada 5 kartu dengan angka berurutan
+
