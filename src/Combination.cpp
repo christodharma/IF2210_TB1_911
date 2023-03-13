@@ -13,6 +13,23 @@ Combination::Combination(){
     }    
 }
 
+Combination::Combination(CardInventory hand, CardInventory table) {
+    for (int i=0; i<13; i++) {
+        this->mapcard[to_string(i)] = 0;
+    }
+    for (int i=0; i<4; i++) {
+        this->cardcolor[i] = 0;
+    }
+    for (int i=0; i<hand.getInventory().size(); i++){
+        this->addCard(hand.getInventory()[i]);
+        this->hold += hand.getInventory()[i];
+    }
+    for (int i=0; i<table.getInventory().size(); i++){
+        this->addCard(table.getInventory()[i]);
+        this->hold += table.getInventory()[i];
+    }
+}
+
 Combination::~Combination(){
 }
 

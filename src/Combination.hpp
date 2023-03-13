@@ -7,6 +7,9 @@
 #include "Valueable.hpp"
 #include "Card.hpp"
 #include "InventoryHolder.hpp"
+#include "FourOfAKind.hpp"
+#include "FullHouse.hpp"
+// ... include semua jenis tipe kombinasi
 using namespace std;
 
 class Combination {
@@ -17,6 +20,7 @@ class Combination {
         Value *value; // pointer value untuk menghitung nilai kombinasi
     public:
         Combination(); // ctor
+        Combination(CardInventory inv, CardInventory table); // ctor dengan parameter (inventory player dan table
         ~Combination(); // dtor
         void setMap(CardInventory inv, CardInventory table); // mengisi map dengan kartu yang ada di inventory player dan table
         void addCard(Card); // menambahkan kartu ke map
