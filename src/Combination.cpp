@@ -5,26 +5,29 @@
 using namespace std;
 
 Combination::Combination(){
-    for (int i=0; i<13; i++) {
-        this->mapcard[to_string(i)] = 0;
+    for (int i = 1; i <= 13; i++) {
+        this->mapcard[to_string(i)] = CardInventory();
     }
-    for (int i=0; i<4; i++) {
-        this->cardcolor[i] = 0;
-    }    
+    this->mapcard["M"] = CardInventory();
+    this->mapcard["K"] = CardInventory();
+    this->mapcard["H"] = CardInventory();
+    this->mapcard["B"] = CardInventory();
 }
 
 Combination::Combination(CardInventory hand, CardInventory table) {
-    for (int i=0; i<13; i++) {
-        this->mapcard[to_string(i)] = 0;
+    for (int i = 1; i <= 13; i++) {
+        this->mapcard[to_string(i)] = CardInventory();
     }
-    for (int i=0; i<4; i++) {
-        this->cardcolor[i] = 0;
-    }
-    for (int i=0; i<hand.getInventory().size(); i++){
+    this->mapcard["M"] = CardInventory();
+    this->mapcard["K"] = CardInventory();
+    this->mapcard["H"] = CardInventory();
+    this->mapcard["B"] = CardInventory();
+
+    for (int i = 0; i < hand.getInventory().size(); i++) {
         this->addCard(hand.getInventory()[i]);
         this->hold += hand.getInventory()[i];
     }
-    for (int i=0; i<table.getInventory().size(); i++){
+    for (int i = 0; i < table.getInventory().size(); i++) {
         this->addCard(table.getInventory()[i]);
         this->hold += table.getInventory()[i];
     }
@@ -45,33 +48,44 @@ void Combination::setMap(CardInventory hand, CardInventory table){
 }
 
 void Combination::addCard(Card input){
-    this->mapcard[to_string(input.getAngka())]++;
-    this->cardcolor[input.getWarna()]++;
+    this->mapcard[to_string(input.getAngka())] += input;
+    string color(1, input.getWarna());
+    this->mapcard[color] += input;
     this->hold += input;
 }
 
 void Combination::removeCard(Card input){
-    this->mapcard[to_string(input.getAngka())]--;
-    this->cardcolor[input.getWarna()]--;
+    this->mapcard[to_string(input.getAngka())] -= input;
+    string color(1, input.getWarna());
+    this->mapcard[color] -= input;
     this->hold -= input;
 }
 
-int Combination::getCardValue(string input){
-    return this->mapcard[input];
-}
+CardInventory Combination::getByParameter(string) {
+    return this->mapcard[parameter];
+} // mengembalikan inventory berdasarkan parameter
 
-int Combination::getCardColor(char input){
-    return this->cardcolor[input];
+void printVectorCard(vector<Card> input) {
+    cout << "< ";
+    for (int i = 0; i < input.size(); i++) {
+        cout << "(" << input[i].getAngka() << ", " << input[i].getWarna() << ") ";
+    }
+    cout << ">" << endl;
 }
 
 void Combination::showCombination(){
-    for (int i=0; i<13; i++){
-        cout << i << " : " << this->mapcard[to_string(i)] << endl;
+    for (int i = 1; i <= 13; i++) {
+        cout << i << " : ";
+        printVectorCard(this->mapcard[to_string(i)].getInventory());
     }
-    cout << "Merah : " << this->cardcolor['M'] << endl;
-    cout << "Kuning : " << this->cardcolor['K'] << endl;
-    cout << "Hijau : " << this->cardcolor['H'] << endl;
-    cout << "Biru : " << this->cardcolor['B'] << endl;
+    cout << "Merah : ";
+    printVectorCard(this->mapcard["M"].getInventory());
+    cout << "Kuning : ";
+    printVectorCard(this->mapcard["K"].getInventory());
+    cout << "Hijau : ";
+    printVectorCard(this->mapcard["H"].getInventory());
+    cout << "Biru : ";
+    printVectorCard(this->mapcard["B"].getInventory());
 }
 
 CardInventory Combination::getHold() {
@@ -87,17 +101,17 @@ void Combination::setValue(Value *value) {
 } // mengeset pointer value
 
 bool Combination::isThere2Angka() {
-    for (int i=0; i<13; i++) {
-        if (this->mapcard[to_string(i)] == 2) {
+    for (int i=1; i<=13; i++) {
+        if (this->mapcard[to_string(i)].getInventory().size() == 2) {
             return true;
         }
     }
     return false;
-} // cek apakah ada 2 kartu yang sama
+}
 
 bool Combination::isThere3Angka() {
-    for (int i=0; i<13; i++) {
-        if (this->mapcard[to_string(i)] == 3) {
+    for (int i=1; i<=13; i++) {
+        if (this->mapcard[to_string(i)].getInventory().size() == 3) {
             return true;
         }
     }
@@ -105,8 +119,8 @@ bool Combination::isThere3Angka() {
 } // cek apakah ada 3 kartu yang sama
 
 bool Combination::isThere4Angka() {
-    for (int i=0; i<13; i++) {
-        if (this->mapcard[to_string(i)] == 4) {
+    for (int i=1; i<=13; i++) {
+        if (this->mapcard[to_string(i)].getInventory().size() == 4) {
             return true;
         }
     }
@@ -114,18 +128,27 @@ bool Combination::isThere4Angka() {
 } // cek apakah ada 4 kartu yang sama
 
 bool Combination::isThereFlush() {
-    for (int i=0; i<4; i++) {
-        if (this->cardcolor[i] >= 5) {
-            return true;
-        }
+    string m(1, 'M');
+    string k(1, 'K');
+    string b(1, 'B');
+    string h(1, 'H');
+    if (this->mapcard[m].getInventory().size() >= 5) {
+        return true;
+    } else if (this->mapcard[k].getInventory().size() >= 5) {
+        return true;
+    } else if (this->mapcard[b].getInventory().size() >= 5) {
+        return true;
+    } else if (this->mapcard[h].getInventory().size() >= 5) {
+        return true;
+    } else {
+        return false;
     }
-    return false;
 } // cek apakah ada 5 kartu dengan warna yang sama
 
 bool Combination::isThereStraight() {
     int count = 0;
     for (int i=0; i<13; i++) {
-        if (this->mapcard[to_string(i)] == 1) {
+        if (this->mapcard[to_string(i)].getInventory.size() >= 1) {
             count++;
         } else {
             count = 0;
