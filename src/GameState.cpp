@@ -1,59 +1,45 @@
 #include "GameState.hpp"
 
 long int GameState::prize = 64;
-bool GameState::isOngoing = true;
 
-GameState::GameState()
+GameState::GameState(Player* p, int n) : Deck(), Table()
 {
     cout << "Game State initiated" << endl;
     this->round = 0;
-    this->table = new CardInventory;
+    this->prize = 64;
+    this->players = p;
+    this->playerCount = n;
+    this->startingHand = 2;
+    dealCards();
+    for (int i = 0; i < this->playerCount; i++)
+    {
+        this->players[i].showInventory();
+    }
 }
-
+GameState::GameState(Player* p, int n, int m) : Deck(), Table()
+{
+    cout << "Game State initiated" << endl;
+    this->round = 0;
+    this->prize = 64;
+    this->players = p;
+    this->playerCount = n;
+    this->startingHand = m;
+    dealCards();
+    for (int i = 0; i < this->playerCount; i++)
+    {
+        this->players[i].showInventory();
+    }
+}
+ 
 GameState::~GameState()
 {
+    delete this->deck;
     delete this->table;
-    // delete this->deck;
 }
 
 int GameState::getRound() const
 {
     return this->round;
-}
-void GameState::GameOver()
-{
-    this->isOngoing = false;
-    //show splashscreen?
-    cout << "GAME IS OVER!" << endl;
-    // string input;
-    // cin >> input;
-    //tanya mau main lagi atau ngga    
-}
-// initiate Cards in the game into an array of cards (deck)
-void GameState::InitiateDeck()
-{
-    int i = 0;
-    for (int j = 0; j < 4; j++)
-    {
-        for (int k = 0; k < 13; k++)
-        {
-            if (j==0)
-            {
-                this->deck[i] = new Card('h', k+1);
-                i++;
-            } else if (j==1){
-                this->deck[i] = new Card('b', k+1);
-                i++;
-            } else if (j==2){
-                this->deck[i] = new Card('k', k+1);
-                i++;
-            } else if (j==3){
-                this->deck[i] = new Card('m', k+1);
-                i++;
-            }
-        }
-    }
-    cout << "Deck of " << i << " Cards initiated" << endl;
 }
 
 long int GameState::getPrize() const
@@ -61,47 +47,56 @@ long int GameState::getPrize() const
     return this->prize;
 }
 
-void GameState::NextRound()
+void GameState::nextRound()
 {
-    this->round++;
-    //this->prize = this->prize; //do something with the prize according to player actions
-    if (this->round == 6)
+    this->round = this->round + 1 % 6;
+    cout << "Round " << this->round+1 << " started" << endl;
+    cout << "Prize: " << this->prize << endl;
+    if (this->round == 1)
     {
-        this->isOngoing = false;
+        //bagi ability
+    } else if (this->round == 5){
+        //show leaderboard
+        //bagi prize untuk pemenang
+        this->prize = 64;
+    } else {
+        //action diantara round 2-4
     }
 }
 
-bool GameState::isGameOngoing()
+void GameState::dealCards()
 {
-    return this->isOngoing;
+    //shuffledeck
+    this->deck->ShuffleDeck();
+    //deal cards
+    for (int i = 0; i < this->playerCount; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            this->players[i]+=this->deck->DrawCard();
+        }
+    }
 }
 
-void GameState::showInventory()
-{
-    this->table->showInventory();
-}
-
-bool GameState::isEmpty()
-{
-    return this->table->isEmpty();
-}
-vector<Card>& GameState::getInventory()
-{
-    return this->table->getInventory();
-}
-vector<Card>& GameState::operator+=(Card& input)
-{
-    return *this->table += input;
-}
-vector<Card>& GameState::operator-=(Card& input)
-{
-    return *this->table -= input;
-}
-vector<Card>& GameState::operator+(Card& input)
-{
-    return *this->table + input;
-}
-vector<Card>& GameState::operator-(Card& input)
-{
-    return *this->table - input;
-}
+// void GameState::leaderboard()
+// {
+//     int* pos = new int[this->playerCount];
+//     for (int i = 0; i < this->playerCount; i++)
+//     {
+//         pos[i] = i;
+//     }
+//     for (int i = 0; i < this->playerCount; i++)
+//     {
+//         int min = i;
+//         for (int j = i+1; j < this->playerCount; j++)
+//         {
+//             if (this->players[j] < this->players[min])
+//             {
+//                 min = j;
+//             }
+//         }
+//         int temp = pos[i];
+//         pos[i] = pos[min];
+//         pos[min] = temp;
+//     }
+// }

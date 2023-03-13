@@ -5,14 +5,14 @@ class Ability{
 public:
     Ability(){};
     virtual ~Ability(){};
-    virtual void action_half();
-    virtual void action_reroll();
-    virtual void action_quadruple();
-    virtual void action_quarter();
-    virtual void action_reverse();
-    virtual void action_swapcard();
-    virtual void action_switch();
-    virtual void action_abilityless();
+    virtual void action_half()=0;
+    virtual void action_reroll()=0;
+    virtual void action_quadruple()=0;
+    virtual void action_quarter()=0;
+    virtual void action_reverse()=0;
+    virtual void action_swapcard()=0;
+    virtual void action_switch()=0;
+    virtual void action_abilityless()=0;
     void noAbility(string);
 };
 

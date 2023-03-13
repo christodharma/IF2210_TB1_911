@@ -7,7 +7,7 @@ using namespace std;
 
 
 //compile
-//g++ -o driver_Player driver_Player.cpp ../../src/InventoryHolder.cpp ../../src/Player.cpp ../../src/Card.cpp ../../src/Valueable.cpp
+//g++ -o driver_Player driver_Player.cpp ../../src/InventoryHolder.cpp ../../src/Player.cpp ../../src/Card.cpp ../../src/Valueable.cpp; if ($?) {./driver_Player}
 int main(){
     Player p1("Alice");
     Player p2("Bobby");
