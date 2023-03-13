@@ -25,6 +25,7 @@ public:
     bool isGameOngoing();
 
     //inheritance methods
+    //Inventory holder inheritance
     void showInventory();
     bool isEmpty();
     vector<Card>& getInventory();

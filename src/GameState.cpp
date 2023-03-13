@@ -25,7 +25,9 @@ void GameState::GameOver()
     this->isOngoing = false;
     //show splashscreen?
     cout << "GAME IS OVER!" << endl;
-    
+    // string input;
+    // cin >> input;
+    //tanya mau main lagi atau ngga    
 }
 // initiate Cards in the game into an array of cards (deck)
 void GameState::InitiateDeck()

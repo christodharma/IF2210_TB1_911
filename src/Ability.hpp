@@ -13,7 +13,7 @@ public:
     virtual void action_swapcard();
     virtual void action_switch();
     virtual void action_abilityless();
-    void noAbility();
+    void noAbility(string);
 };
 
 class ReRoll : Ability{
