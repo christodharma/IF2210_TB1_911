@@ -20,7 +20,14 @@ int GameState::getRound() const
 {
     return this->round;
 }
-//initiate Cards in the game into an array of cards (deck)
+void GameState::GameOver()
+{
+    this->isOngoing = false;
+    //show splashscreen?
+    cout << "GAME IS OVER!" << endl;
+    
+}
+// initiate Cards in the game into an array of cards (deck)
 void GameState::InitiateDeck()
 {
     int i = 0;

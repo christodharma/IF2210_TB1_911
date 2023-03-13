@@ -3,6 +3,7 @@
 
 #include "InventoryHolder.hpp"
 #include "Card.hpp"
+#include "Generics.hpp"
 
 class GameState: public InventoryHolder{
 private:
@@ -18,6 +19,7 @@ public:
     ~GameState();
     void InitiateDeck();
     void NextRound();
+    void GameOver();
     int getRound() const;
     long int getPrize() const;
     bool isGameOngoing();

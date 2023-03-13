@@ -2,48 +2,103 @@
 #define __ABILITY_HPP__
 
 class Ability{
-protected:
-    int abilityType;    //might need map
 public:
-    Ability();
+    Ability(){};
     virtual ~Ability(){};
-    int getType(); //const
+    virtual void action_half();
+    virtual void action_reroll();
+    virtual void action_quadruple();
+    virtual void action_quarter();
+    virtual void action_reverse();
+    virtual void action_swapcard();
+    virtual void action_switch();
+    virtual void action_abilityless();
+    void noAbility();
 };
 
 class ReRoll : Ability{
-// protected:
-//     Player* owner;   //masi gatau
-private:
-    int abilityType = 1;
+public:
+    void action_half();
+    void action_reroll();
+    void action_quadruple();
+    void action_quarter();
+    void action_reverse();
+    void action_swapcard();
+    void action_switch();
+    void action_abilityless();
 };
 
 class Quadruple : Ability {
-private:
-    int abilityType = 2;
+public:
+    void action_half();
+    void action_reroll();
+    void action_quadruple();
+    void action_quarter();
+    void action_reverse();
+    void action_swapcard();
+    void action_switch();
+    void action_abilityless();
+
 };
 
 class Quarter : Ability {
-private:
-    int abilityType = 3;
+public:
+    void action_half();
+    void action_reroll();
+    void action_quadruple();
+    void action_quarter();
+    void action_reverse();
+    void action_swapcard();
+    void action_switch();
+    void action_abilityless();
+
 };
 
 class ReverseDirection : Ability {
-private:
-    int abilityType = 4;
+public:
+    void action_half();
+    void action_reroll();
+    void action_quadruple();
+    void action_quarter();
+    void action_reverse();
+    void action_swapcard();
+    void action_switch();
+    void action_abilityless();
 };
 
 class SwapCard : Ability {
-private:
-    int abilityType = 5;
+public:
+    void action_half();
+    void action_reroll();
+    void action_quadruple();
+    void action_quarter();
+    void action_reverse();
+    void action_swapcard();
+    void action_switch();
+    void action_abilityless();
 };
 
 class Switch : Ability {
-private:
-    int abilityType = 6;
+public:
+    void action_half();
+    void action_reroll();
+    void action_quadruple();
+    void action_quarter();
+    void action_reverse();
+    void action_swapcard();
+    void action_switch();
+    void action_abilityless();
 };
 
 class Abilityless : Ability {
-private:
-    int abilityType = 7;
+public:
+    void action_half();
+    void action_reroll();
+    void action_quadruple();
+    void action_quarter();
+    void action_reverse();
+    void action_swapcard();
+    void action_switch();
+    void action_abilityless();
 };
 #endif

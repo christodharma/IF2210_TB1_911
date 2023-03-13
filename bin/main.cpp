@@ -15,13 +15,7 @@ g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/Inven
 
 int main(){
     GameState game;
-    Player p1("Alice");
-    Player p2("Bobby");
-    Player p3("Chloe");
-    Player p4("Daphne");
-    Player p5("Ezra");
-    Player p6("Flo");
-    Player p7("Gesya");
+    Player p1,p2,p3,p4,p5,p6,p7;
     game.InitiateDeck();
     while(game.isGameOngoing()){
         game.NextRound();

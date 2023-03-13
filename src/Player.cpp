@@ -37,7 +37,33 @@ bool Player::isEmpty(){
     return this->playerInventory->isEmpty();
 }
 
-vector<Card>& Player::operator+=(Card& input){
+void Player::showPlayerInfo()
+{
+}
+
+void Player::inputAction()
+{
+    //input-input yang valid dimainkan oleh player
+    string valid_inputs = "NEXTRE-ROLLDOUBLEQUADRUPLEHALFQUARTERREVERSESWAPCARDSWITCHABILITYLESS";
+    string input;
+    do
+    {
+        cin >> input;
+        if (valid_inputs.find(input) == -1)
+        {
+            cout << "Invalid input, please try again" << endl;
+        }
+    } while (valid_inputs.find(input) == -1);
+}
+
+void Player::action_next()
+{
+    cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
+}
+
+
+vector<Card> &Player::operator+=(Card &input)
+{
     return *this->playerInventory += input;
 }
 vector<Card>& Player::operator-=(Card& input){
