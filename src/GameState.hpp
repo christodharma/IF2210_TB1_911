@@ -8,9 +8,9 @@
 #include "Table.hpp"
 #include "Player.hpp"
 
-class GameState: public Deck, public Table{
+class GameState{
 private:
-    int round,playerCount,startingHand;
+    int round,playerCount;
     static long int prize;
     Deck* deck;
     Table* table;
@@ -19,8 +19,6 @@ private:
 public:
     //ctor dengan menerima player yang sudah dideklarasi dan n player
     GameState(Player*, int n);
-    //sama dengan ctor diatas, tapi menerima jumlah kartu awal
-    GameState(Player*, int n, int m);
     ~GameState();
 
     //getter
@@ -30,7 +28,7 @@ public:
 
     //gamestate methods
     void nextRound();
-    void dealCards();
+    void dealCards(int);
     // void leaderboard();
     // void dealAbility();
     // void nextTurn();
