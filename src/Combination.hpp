@@ -7,8 +7,8 @@
 #include "Valueable.hpp"
 #include "Card.hpp"
 #include "InventoryHolder.hpp"
-#include "FourOfAKind.hpp"
-#include "FullHouse.hpp"
+// #include "FourOfAKind.hpp"
+// #include "FullHouse.hpp"
 // ... include semua jenis tipe kombinasi
 using namespace std;
 
