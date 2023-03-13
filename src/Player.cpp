@@ -4,25 +4,24 @@
 #include <iostream>
 using namespace std;
 
-Player::Player(){
+Player::Player() : InventoryHolder()
+{
     string name;
     cout<<"Please insert player name: ";
     cin >> name;
     this->playerName = name;
     this->point = 0;
-    this->playerInventory = new CardInventory;
     cout << "Player " << name << " initiated" << endl;
 }
 
-Player::Player(string name){
+Player::Player(string name) : InventoryHolder()
+{
     this->playerName = name;
     this->point = 0;
-    this->playerInventory = new CardInventory;
     cout << "Player " << name << " initiated" << endl;
 }
 
 Player::~Player(){
-    delete this->playerInventory;
 }
 
 string Player::getPlayerName()const {
@@ -33,8 +32,9 @@ long int Player::getPlayerPoint()const {
     return this->point;
 }
 
-bool Player::isEmpty(){
-    return this->playerInventory->isEmpty();
+void Player::setPlayerPoint(long int input)
+{
+    this->point = input;
 }
 
 void Player::showPlayerInfo()
@@ -62,30 +62,15 @@ void Player::action_next()
 }
 
 
-vector<Card> &Player::operator+=(Card &input)
+bool Player::operator>(Player& other)
 {
-    return *this->playerInventory += input;
+    return this->getPlayerPoint() > other.getPlayerPoint();
 }
-vector<Card>& Player::operator-=(Card& input){
-    return *this->playerInventory -= input;
+bool Player::operator<(Player& other)
+{
+    return this->getPlayerPoint() < other.getPlayerPoint();
 }
-
-vector<Card>& Player::operator+(Card& input){
-    return *this->playerInventory + input;
-}
-vector<Card>& Player::operator-(Card& input){
-    return *this->playerInventory - input;
-}
-
-void Player::showInventory(){
-    cout << this->playerName << "'s Inventory:" << endl;
-    if (this->isEmpty()){
-        cout << "-" << endl;
-    } else {
-        this->playerInventory->showInventory();
-    }
-}
-
-vector<Card>& Player::getInventory(){
-    return this->playerInventory->getInventory();
+bool Player::operator==(Player& other)
+{
+    return this->getPlayerPoint() == other.getPlayerPoint();
 }

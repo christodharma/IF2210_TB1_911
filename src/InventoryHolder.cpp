@@ -4,19 +4,19 @@
 #include <iostream>
 using namespace std;
 
-CardInventory::CardInventory(){
+InventoryHolder::InventoryHolder(){
     vector<Card> x;
     this->inventory = x;
 };
 
-CardInventory::~CardInventory(){
+InventoryHolder::~InventoryHolder(){
 }
 
-vector<Card>& CardInventory::operator+=(Card& input){
+vector<Card>& InventoryHolder::operator+=(Card& input){
     this->inventory.push_back(input);
     return this->inventory;
 }
-vector<Card>& CardInventory::operator-=(Card& input){
+vector<Card>& InventoryHolder::operator-=(Card& input){
     for (int i = 0; i < this->inventory.size(); i++)
     {
         if (this->inventory[i] == input){
@@ -30,24 +30,24 @@ vector<Card>& CardInventory::operator-=(Card& input){
     return this->inventory;
 }
 
-bool CardInventory::isEmpty(){
+bool InventoryHolder::isEmpty(){
     return this->inventory.empty();
 }
 
-void CardInventory::showInventory(){
+void InventoryHolder::showInventory(){
     for (int i = 0; i < this->inventory.size(); i++)
     {
         cout << i+1 << "." << this->inventory[i] << endl;
     }
 }
 
-vector<Card>& CardInventory::operator+ (Card& b){
+vector<Card>& InventoryHolder::operator+ (Card& b){
     return *this += b;
 }
-vector<Card>& CardInventory::operator- (Card& b){
+vector<Card>& InventoryHolder::operator- (Card& b){
     return *this -= b;
 }
 
-vector<Card>& CardInventory::getInventory(){
+vector<Card>& InventoryHolder::getInventory(){
     return this->inventory;
 }

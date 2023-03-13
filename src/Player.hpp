@@ -12,7 +12,6 @@ class Player :
     // public Ability
     {
 private:
-    InventoryHolder* playerInventory;
     string playerName;
     long int point;
 public:
@@ -24,6 +23,9 @@ public:
     string getPlayerName() const;
     long int getPlayerPoint() const;
 
+    //setter
+    void setPlayerPoint(long int);
+
     /*Player method*/
     void showPlayerInfo();
     void inputAction();
@@ -31,17 +33,11 @@ public:
     void action_double();
 
     /*operator overloads*/
-    vector<Card>& operator+=(Card&);
-    vector<Card>& operator-=(Card&);
-    vector<Card>& operator+(Card&);
-    vector<Card>& operator-(Card&);
+    bool operator>(Player&);
+    bool operator<(Player&);
+    bool operator==(Player&);
     
     /*function from parent class inheritance*/
-    /*Inventory member functions*/
-    void showInventory();
-    bool isEmpty();
-    vector<Card>& getInventory();
-
     /*Ability member functions*/
     //TBD
     void action_half();
