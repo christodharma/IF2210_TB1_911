@@ -7,26 +7,28 @@
 #include "Valueable.hpp"
 #include "Card.hpp"
 #include "InventoryHolder.hpp"
-// #include "FourOfAKind.hpp"
+#include "FourOfAKind.hpp"
+#include "Straight.hpp"
+#include "Flush.hpp"
 // #include "FullHouse.hpp"
 // ... include semua jenis tipe kombinasi
 using namespace std;
 
 class Combination {
     private:
-        CardInventory hold; // kombinasi kartu
-        map<string, CardInventory> mapcard;
+        InventoryHolder hold; // kombinasi kartu
+        map<string, InventoryHolder> mapcard;
         Value *value; // pointer value untuk menghitung nilai kombinasi
     public:
         Combination(); // ctor
-        Combination(CardInventory inv, CardInventory table); // ctor dengan parameter (inventory player dan table
+        Combination(InventoryHolder inv, InventoryHolder table); // ctor dengan parameter (inventory player dan table
         ~Combination(); // dtor
-        void setMap(CardInventory inv, CardInventory table); // mengisi map dengan kartu yang ada di inventory player dan table
+        void setMap(InventoryHolder inv, InventoryHolder table); // mengisi map dengan kartu yang ada di inventory player dan table
         void addCard(Card); // menambahkan kartu ke map
         void removeCard(Card); // menghapus kartu dari map
-        CardInventory getByParameter(string input); // mengembalikan inventory kartu dengan angka yang sama dengan kartu yang diberikan
+        InventoryHolder getByParameter(string input); // mengembalikan inventory kartu dengan angka yang sama dengan kartu yang diberikan
         void showCombination(); // print isi map
-        CardInventory getHold(); // mengembalikan inventory di tangan dan table
+        InventoryHolder getHold(); // mengembalikan inventory di tangan dan table
         double getValue(); // mengembalikan value
         void setValue(Value *value); // mengeset pointer value
         bool isThere2Angka(); // cek apakah ada 2 kartu yang sama

@@ -6,22 +6,22 @@ using namespace std;
 
 Combination::Combination(){
     for (int i = 1; i <= 13; i++) {
-        this->mapcard[to_string(i)] = CardInventory();
+        this->mapcard[to_string(i)] = InventoryHolder();
     }
-    this->mapcard["M"] = CardInventory();
-    this->mapcard["K"] = CardInventory();
-    this->mapcard["H"] = CardInventory();
-    this->mapcard["B"] = CardInventory();
+    this->mapcard["M"] = InventoryHolder();
+    this->mapcard["K"] = InventoryHolder();
+    this->mapcard["H"] = InventoryHolder();
+    this->mapcard["B"] = InventoryHolder();
 }
 
-Combination::Combination(CardInventory hand, CardInventory table) {
+Combination::Combination(InventoryHolder hand, InventoryHolder table) {
     for (int i = 1; i <= 13; i++) {
-        this->mapcard[to_string(i)] = CardInventory();
+        this->mapcard[to_string(i)] = InventoryHolder();
     }
-    this->mapcard["M"] = CardInventory();
-    this->mapcard["K"] = CardInventory();
-    this->mapcard["H"] = CardInventory();
-    this->mapcard["B"] = CardInventory();
+    this->mapcard["M"] = InventoryHolder();
+    this->mapcard["K"] = InventoryHolder();
+    this->mapcard["H"] = InventoryHolder();
+    this->mapcard["B"] = InventoryHolder();
 
     for (int i = 0; i < hand.getInventory().size(); i++) {
         this->addCard(hand.getInventory()[i]);
@@ -31,12 +31,21 @@ Combination::Combination(CardInventory hand, CardInventory table) {
         this->addCard(table.getInventory()[i]);
         this->hold += table.getInventory()[i];
     }
+    if (this->isThere4Angka()) {
+        this->value = new FourOfAKind(this->hold, this->mapcard);
+    }
+    else if (this->isThereStraight()) {
+        this->value = new Straight(this->hold, this->mapcard);
+    }
+    else if (this->isThereFlush()) {
+        this->value = new Flush(this->hold, this->mapcard);
+    }
 }
 
 Combination::~Combination(){
 }
 
-void Combination::setMap(CardInventory hand, CardInventory table){
+void Combination::setMap(InventoryHolder hand, InventoryHolder table){
     for (int i=0; i<hand.getInventory().size(); i++){
         this->addCard(hand.getInventory()[i]);
         this->hold += hand.getInventory()[i];
@@ -61,7 +70,7 @@ void Combination::removeCard(Card input){
     this->hold -= input;
 }
 
-CardInventory Combination::getByParameter(string) {
+InventoryHolder Combination::getByParameter(string parameter) {
     return this->mapcard[parameter];
 } // mengembalikan inventory berdasarkan parameter
 
@@ -88,7 +97,7 @@ void Combination::showCombination(){
     printVectorCard(this->mapcard["B"].getInventory());
 }
 
-CardInventory Combination::getHold() {
+InventoryHolder Combination::getHold() {
     return this->hold;
 } // mengembalikan inventory di tangan dan table
 
@@ -148,7 +157,7 @@ bool Combination::isThereFlush() {
 bool Combination::isThereStraight() {
     int count = 0;
     for (int i=0; i<13; i++) {
-        if (this->mapcard[to_string(i)].getInventory.size() >= 1) {
+        if (this->mapcard[to_string(i)].getInventory().size() >= 1) {
             count++;
         } else {
             count = 0;
