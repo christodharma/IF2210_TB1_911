@@ -19,7 +19,7 @@ public:
     InventoryHolder();
     ~InventoryHolder();
     bool isEmpty();
-    void showInventory();
+    void showInventory() const;
     vector<Card>& getInventory();
     vector<Card>& operator+=(Card&);
     vector<Card>& operator-=(Card&);

@@ -34,7 +34,7 @@ bool InventoryHolder::isEmpty(){
     return this->inventory.empty();
 }
 
-void InventoryHolder::showInventory(){
+void InventoryHolder::showInventory() const{
     for (int i = 0; i < this->inventory.size(); i++)
     {
         cout << i+1 << "." << this->inventory[i] << endl;

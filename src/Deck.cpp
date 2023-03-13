@@ -1,7 +1,10 @@
 #include "Deck.hpp"
 
 Deck::Deck() : InventoryHolder()
-{}
+{
+    InitiateDeck();
+    ShuffleDeck();
+}
 
 Deck::~Deck()
 {
@@ -28,13 +31,13 @@ void Deck::InitiateDeck()
 
 void Deck::ShuffleDeck()
 {
-    std::random_device rd;
-    std::mt19937 g(rd());
-    std::shuffle(this->inventory.begin(), this->inventory.end(), g);
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::shuffle(this->inventory.begin(), this->inventory.end(), std::default_random_engine(seed));
 }
 
 Card& Deck::DrawCard()
 {
     Card& card = this->inventory.back();
     this->inventory.pop_back();
+    return card;
 }

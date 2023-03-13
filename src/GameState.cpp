@@ -2,7 +2,7 @@
 
 long int GameState::prize = 64;
 
-GameState::GameState(Player* p, int n) : Deck(), Table()
+GameState::GameState(Player* p, int n)
 {
     cout << "Game State initiated" << endl;
     this->round = 0;
@@ -10,13 +10,17 @@ GameState::GameState(Player* p, int n) : Deck(), Table()
     this->players = p;
     this->playerCount = n;
     this->startingHand = 2;
+    this->deck = new Deck();
+    this->table = new Table();
     dealCards();
+    // ask for player action(only double,next, or half);
+    // dealTable();
     for (int i = 0; i < this->playerCount; i++)
     {
-        this->players[i].showInventory();
+        this->players[i].showPlayerInfo();
     }
 }
-GameState::GameState(Player* p, int n, int m) : Deck(), Table()
+GameState::GameState(Player* p, int n, int m)
 {
     cout << "Game State initiated" << endl;
     this->round = 0;
@@ -24,10 +28,12 @@ GameState::GameState(Player* p, int n, int m) : Deck(), Table()
     this->players = p;
     this->playerCount = n;
     this->startingHand = m;
+    this->deck = new Deck();
+    this->table = new Table();
     dealCards();
     for (int i = 0; i < this->playerCount; i++)
     {
-        this->players[i].showInventory();
+        this->players[i].showPlayerInfo();
     }
 }
  
@@ -73,6 +79,7 @@ void GameState::dealCards()
     {
         for (int j = 0; j < 2; j++)
         {
+            // adding card to player inventory
             this->players[i]+=this->deck->DrawCard();
         }
     }

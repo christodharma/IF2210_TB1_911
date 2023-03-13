@@ -27,7 +27,7 @@ public:
     void setPlayerPoint(long int);
 
     /*Player method*/
-    void showPlayerInfo();
+    void showPlayerInfo() const;
     void inputAction();
     void action_next();
     void action_double();

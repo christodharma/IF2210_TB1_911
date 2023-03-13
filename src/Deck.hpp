@@ -5,6 +5,7 @@
 #include "Card.hpp"
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 class Deck : virtual public InventoryHolder{
 public:

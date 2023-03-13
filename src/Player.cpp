@@ -37,8 +37,11 @@ void Player::setPlayerPoint(long int input)
     this->point = input;
 }
 
-void Player::showPlayerInfo()
+void Player::showPlayerInfo() const
 {
+    cout << "Player name: "<<this->getPlayerName() << endl;
+    cout << "Player point: "<<this->getPlayerPoint() << endl;
+    this->showInventory();
 }
 
 void Player::inputAction()
