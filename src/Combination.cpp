@@ -74,19 +74,19 @@ void Combination::showCombination(){
     cout << "Biru : " << this->cardcolor['B'] << endl;
 }
 
-CardInventory getHold() {
+CardInventory Combination::getHold() {
     return this->hold;
 } // mengembalikan inventory di tangan dan table
 
-double getValue() {
+double Combination::getValue() {
     return this->value->getValue();
 } // mengembalikan value
 
-void setValue(Value *value) {
+void Combination::setValue(Value *value) {
     this->value = value;
 } // mengeset pointer value
 
-bool isThere2Angka() {
+bool Combination::isThere2Angka() {
     for (int i=0; i<13; i++) {
         if (this->mapcard[to_string(i)] == 2) {
             return true;
@@ -95,7 +95,7 @@ bool isThere2Angka() {
     return false;
 } // cek apakah ada 2 kartu yang sama
 
-bool isThere3Angka() {
+bool Combination::isThere3Angka() {
     for (int i=0; i<13; i++) {
         if (this->mapcard[to_string(i)] == 3) {
             return true;
@@ -104,7 +104,7 @@ bool isThere3Angka() {
     return false;
 } // cek apakah ada 3 kartu yang sama
 
-bool isThere4Angka() {
+bool Combination::isThere4Angka() {
     for (int i=0; i<13; i++) {
         if (this->mapcard[to_string(i)] == 4) {
             return true;
@@ -113,16 +113,16 @@ bool isThere4Angka() {
     return false;
 } // cek apakah ada 4 kartu yang sama
 
-bool isThere5Warna() {
+bool Combination::isThereFlush() {
     for (int i=0; i<4; i++) {
-        if (this->cardcolor[i] == 5) {
+        if (this->cardcolor[i] >= 5) {
             return true;
         }
     }
     return false;
 } // cek apakah ada 5 kartu dengan warna yang sama
 
-bool isThereStraight() {
+bool Combination::isThereStraight() {
     int count = 0;
     for (int i=0; i<13; i++) {
         if (this->mapcard[to_string(i)] == 1) {
