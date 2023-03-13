@@ -14,6 +14,13 @@ map<char,double> Valueable::valueMap = {
     {'k', 0.06},
     {'m', 0.09},
 };
+//dictionary warna, hanya kapital karena toupper di Card.cpp
+map<char,string> Valueable::dictWarna = {
+    {'H', "Hijau"},
+    {'B', "Biru"},
+    {'K', "Kuning"},
+    {'M', "Merah"}
+};
 
 Value::Value(double x)
 {

@@ -1,5 +1,7 @@
 #include "Card.hpp"
 
+Card::Card(){}
+
 Card::Card(int a, char w){
     this->kartu = make_pair(toupper(w),a);
 }
@@ -33,7 +35,9 @@ double Card::getValue() const{
 }
 
 void Card::printCard() const{
-    cout << "(" << kartu.first << "," << kartu.second << ")" << endl;
+    //find char kartu.first on dictWarna
+    map<char,string>::iterator i = dictWarna.find(this->kartu.first);
+    cout << "(" << i->second << "," << kartu.second << ")" << endl;
 }
 
 bool Card::operator<(const Card& other)
@@ -49,6 +53,8 @@ bool Card::operator==(const Card& other)
     return this->kartu == other.kartu;
 }
 ostream& operator<<(ostream& os, const Card& card){
-    os << "(" << card.kartu.first << "," << card.kartu.second /*<< " -> " << card.getValue()*/ << ")";
+    //find char kartu.first on dictWarna
+    map<char,string>::iterator i = card.dictWarna.find(card.kartu.first);
+    os << card.kartu.second<< " " << i->second /*<< " -> " << card.getValue()*/;
     return os;
 }

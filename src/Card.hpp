@@ -11,6 +11,7 @@ protected:
     pair<char,int> kartu; //pair warna dan angka
 public:
     //ctor, dtor
+    Card();
     Card(int,char);
     Card(char,int);
     ~Card();
