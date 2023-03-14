@@ -72,6 +72,8 @@ Combination::Combination(InventoryHolder hand, InventoryHolder table) {
     else if (this->isThereTwoPair()) {
         cout << "Two Pair" << endl;
         this->value = new TwoPair(this->hold, this->mapcard);
+        cout << this->getValue() << endl;
+    }
 }
 
 Combination::~Combination(){
