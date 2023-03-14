@@ -1,7 +1,8 @@
 #include "FourOfAKind.hpp"
 
-FourOfAKind::FourOfAKind(CardInventory hold, map<string, CardInventory> mapcard) : Value(0) {
-    this->value = 6;
+FourOfAKind::FourOfAKind(double v) : Value(0) {
+    double maksFH = 18.48;
+    this->value = 4*v*0.1 + maksFH;
 }
 
 FourOfAKind::~FourOfAKind() {

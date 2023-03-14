@@ -7,7 +7,7 @@ using namespace std;
 //g++ -o driver_Inventory driver_Inventory.cpp ../../src/Card.cpp ../../src/InventoryHolder.cpp ../../src/Valueable.cpp
 
 int main(){
-    CardInventory inv;
+    InventoryHolder inv;
     Card a('h', 12);
     Card b('B', 1);
     Card c(5,'K');

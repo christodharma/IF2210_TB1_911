@@ -2,10 +2,11 @@
 #define __FOUROFAKIND_HPP__
 
 #include "Valueable.hpp"
+#include "InventoryHolder.hpp"
 
 class FourOfAKind : public Value {
     public:
-        FourOfAKind(CardInventory hold, map<string, CardInventory> mapcard);
+        FourOfAKind(double v);
         ~FourOfAKind();
 };
 

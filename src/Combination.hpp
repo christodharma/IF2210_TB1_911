@@ -9,6 +9,13 @@
 #include "InventoryHolder.hpp"
 #include "FourOfAKind.hpp"
 #include "FullHouse.hpp"
+#include "TwoPair.hpp"
+#include "ThreeOfAKind.hpp"
+#include "Straight.hpp"
+#include "Flush.hpp"
+#include "HighCard.hpp"
+#include "Pair.hpp"
+#include "StraightFlush.hpp"
 // ... include semua jenis tipe kombinasi
 using namespace std;
 
@@ -34,6 +41,13 @@ class Combination {
         int isThere4Angka(); // cek apakah ada 4 kartu yang sama
         bool isThereFlush(); // cek apakah ada 5 kartu dengan warna yang sama
         bool isThereStraight(); // cek apakah ada 5 kartu dengan angka berurutan
+        bool isThereTwoPair(); // cek apakah ada 2 pasang kartu yang sama
+        bool isThereThreeOfAKind(); // cek apakah ada 3 kartu yang sama
+        bool isHighCard(); // cek apakah kombinasi adalah high card
+        bool isTherePair(); // cek apakah apakah ada 2 kartu yang sama
+        bool isThereStraightFlush(); // cek apakah ada 5 kartu dengan angka berurutan dan warna yang sama
+
+
 };
 
 #endif
