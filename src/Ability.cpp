@@ -61,3 +61,25 @@ void Abilityless::ability(string input){
         noAbility(input);
     }
 }
+
+char* ReRoll::showAbility(){
+    return "RE-ROLL";
+}
+char* Quadruple::showAbility(){
+    return "QUADRUPLE";
+}
+char* Quarter::showAbility(){
+    return "QUARTER";
+}
+char* ReverseDirection::showAbility(){
+    return "REVERSE";
+}
+char* SwapCard::showAbility(){
+    return "SWAP";
+}
+char* Switch::showAbility(){
+    return "SWITCH";
+}
+char* Abilityless::showAbility(){
+    return "ABILITYLESS";
+}
