@@ -1,10 +1,10 @@
-#include "../../src/Combination.cpp"
-#include "../../src/Card.cpp"
-#include "../../src/InventoryHolder.cpp"
-#include "../../src/Valueable.cpp"
-#include "../../src/FourOfAKind.cpp"
-#include "../../src/Straight.cpp"
-#include "../../src/Flush.cpp"
+#include "../../src/Combination.hpp"
+#include "../../src/Card.hpp"
+#include "../../src/InventoryHolder.hpp"
+#include "../../src/Valueable.hpp"
+#include "../../src/FourOfAKind.hpp"
+#include "../../src/Straight.hpp"
+#include "../../src/Flush.hpp"
 #include <iostream>
 using namespace std;
 
@@ -23,7 +23,7 @@ int main(){
 
     InventoryHolder invP3;
     Card j('b', 5);
-    Card k('b', 7);
+    Card k('b', 8);
     invP3 += j;
     invP3 += k;
 
@@ -31,7 +31,7 @@ int main(){
     Card c('k', 12);
     Card d('B', 3);
     // Card e('b', 12);
-    Card e('m', 7);
+    Card e('b', 7);
     Card f('B', 4);
     Card g('m', 2);
     table += c;
@@ -48,11 +48,11 @@ int main(){
 
     Combination str(invP2, table);
     str.showCombination();
-    cout << str.getValue() << endl;
+    // cout << str.getValue() << endl;
 
     Combination fls(invP3, table);
     fls.showCombination();
-    cout << fls.getValue() << endl;
+    // cout << fls.getValue() << endl;
 
     return 0;
 }

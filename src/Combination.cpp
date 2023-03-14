@@ -35,10 +35,14 @@ Combination::Combination(InventoryHolder hand, InventoryHolder table) {
         this->value = new FourOfAKind(this->hold, this->mapcard);
     }
     else if (this->isThereStraight()) {
+        cout << "YEY STRAIGHT" << endl;
         this->value = new Straight(this->hold, this->mapcard);
+        cout << this->getValue() << endl;
     }
     else if (this->isThereFlush()) {
+        cout << "YEY FLUSH" << endl;
         this->value = new Flush(this->hold, this->mapcard);
+        cout << this->getValue() << endl;
     }
 }
 

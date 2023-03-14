@@ -1,6 +1,6 @@
-#include "../../src/Card.cpp"
-#include "../../src/InventoryHolder.cpp"
-#include "../../src/Valueable.cpp"
+#include "../../src/Card.hpp"
+#include "../../src/InventoryHolder.hpp"
+#include "../../src/Valueable.hpp"
 #include <iostream>
 using namespace std;
 
