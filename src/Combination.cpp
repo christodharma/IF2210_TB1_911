@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 Combination::Combination(){
@@ -52,6 +53,15 @@ Combination::Combination(InventoryHolder hand, InventoryHolder table) {
             i++;
         }
         this->value = new FullHouse(i);
+    else if (isThere3Angka()) {
+        cout << "Three Of A Kind" << endl;
+        this->value = new ThreeOfAKind(this->hold, this->mapcard);
+        cout << this->getValue() << endl;
+    }
+    else if (isThereTwoPair()) {
+        cout << "Two Pair" << endl;
+        this->value = new TwoPair(this->hold, this->mapcard);
+        cout << this->getValue() << endl;
     }
 }
 
@@ -132,9 +142,27 @@ int Combination::isThere2Angka() {
     return i;
 } // cek apakah ada 2 kartu yang sama
 
+<<<<<<< Updated upstream
 int Combination::isThere3Angka() {
     int i = 0;
     for (int i = 1; i <= 13; i++) {
+=======
+bool Combination::isThereTwoPair(){
+    int twoPair = 0;
+    for (int i=1; i<=13; i++) {
+        if (this->mapcard[to_string(i)].getInventory().size() == 2) {
+            twoPair++;
+        }
+    if (twoPair == 2) {
+        return true;
+        }
+    }
+    return false;
+}
+
+bool Combination::isThere3Angka() {
+    for (int i=1; i<=13; i++) {
+>>>>>>> Stashed changes
         if (this->mapcard[to_string(i)].getInventory().size() == 3) {
             return i++;
         }
