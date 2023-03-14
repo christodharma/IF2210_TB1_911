@@ -1,161 +1,85 @@
 #include "Ability.hpp"
-#include <iostream>
 using namespace std;
 
-Ability::Ability(){}
-
-Ability::~Ability(){}
-
-void Ability::noAbility(string x){
-    cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability " << x << endl;
+void Ability::noAbility(string input){
+    cout << "Ets, tidak bisa. kamu tidak memilki Ability "<<input<<"."<< endl;
 }
 
-void ReRoll::action_half(){
-    noAbility("HALF");
-};
-void ReRoll::action_reroll(){
-    cout << "Ability Re-Roll!" << endl;
-};
-void ReRoll::action_quadruple(){
-    noAbility("QUADRUPLE");
-};
-void ReRoll::action_quarter(){
-    noAbility("QUARTER");
-};
-void ReRoll::action_reverse(){
-    noAbility("REVERSE");
-};
-void ReRoll::action_swapcard(){
-    noAbility("SWAPCARD");
-};
-void ReRoll::action_switch(){
-    noAbility("SWITCH");
-};
-void ReRoll::action_abilityless(){
-    noAbility("ABILITYLESS");
-};
+void ReRoll::ability(string input){
+    string valid = "REROLLRE-ROLL";
+    if (valid.find(input) != -1){
+        cout << "RE-ROLL ability activated" << endl;
+    } else {
+        noAbility(input);
+    }
+}
+void Quadruple::ability(string input){
+    string valid = "QUADRUPLE";
+    if (valid.find(input) != -1){
+        cout << "QUADRUPLE ability activated" << endl;
+    } else {
+        noAbility(input);
+    }
+}
+void Quarter::ability(string input){
+    string valid = "QUARTER";
+    if (valid.find(input) != -1){
+        cout << "QUARTER ability activated" << endl;
+    } else {
+        noAbility(input);
+    }
+}
+void ReverseDirection::ability(string input){
+    string valid = "REVERSEDIRECTION";
+    if (valid.find(input) != -1){
+        cout << "REVERSE ability activated" << endl;
+    } else {
+        noAbility(input);
+    }
+}
+void SwapCard::ability(string input){
+    string valid = "SWAPCARD";
+    if (valid.find(input) != -1){
+        cout << "SWAP ability activated" << endl;
+    } else {
+        noAbility(input);
+    }
+}
+void Switch::ability(string input){
+    string valid = "SWITCH";
+    if (valid.find(input) != -1){
+        cout << "SWITCH ability activated" << endl;
+    } else {
+        noAbility(input);
+    }
+}
+void Abilityless::ability(string input){
+    string valid = "ABILITYLESS";
+    if (valid.find(input) != -1){
+        cout << "ABILITYLESS ability activated" << endl;
+    } else {
+        noAbility(input);
+    }
+}
 
-void Quadruple::action_half(){
-    noAbility("HALF");
-};
-void Quadruple::action_reroll(){
-    
-};
-void Quadruple::action_quadruple(){
-    cout << "Ability Quadruple!" << endl;
-};
-void Quadruple::action_quarter(){
-    noAbility("QUARTER");
-};
-void Quadruple::action_reverse(){
-    noAbility("REVERSE");
-};
-void Quadruple::action_swapcard(){
-    noAbility("SWAPCARD");
-};
-void Quadruple::action_switch(){
-    noAbility("SWITCH");
-};
-void Quadruple::action_abilityless(){
-    noAbility("ABILITYLESS");
-};
-
-void Quarter::action_half(){
-    noAbility("HALF");
-};
-void Quarter::action_reroll(){
-    noAbility("REROLL");
-};
-void Quarter::action_quadruple(){
-    noAbility("QUADRUPLE");
-};
-void Quarter::action_quarter(){
-    cout << "Ability Quarter!" << endl;
-};
-void Quarter::action_reverse(){
-    noAbility("REVERSE");
-};
-void Quarter::action_swapcard(){
-    noAbility("SWAPCARD");
-};
-void Quarter::action_switch(){
-    noAbility("SWITCH");
-};
-void Quarter::action_abilityless(){
-    noAbility("ABILITYLESS");
-};
-
-void ReverseDirection::action_half(){
-    noAbility("HALF");
-};
-void ReverseDirection::action_reroll(){
-    noAbility("REROLL");
-};
-void ReverseDirection::action_quadruple(){
-    noAbility("QUADRUPLE");
-};
-void ReverseDirection::action_quarter(){
-    noAbility("QUARTER");
-};
-void ReverseDirection::action_reverse(){
-    cout << "Ability Reverse Direction!" << endl;
-};
-void ReverseDirection::action_swapcard(){
-    noAbility("SWAPCARD");
-};
-void ReverseDirection::action_switch(){
-    noAbility("SWITCH");
-};
-void ReverseDirection::action_abilityless(){
-    noAbility("ABILITYLESS");
-};
-
-void Switch::action_half(){
-    noAbility("HALF");
-};
-void Switch::action_reroll(){
-    noAbility("REROLL");
-};
-void Switch::action_quadruple(){
-    noAbility("QUADRUPLE");
-};
-void Switch::action_quarter(){
-    noAbility("QUARTER");
-};
-void Switch::action_reverse(){
-    noAbility("REVERSE");
-};
-void Switch::action_swapcard(){
-    noAbility("SWAPCARD");
-};
-void Switch::action_switch(){
-    cout << "Ability Switch!" << endl;
-};
-void Switch::action_abilityless(){
-    noAbility("ABILITYLESS");
-};
-
-void Abilityless::action_half(){ 
-    noAbility("HALF");
-};
-void Abilityless::action_reroll(){
-    noAbility("REROLL");
-};
-void Abilityless::action_quadruple(){
-    noAbility("QUADRUPLE");
-};
-void Abilityless::action_quarter(){
-    noAbility("QUARTER");
-};
-void Abilityless::action_reverse(){
-    noAbility("REVERSE");
-};
-void Abilityless::action_swapcard(){
-    noAbility("SWAPCARD");
-};
-void Abilityless::action_switch(){
-    noAbility("SWITCH");
-};
-void Abilityless::action_abilityless(){
-    cout << "Ability Abilityless!" << endl;
-};
+char* ReRoll::showAbility(){
+    return "RE-ROLL";
+}
+char* Quadruple::showAbility(){
+    return "QUADRUPLE";
+}
+char* Quarter::showAbility(){
+    return "QUARTER";
+}
+char* ReverseDirection::showAbility(){
+    return "REVERSE";
+}
+char* SwapCard::showAbility(){
+    return "SWAP";
+}
+char* Switch::showAbility(){
+    return "SWITCH";
+}
+char* Abilityless::showAbility(){
+    return "ABILITYLESS";
+}

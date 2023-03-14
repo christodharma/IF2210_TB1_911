@@ -1,104 +1,58 @@
 #ifndef __ABILITY_HPP__
 #define __ABILITY_HPP__
 
+#include <string>
+#include <iostream>
+using namespace std;
+
 class Ability{
 public:
     Ability(){};
     virtual ~Ability(){};
-    virtual void action_half();
-    virtual void action_reroll();
-    virtual void action_quadruple();
-    virtual void action_quarter();
-    virtual void action_reverse();
-    virtual void action_swapcard();
-    virtual void action_switch();
-    virtual void action_abilityless();
+    virtual void ability(string){};
+    virtual char* showAbility(){};
     void noAbility(string);
 };
 
-class ReRoll : Ability{
+class ReRoll : public Ability{
 public:
-    void action_half();
-    void action_reroll();
-    void action_quadruple();
-    void action_quarter();
-    void action_reverse();
-    void action_swapcard();
-    void action_switch();
-    void action_abilityless();
+    void ability(string);
+    char* showAbility();
 };
 
-class Quadruple : Ability {
+class Quadruple : public Ability {
 public:
-    void action_half();
-    void action_reroll();
-    void action_quadruple();
-    void action_quarter();
-    void action_reverse();
-    void action_swapcard();
-    void action_switch();
-    void action_abilityless();
-
+    void ability(string);
+    char* showAbility();
 };
 
-class Quarter : Ability {
+class Quarter : public Ability {
 public:
-    void action_half();
-    void action_reroll();
-    void action_quadruple();
-    void action_quarter();
-    void action_reverse();
-    void action_swapcard();
-    void action_switch();
-    void action_abilityless();
-
+    void ability(string);
+    char* showAbility();
 };
 
-class ReverseDirection : Ability {
+class ReverseDirection : public Ability {
 public:
-    void action_half();
-    void action_reroll();
-    void action_quadruple();
-    void action_quarter();
-    void action_reverse();
-    void action_swapcard();
-    void action_switch();
-    void action_abilityless();
+    void ability(string);
+    char* showAbility();
 };
 
-class SwapCard : Ability {
+class SwapCard : public Ability {
 public:
-    void action_half();
-    void action_reroll();
-    void action_quadruple();
-    void action_quarter();
-    void action_reverse();
-    void action_swapcard();
-    void action_switch();
-    void action_abilityless();
+    void ability(string);
+    char* showAbility();
 };
 
-class Switch : Ability {
+class Switch : public Ability {
 public:
-    void action_half();
-    void action_reroll();
-    void action_quadruple();
-    void action_quarter();
-    void action_reverse();
-    void action_swapcard();
-    void action_switch();
-    void action_abilityless();
+    void ability(string);
+    char* showAbility();
 };
 
-class Abilityless : Ability {
+class Abilityless : public Ability {
 public:
-    void action_half();
-    void action_reroll();
-    void action_quadruple();
-    void action_quarter();
-    void action_reverse();
-    void action_swapcard();
-    void action_switch();
-    void action_abilityless();
+    void ability(string);
+    char* showAbility();
 };
 #endif
