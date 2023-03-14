@@ -55,6 +55,6 @@ bool Card::operator==(const Card& other)
 ostream& operator<<(ostream& os, const Card& card){
     //find char kartu.first on dictWarna
     map<char,string>::iterator i = card.dictWarna.find(card.kartu.first);
-    os << card.kartu.second<< " " << i->second /*<< " -> " << card.getValue()*/;
+    os << card.kartu.second<< " (" << i->second << ")" /*<< " -> " << card.getValue()*/;
     return os;
 }

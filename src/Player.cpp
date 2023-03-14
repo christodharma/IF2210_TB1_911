@@ -9,6 +9,7 @@ Player::Player() : InventoryHolder()
     cin >> name;
     this->playerName = name;
     this->point = 0;
+    this->ability = new Ability;
     cout << "Player " << name << " initiated" << endl;
 }
 
@@ -16,6 +17,7 @@ Player::Player(string name) : InventoryHolder()
 {
     this->playerName = name;
     this->point = 0;
+    this->ability = new Ability;
     cout << "Player " << name << " initiated" << endl;
 }
 
@@ -37,6 +39,7 @@ void Player::setPlayerPoint(long int input)
 
 void Player::setPlayerAbility(string input)
 {
+    delete this->ability;
     if (input == "RE-ROLL")
     {
         this->ability = new ReRoll();
@@ -63,9 +66,11 @@ void Player::setPlayerAbility(string input)
 
 void Player::showPlayerInfo() const
 {
+    cout << "==========\tPlayer Info\t==========" <<endl;
     cout << "Player name: "<<this->getPlayerName() << endl;
     cout << "Player point: "<<this->getPlayerPoint() << endl;
-    // cout << "Player ability: "<<this->ability->showAbility() << endl;
+    cout << "Player ability: "<<this->ability->showAbility() << endl;
+    cout << "Player inventory: " << endl;
     this->showInventory();
 }
 
@@ -76,6 +81,7 @@ string Player::action()
     string input;
     do
     {
+        cout << "Input your action, "<<this->getPlayerName()<<"! ";
         cin >> input;
         if (valid_inputs.find(input) == -1)
         {
@@ -86,6 +92,15 @@ string Player::action()
         }
     } while (valid_inputs.find(input) == -1);
     return input;
+}
+
+void Player::drawCards(int n, Deck* src)
+{
+    for (int i = 0; i < n; i++)
+    {
+        *this+=src->Draw();
+    }
+     
 }
 
 bool Player::operator>(Player& other)

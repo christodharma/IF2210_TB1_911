@@ -39,7 +39,7 @@ vector<Card>& InventoryHolder::getInventory(){
 void InventoryHolder::showInventory() const{
     for (int i = 0; i < this->inventory.size(); i++)
     {
-        cout << i+1 << "." << this->inventory[i] << endl;
+        cout <<"[" << i+1 << "] " << this->inventory[i] << endl;
     }
 }
 // template<>

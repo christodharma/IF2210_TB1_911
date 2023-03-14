@@ -2,6 +2,9 @@
 
 long int GameState::prize = 64;
 Deck* GameState::cardDeck = new Deck();
+bool GameState::reverseTurn = false;
+int GameState::turnStartFrom = 0;
+deque<int> GameState::turn;
 vector<string> GameState::abilities =
 {
     "RE-ROLL",
@@ -12,6 +15,7 @@ vector<string> GameState::abilities =
     "SWITCH",
     "ABILITYLESS"
 };
+
 
 GameState::GameState(Player* p, int n)
 {
@@ -39,6 +43,11 @@ long int GameState::getPrize() const
     return this->prize;
 }
 
+Deck *GameState::getCardDeck() const
+{
+    return this->cardDeck;
+}
+
 void GameState::setPrize(long int input)
 {
     this->prize = input;
@@ -50,41 +59,53 @@ void GameState::nextRound(){
 
 void GameState::playRound()
 {
-    // show current round
-    cout << ":::::::::: Round " << this->round+1 << " ::::::::::"<<endl;
-    // input action from every players
+    // temp deque for next round
+    // deque<int> temp;
     for (int i = 0; i < playerCount; i++)
     {
-        cout << "Player " << this->players[i].getPlayerName() << " turn" << endl;
-        this->actionDo(this->players[i].action());
+    turn.push_back((i+turnStartFrom)%7);
     }
-    // deal kartu ke table
+    // show current round
+    cout << ":::::::::: Round " << this->round+1 << " ::::::::::"<<endl;
+    cout << "current queue will be: ";
+    for (auto i = turn.begin(); i != turn.end(); i++)
+    {
+        cout << "player " << *i + 1;
+        if (i!=turn.end()-1){
+            cout << "->";
+        }
+    }
+    cout << endl;
+    // input action from every players
+    while (!turn.empty())
+    {
+        int nowPlaying = nextTurn();
+        // temp.push_back(nowPlaying);
+        // for (auto i = temp.begin(); i != temp.end(); i++)
+        // {
+        //     cout << "player " << *i + 1;
+        //     if (i!=temp.end()-1){
+        //         cout << "->";
+        //     }
+        // }
+        // cout << endl;
+        actionDo(this->players[nowPlaying].action());
+    }
+    // memasangkan turn untuk next round ke turn deque
+    // turn = temp;
+    turnStartFrom++;
+    // deal kartu ke table kecuali round 6
     if (this->round == 5){
         *this->table += this->cardDeck->Draw();
         this->table->showInventory();
     }
 }
 
-void GameState::dealCards(int n)
-{
-    //shuffledeck
-    this->cardDeck->ShuffleDeck();
-    //deal cards
-    for (int i = 0; i < this->playerCount; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            // adding card to player inventory
-            this->players[i]+=this->cardDeck->Draw();
-        }
-    }    
-}
-
 void GameState::dealAbility()
 {
     //shuffle abilities vector with seed
-    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-    shuffle(this->abilities.begin(), this->abilities.end(), default_random_engine(seed));
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::shuffle(this->abilities.begin(), this->abilities.end(), std::default_random_engine(seed));
     //deal cards
     for (int i = 0; i < this->playerCount; i++)
     {
@@ -112,25 +133,15 @@ void GameState::actionDo(string input)
     }
 }
 
-// void GameState::leaderboard()
-// {
-//     int* pos = new int[this->playerCount];
-//     for (int i = 0; i < this->playerCount; i++)
-//     {
-//         pos[i] = i;
-//     }
-//     for (int i = 0; i < this->playerCount; i++)
-//     {
-//         int min = i;
-//         for (int j = i+1; j < this->playerCount; j++)
-//         {
-//             if (this->players[j] < this->players[min])
-//             {
-//                 min = j;
-//             }
-//         }
-//         int temp = pos[i];
-//         pos[i] = pos[min];
-//         pos[min] = temp;
-//     }
-// }
+int GameState::nextTurn()
+{
+    int nextPlay;
+    if (reverseTurn){
+        nextPlay = this->turn.back();
+        this->turn.pop_back();
+    } else {
+        nextPlay = this->turn.front();
+        this->turn.pop_front();
+    }
+    return nextPlay;
+}
