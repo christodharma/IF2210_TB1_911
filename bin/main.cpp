@@ -17,10 +17,10 @@ int main(){
     bool gameIsOngoing = true;
     int playerCount = 7;
     cout << "How many players? (Default 7)" << endl;
-    cin >> playerCount;
+    // cin >> playerCount;
     Player* players = new Player[playerCount];
     GameState game(players, playerCount); 
-    while (gameIsOngoing)
+    while (gameIsOngoing && game.getRound()<6)
     {
         //game loop
         if (game.getRound() == 0){

@@ -61,6 +61,7 @@ void GameState::playRound()
     // deal kartu ke table
     if (this->round == 5){
         *this->table += this->cardDeck->Draw();
+        this->table->showInventory();
     }
 }
 
