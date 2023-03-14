@@ -142,11 +142,16 @@ int Combination::isThere2Angka() {
     return i;
 } // cek apakah ada 2 kartu yang sama
 
-<<<<<<< Updated upstream
 int Combination::isThere3Angka() {
     int i = 0;
     for (int i = 1; i <= 13; i++) {
-=======
+        if (this->mapcard[to_string(i)].getInventory().size() == 3) {
+            return i++;
+        }
+    }
+    return i;
+} // cek apakah ada 3 kartu yang sama
+
 bool Combination::isThereTwoPair(){
     int twoPair = 0;
     for (int i=1; i<=13; i++) {
@@ -162,7 +167,6 @@ bool Combination::isThereTwoPair(){
 
 bool Combination::isThere3Angka() {
     for (int i=1; i<=13; i++) {
->>>>>>> Stashed changes
         if (this->mapcard[to_string(i)].getInventory().size() == 3) {
             return i++;
         }
