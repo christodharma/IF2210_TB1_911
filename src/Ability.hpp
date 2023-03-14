@@ -10,7 +10,7 @@ public:
     Ability(){};
     virtual ~Ability(){};
     virtual void ability(string){};
-    virtual string showAbility(){};
+    virtual string showAbility(){return "";};
     void noAbility(string);
 };
 

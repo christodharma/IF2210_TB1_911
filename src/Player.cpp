@@ -81,9 +81,11 @@ char* Player::action()
         {
             cout << "Invalid input, please try again" << endl;
         } else {
-            return input;
+
+            break;
         }
     } while (valid_inputs.find(input) == -1);
+    return input;
 }
 
 bool Player::operator>(Player& other)

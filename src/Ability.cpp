@@ -63,23 +63,30 @@ void Abilityless::ability(string input){
 }
 
 string ReRoll::showAbility(){
-    return "RE-ROLL";
+    string valid = "RE-ROLL";
+    return valid;
 }
 string Quadruple::showAbility(){
-    return "QUADRUPLE";
+    string valid = "QUADRUPLE";
+    return valid;
 }
 string Quarter::showAbility(){
-    return "QUARTER";
+    string valid = "QUARTER";
+    return valid;
 }
 string ReverseDirection::showAbility(){
-    return "REVERSE";
+    string valid = "REVERSE";
+    return valid;
 }
 string SwapCard::showAbility(){
-    return "SWAP";
+    string valid = "SWAP";
+    return valid;
 }
 string Switch::showAbility(){
-    return "SWITCH";
+    string valid = "SWITCH";
+    return valid;
 }
 string Abilityless::showAbility(){
-    return "ABILITYLESS";
+    string valid = "ABILITYLESS";
+    return valid;
 }
