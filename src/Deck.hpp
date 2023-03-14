@@ -5,13 +5,12 @@
 #include "Card.hpp"
 #include "randomdependency.hpp"
 
-template<class T>
-class Deck : virtual public InventoryHolder<T>{
+class Deck : virtual public InventoryHolder{
 public:
     Deck();
     ~Deck();
     void ShuffleDeck();
-    T& Draw();
+    Card& Draw();
 };
 
 #endif

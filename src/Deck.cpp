@@ -1,9 +1,6 @@
 #include "Deck.hpp"
 
-template<class T>
-Deck<T>::Deck() : InventoryHolder<T>(){}
-template<>
-Deck<Card>::Deck() : InventoryHolder<Card>()
+Deck::Deck() : InventoryHolder()
 {
     for (int i = 0; i < 4; i++)
     {
@@ -22,20 +19,17 @@ Deck<Card>::Deck() : InventoryHolder<Card>()
     }
 }
 
-template<class T>
-Deck<T>::~Deck(){}
+Deck::~Deck(){}
 
-template<class T>
-void Deck<T>::ShuffleDeck()
+void Deck::ShuffleDeck()
 {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(this->inventory.begin(), this->inventory.end(), std::default_random_engine(seed));
 }
 
-template<class T>
-T& Deck<T>::Draw()
+Card& Deck::Draw()
 {
-    T& result = this->inventory.back();
+    Card& result = this->inventory.back();
     this->inventory.pop_back();
     return result;
 }

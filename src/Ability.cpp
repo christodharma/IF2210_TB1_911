@@ -62,24 +62,24 @@ void Abilityless::ability(string input){
     }
 }
 
-char* ReRoll::showAbility(){
+string ReRoll::showAbility(){
     return "RE-ROLL";
 }
-char* Quadruple::showAbility(){
+string Quadruple::showAbility(){
     return "QUADRUPLE";
 }
-char* Quarter::showAbility(){
+string Quarter::showAbility(){
     return "QUARTER";
 }
-char* ReverseDirection::showAbility(){
+string ReverseDirection::showAbility(){
     return "REVERSE";
 }
-char* SwapCard::showAbility(){
+string SwapCard::showAbility(){
     return "SWAP";
 }
-char* Switch::showAbility(){
+string Switch::showAbility(){
     return "SWITCH";
 }
-char* Abilityless::showAbility(){
+string Abilityless::showAbility(){
     return "ABILITYLESS";
 }

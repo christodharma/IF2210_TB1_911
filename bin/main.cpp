@@ -19,16 +19,27 @@ int main(){
     cout << "How many players? (Default 7)" << endl;
     cin >> playerCount;
     Player* players = new Player[playerCount];
+    GameState game(players, playerCount); 
     while (gameIsOngoing)
     {
         //game loop
-        GameState game(players, playerCount); //round 1
-        game.nextRound(); //round 2
-        game.nextRound(); //round 3
-        game.nextRound(); //round 4
-        game.nextRound(); //round 5
-        game.nextRound(); //round 6
-        gameIsOngoing = false;
+        if (game.getRound() == 0){
+            game.dealCards(2);
+            for (int i = 0; i < playerCount; i++)
+            {
+                players[i].showPlayerInfo();
+            }
+        } else if (game.getRound() == 1){
+            game.dealAbility();
+            for (int i = 0; i < playerCount; i++)
+            {
+                players[i].showPlayerInfo();
+            }
+        } else if (game.getRound() == 5){
+            gameIsOngoing = false;
+        }
+        game.playRound();
+        game.nextRound();
     }
     cin.ignore();
     return 0;

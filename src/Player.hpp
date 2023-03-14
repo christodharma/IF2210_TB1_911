@@ -3,12 +3,13 @@
 
 #include "InventoryHolder.hpp"
 #include "Ability.hpp"
+#include "Card.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
 
 class Player : 
-    public InventoryHolder<Card>, 
+    public InventoryHolder, 
     public Ability
     {
 private:
@@ -30,8 +31,7 @@ public:
 
     /*Player method*/
     void showPlayerInfo() const;
-    void inputAction();
-    // void action(string);
+    char* action();
 
     /*operator overloads*/
     bool operator>(Player&);

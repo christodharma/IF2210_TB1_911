@@ -17,8 +17,8 @@ class GameState{
 private:
     int round,playerCount;
     static long int prize;
-    Deck<Card>* cardDeck;
-    Deck<string>* abilityDeck;
+    static Deck* cardDeck;
+    static vector<string> abilities;
     Table* table;
     Player* players; //array of players buat nampung + urutan action
     //mungkin implement queue/deque buat round robin urutan action
@@ -31,11 +31,14 @@ public:
     int getRound() const;
     long int getPrize() const;
     //setter
+    void setPrize(long int);
 
     //gamestate methods
     void nextRound();
+    void playRound();
     void dealCards(int);
     void dealAbility();
+    void actionDo(char*);
     // void leaderboard();
     // void nextTurn();
 

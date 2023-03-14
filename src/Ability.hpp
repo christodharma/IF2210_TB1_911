@@ -10,49 +10,49 @@ public:
     Ability(){};
     virtual ~Ability(){};
     virtual void ability(string){};
-    virtual char* showAbility(){};
+    virtual string showAbility(){};
     void noAbility(string);
 };
 
 class ReRoll : public Ability{
 public:
     void ability(string);
-    char* showAbility();
+    string showAbility();
 };
 
 class Quadruple : public Ability {
 public:
     void ability(string);
-    char* showAbility();
+    string showAbility();
 };
 
 class Quarter : public Ability {
 public:
     void ability(string);
-    char* showAbility();
+    string showAbility();
 };
 
 class ReverseDirection : public Ability {
 public:
     void ability(string);
-    char* showAbility();
+    string showAbility();
 };
 
 class SwapCard : public Ability {
 public:
     void ability(string);
-    char* showAbility();
+    string showAbility();
 };
 
 class Switch : public Ability {
 public:
     void ability(string);
-    char* showAbility();
+    string showAbility();
 };
 
 class Abilityless : public Ability {
 public:
     void ability(string);
-    char* showAbility();
+    string showAbility();
 };
 #endif

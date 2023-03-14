@@ -1,10 +1,8 @@
-#include "InventoryHolder.hpp"
-#include "Card.hpp"
 #include "Player.hpp"
 #include <iostream>
 using namespace std;
 
-Player::Player() : InventoryHolder<Card>()
+Player::Player() : InventoryHolder()
 {
     string name;
     cout<<"Please insert player name: ";
@@ -14,7 +12,7 @@ Player::Player() : InventoryHolder<Card>()
     cout << "Player " << name << " initiated" << endl;
 }
 
-Player::Player(string name) : InventoryHolder<Card>()
+Player::Player(string name) : InventoryHolder()
 {
     this->playerName = name;
     this->point = 0;
@@ -67,14 +65,15 @@ void Player::showPlayerInfo() const
 {
     cout << "Player name: "<<this->getPlayerName() << endl;
     cout << "Player point: "<<this->getPlayerPoint() << endl;
+    cout << "Player ability: "<<this->ability->showAbility() << endl;
     this->showInventory();
 }
 
-void Player::inputAction()
+char* Player::action()
 {
     //input-input yang valid dimainkan oleh player
     string valid_inputs = "NEXTRE-ROLLDOUBLEQUADRUPLEHALFQUARTERREVERSESWAPCARDSWITCHABILITYLESS";
-    string input;
+    char* input;
     do
     {
         cin >> input;
@@ -82,7 +81,7 @@ void Player::inputAction()
         {
             cout << "Invalid input, please try again" << endl;
         } else {
-            // action(input);
+            return input;
         }
     } while (valid_inputs.find(input) == -1);
 }

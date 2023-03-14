@@ -11,20 +11,19 @@ using namespace std;
 
 // Kelas abstract yang di-inherit ke GameState dan Player
 // Berkaitan dalam hal kepemilikan kartu
-template <class T>
 class InventoryHolder{
 protected:
-    vector<T> inventory;
+    vector<Card> inventory;
 public:
     InventoryHolder();
     ~InventoryHolder();
     bool isEmpty();
     void showInventory() const;
-    vector<T>& getInventory();
-    vector<T>& operator+=(T&);
-    vector<T>& operator-=(T&);
-    vector<T>& operator+(T&);
-    vector<T>& operator-(T&);
+    vector<Card>& getInventory();
+    vector<Card>& operator+=(Card&);
+    vector<Card>& operator-=(Card&);
+    vector<Card>& operator+(Card&);
+    vector<Card>& operator-(Card&);
 };
 
 #endif

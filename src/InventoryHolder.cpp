@@ -1,21 +1,17 @@
 #include "InventoryHolder.hpp"
 
 
-template<class T>
-InventoryHolder<T>::InventoryHolder(){
-    vector<T> x;
+InventoryHolder::InventoryHolder(){
+    vector<Card> x;
     this->inventory = x;
 };
-template<class T>
-InventoryHolder<T>::~InventoryHolder(){
+InventoryHolder::~InventoryHolder(){
 }
-template<class T>
-vector<T>& InventoryHolder<T>::operator+=(T& input){
+vector<Card>& InventoryHolder::operator+=(Card& input){
     this->inventory.push_back(input);
     return this->inventory;
 }
-template<class T>
-vector<T>& InventoryHolder<T>::operator-=(T& input){
+vector<Card>& InventoryHolder::operator-=(Card& input){
     for (int i = 0; i < this->inventory.size(); i++)
     {
         if (this->inventory[i] == input){
@@ -28,23 +24,19 @@ vector<T>& InventoryHolder<T>::operator-=(T& input){
     }
     return this->inventory;
 }
-template<class T>
-bool InventoryHolder<T>::isEmpty(){
+bool InventoryHolder::isEmpty(){
     return this->inventory.empty();
 }
-template<class T>
-vector<T>& InventoryHolder<T>::operator+ (T& b){
+vector<Card>& InventoryHolder::operator+ (Card& b){
     return *this += b;
-}template<class T>
-vector<T>& InventoryHolder<T>::operator- (T& b){
+}
+vector<Card>& InventoryHolder::operator- (Card& b){
     return *this -= b;
 }
-template<class T>
-vector<T>& InventoryHolder<T>::getInventory(){
+vector<Card>& InventoryHolder::getInventory(){
     return this->inventory;
 }
-template<class T>
-void InventoryHolder<T>::showInventory() const{
+void InventoryHolder::showInventory() const{
     for (int i = 0; i < this->inventory.size(); i++)
     {
         cout << i+1 << "." << this->inventory[i] << endl;

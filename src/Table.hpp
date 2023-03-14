@@ -3,7 +3,7 @@
 
 #include "InventoryHolder.hpp"
 
-class Table : virtual public InventoryHolder<Card>
+class Table : virtual public InventoryHolder
 {
 public:
     Table();
