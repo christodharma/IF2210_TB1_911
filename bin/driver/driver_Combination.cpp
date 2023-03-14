@@ -2,6 +2,7 @@
 #include "../../src/Card.cpp"
 #include "../../src/InventoryHolder.cpp"
 #include "../../src/Valueable.cpp"
+#include "../../src/FullHouse.cpp"
 #include "../../src/FourOfAKind.cpp"
 #include "../../src/TwoPair.cpp"
 #include "../../src/ThreeOfAKind.cpp"

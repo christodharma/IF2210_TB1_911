@@ -39,6 +39,8 @@ class Combination {
         bool isThereFlush(); // cek apakah ada 5 kartu dengan warna yang sama
         bool isThereStraight(); // cek apakah ada 5 kartu dengan angka berurutan
         bool isThereTwoPair(); // cek apakah ada 2 pasang kartu yang sama
+        bool isThereThreeOfAKind(); // cek apakah ada 3 kartu yang sama
+
 };
 
 #endif

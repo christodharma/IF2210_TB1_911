@@ -53,7 +53,8 @@ Combination::Combination(InventoryHolder hand, InventoryHolder table) {
             i++;
         }
         this->value = new FullHouse(i);
-    else if (isThere3Angka()) {
+    }
+    if (isThere3Angka()) {
         cout << "Three Of A Kind" << endl;
         this->value = new ThreeOfAKind(this->hold, this->mapcard);
         cout << this->getValue() << endl;
@@ -165,13 +166,13 @@ bool Combination::isThereTwoPair(){
     return false;
 }
 
-bool Combination::isThere3Angka() {
+bool Combination::isThereThreeOfAKind() {
     for (int i=1; i<=13; i++) {
         if (this->mapcard[to_string(i)].getInventory().size() == 3) {
-            return i++;
+            return true;
         }
     }
-    return i;
+    return false;
 } // cek apakah ada 3 kartu yang sama
 
 int Combination::isThere4Angka() {
