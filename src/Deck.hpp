@@ -3,7 +3,7 @@
 
 #include "InventoryHolder.hpp"
 #include "Card.hpp"
-#include "randomdependency.hpp"
+#include "Generics.hpp"
 
 class Deck : virtual public InventoryHolder{
 public:

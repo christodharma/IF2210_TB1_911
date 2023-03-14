@@ -5,6 +5,10 @@ void Ability::noAbility(string input){
     cout << "Ets, tidak bisa. kamu tidak memilki Ability "<<input<<"."<< endl;
 }
 
+string Ability::showAbility(){
+    return "NONE";
+}
+
 void ReRoll::ability(string input){
     string valid = "REROLLRE-ROLL";
     if (valid.find(input) != -1){

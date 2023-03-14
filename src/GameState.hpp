@@ -10,7 +10,8 @@
 #include <vector>
 #include <string>
 #include <map>
-#include "randomdependency.hpp"
+#include <deque>
+#include <chrono>
 using namespace std;
 
 class GameState{
@@ -19,6 +20,9 @@ private:
     static long int prize;
     static Deck* cardDeck;
     static vector<string> abilities;
+    static deque<int> turn;
+    static int turnStartFrom;
+    static bool reverseTurn;
     Table* table;
     Player* players; //array of players buat nampung + urutan action
     //mungkin implement queue/deque buat round robin urutan action
@@ -30,15 +34,16 @@ public:
     //getter
     int getRound() const;
     long int getPrize() const;
+    Deck* getCardDeck() const;
     //setter
     void setPrize(long int);
 
     //gamestate methods
     void nextRound();
     void playRound();
-    void dealCards(int);
     void dealAbility();
     void actionDo(string);
+    int nextTurn();
     // void leaderboard();
     // void nextTurn();
 

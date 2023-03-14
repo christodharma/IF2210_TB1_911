@@ -4,6 +4,7 @@
 #include "InventoryHolder.hpp"
 #include "Ability.hpp"
 #include "Card.hpp"
+#include "Deck.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -32,6 +33,7 @@ public:
     /*Player method*/
     void showPlayerInfo() const;
     string action();
+    void drawCards(int, Deck*);
 
     /*operator overloads*/
     bool operator>(Player&);

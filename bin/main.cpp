@@ -10,21 +10,23 @@
 using namespace std;
 /*
 cd bin/driver
-g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp ../src/Ability.cpp; if ($?) {./kompetisiKartu}
+g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp ../src/Ability.cpp ../src/Generics.cpp; if ($?) {./kompetisiKartu}
 */
 
 int main(){
     bool gameIsOngoing = true;
     int playerCount = 7;
-    cout << "How many players? (Default 7)" << endl;
-    // cin >> playerCount;
     Player* players = new Player[playerCount];
     GameState game(players, playerCount); 
     while (game.getRound()<6)
     {
         //game loop
         if (game.getRound() == 0){
-            game.dealCards(2);
+            for (int i = 0; i < playerCount; i++)
+            {
+                players[i].drawCards(2, game.getCardDeck());
+            }
+            
             for (int i = 0; i < playerCount; i++)
             {
                 players[i].showPlayerInfo();
