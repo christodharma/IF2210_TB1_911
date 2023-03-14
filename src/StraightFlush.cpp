@@ -22,17 +22,11 @@ StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder>
         int n = sizeof(arr) / sizeof(arr[0]);
         sort(arr, arr + n);
 
-        for (int i = 0; i < n; ++i) {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-
         for (int i = 1; i<mapcard[h].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
-                cout << count << endl;
                 if (count >= 4) {
-                    this->value = arr[i] * 0.1 + 0.00;
+                    this->value = arr[i] * 0.1 + 0.00 + 23.68;
                 }
             }
             else {
@@ -49,17 +43,11 @@ StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder>
         int n = sizeof(arr) / sizeof(arr[0]);
         sort(arr, arr + n);
 
-        for (int i = 0; i < n; ++i) {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-
         for (int i = 1; i<mapcard[b].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
-                cout << count << endl;
                 if (count >= 4) {
-                    this->value = arr[i] * 0.1 + 0.03;
+                    this->value = arr[i] * 0.1 + 0.03 + 23.68;
                 }
             }
             else {
@@ -76,17 +64,11 @@ StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder>
         int n = sizeof(arr) / sizeof(arr[0]);
         sort(arr, arr + n);
 
-        for (int i = 0; i < n; ++i) {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-
         for (int i = 1; i<mapcard[k].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
-                cout << count << endl;
                 if (count >= 4) {
-                    this->value = arr[i] * 0.1 + 0.06;
+                    this->value = arr[i] * 0.1 + 0.06 + 23.68;
                 }
             }
             else {
@@ -103,17 +85,11 @@ StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder>
         int n = sizeof(arr) / sizeof(arr[0]);
         sort(arr, arr + n);
 
-        for (int i = 0; i < n; ++i) {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-
         for (int i = 1; i<mapcard[m].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
-                cout << count << endl;
                 if (count >= 4) {
-                    this->value = arr[i] * 0.1 + 0.09;
+                    this->value = arr[i] * 0.1 + 0.09 + 23.68;
                 }
             }
             else {
