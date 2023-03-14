@@ -1,8 +1,6 @@
 #include "AbilityInterface.hpp"
 
 AbilityInterface::AbilityInterface() {
-    this->ability = NULL;
-    this->gameState = NULL;
 }
 
 AbilityInterface::AbilityInterface(Ability* a, GameState& g, Player& p) {

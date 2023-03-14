@@ -58,7 +58,7 @@ Player *GameState::getPlayers() const
     return this->players;
 }
 
-Player GameState::getPlayer(int i) const
+Player& GameState::getPlayer(int i) const
 {
     return this->players[i];
 }

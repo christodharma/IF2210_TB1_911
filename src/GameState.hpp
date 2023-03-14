@@ -36,7 +36,7 @@ public:
     long int getPrize() const;
     Deck* getCardDeck() const;
     Player* getPlayers() const;
-    Player getPlayer(int) const;
+    Player& getPlayer(int) const;
     //setter
     void setPrize(long int);
 

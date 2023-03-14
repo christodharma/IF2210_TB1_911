@@ -6,6 +6,7 @@
 #include "../src/Deck.hpp"
 #include "../src/Table.hpp"
 #include "../src/Ability.hpp"
+#include "../src/AbilityInterface.hpp"
 #include <iostream>
 using namespace std;
 /*
@@ -17,7 +18,8 @@ int main(){
     bool gameIsOngoing = true;
     int playerCount = 7;
     Player* players = new Player[playerCount];
-    GameState game(players, playerCount); 
+    GameState game(players, playerCount);
+    int currentTurn = 0; 
     while (game.getRound()<6)
     {
         //game loop
@@ -40,9 +42,13 @@ int main(){
         } else if (game.getRound() == 5){
             gameIsOngoing = false;
         }
+
+        // try the switch
+        AbilityInterface a(game.getPlayer(currentTurn).getPlayerAbility(), game, game.getPlayer(currentTurn));
+
         game.playRound();
         game.nextRound();
     }
-    cin.ignore();
+    // cin.ignore();
     return 0;
 }
