@@ -30,6 +30,11 @@ long int Player::getPlayerPoint()const {
     return this->point;
 }
 
+vector<Card> Player::getInventory()
+{
+    return this->inventory;
+}
+
 void Player::setPlayerPoint(long int input)
 {
     this->point = input;
@@ -59,6 +64,11 @@ void Player::setPlayerAbility(string input)
     {
         this->ability = new Abilityless();
     }
+}
+
+void Player::setInventory(vector<Card> input)
+{
+    this->inventory = input;
 }
 
 void Player::showPlayerInfo() const

@@ -39,6 +39,11 @@ long int GameState::getPrize() const
     return this->prize;
 }
 
+Player GameState::getPlayer(int i) const
+{
+    return this->players[i];
+}
+
 void GameState::setPrize(long int input)
 {
     this->prize = input;
@@ -109,6 +114,13 @@ void GameState::actionDo(string input)
     } else if (abilityInput.find(input)!=-1){
         //input ability
         cout << input << "invocation" << endl;
+    }
+}
+
+void GameState::printPlayers() {
+    for (int i = 0; i < this->playerCount; i++)
+    {
+        cout << "   " << i+1 << ". " << this->players[i].getPlayerName() << endl;
     }
 }
 

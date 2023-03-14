@@ -24,10 +24,12 @@ public:
     //getter
     string getPlayerName() const;
     long int getPlayerPoint() const;
+    vector<Card> getInventory();
 
     //setter
     void setPlayerPoint(long int);
     void setPlayerAbility(string);
+    void setInventory(vector<Card>);
 
     /*Player method*/
     void showPlayerInfo() const;

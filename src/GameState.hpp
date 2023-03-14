@@ -30,6 +30,8 @@ public:
     //getter
     int getRound() const;
     long int getPrize() const;
+    Player getPlayer(int) const;
+
     //setter
     void setPrize(long int);
 
@@ -39,6 +41,7 @@ public:
     void dealCards(int);
     void dealAbility();
     void actionDo(string);
+    void printPlayers();
     // void leaderboard();
     // void nextTurn();
 
