@@ -7,7 +7,7 @@ ThreeOfAKind::ThreeOfAKind(InventoryHolder hold, map<string, InventoryHolder> ma
     for (int i = 1; i <= 13; i++) {
         for (int j = 0; j < 3; j++) {
             if (this->mapcard[to_string(i)].getInventory().size() == 3) {
-                this->value = this->mapcard[to_string(i)].getInventory()[j].getAngka();
+                this->value = this->mapcard[to_string(i)].getInventory()[j].getValue() + 4.17;
             }
         }
     }
