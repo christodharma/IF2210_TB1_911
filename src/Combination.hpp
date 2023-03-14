@@ -11,8 +11,8 @@
 #include "FullHouse.hpp"
 #include "TwoPair.hpp"
 #include "ThreeOfAKind.hpp"
-// #include "FourOfAKind.hpp"
-// #include "FullHouse.hpp"
+#include "Straight.hpp"
+#include "Flush.hpp"
 // ... include semua jenis tipe kombinasi
 using namespace std;
 

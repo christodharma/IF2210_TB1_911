@@ -54,16 +54,24 @@ Combination::Combination(InventoryHolder hand, InventoryHolder table) {
         }
         this->value = new FullHouse(i);
     }
-    if (isThere3Angka()) {
+    else if (this->isThereFlush()) {
+        cout << "YEY FLUSH" << endl;
+        this->value = new Flush(this->hold, this->mapcard);
+        cout << this->getValue() << endl;
+    }
+    else if (this->isThereStraight()) {
+        cout << "YEY STRAIGHT" << endl;
+        this->value = new Straight(this->hold, this->mapcard);
+        cout << this->getValue() << endl;
+    }
+    else if (this->isThere3Angka()) {
         cout << "Three Of A Kind" << endl;
         this->value = new ThreeOfAKind(this->hold, this->mapcard);
         cout << this->getValue() << endl;
     }
-    else if (isThereTwoPair()) {
+    else if (this->isThereTwoPair()) {
         cout << "Two Pair" << endl;
         this->value = new TwoPair(this->hold, this->mapcard);
-        cout << this->getValue() << endl;
-    }
 }
 
 Combination::~Combination(){
@@ -163,16 +171,16 @@ bool Combination::isThereTwoPair(){
         return true;
         }
     }
-    return i;
+    return false;
 } // cek apakah ada 2 kartu yang sama
 
 bool Combination::isThereThreeOfAKind() {
     for (int i=1; i<=13; i++) {
         if (this->mapcard[to_string(i)].getInventory().size() == 3) {
-            return i++;
+            return true;
         }
     }
-    return i;
+    return false;
 } // cek apakah ada 3 kartu yang sama
 
 int Combination::isThere4Angka() {
@@ -205,7 +213,7 @@ bool Combination::isThereFlush() {
 
 bool Combination::isThereStraight() {
     int count = 0;
-    for (int i=0; i<13; i++) {
+    for (int i=1; i<=13; i++) {
         if (this->mapcard[to_string(i)].getInventory().size() >= 1) {
             count++;
         } else {
