@@ -156,7 +156,7 @@ bool Combination::isThereFlush() {
 
 bool Combination::isThereStraight() {
     int count = 0;
-    for (int i=0; i<13; i++) {
+    for (int i=1; i<=13; i++) {
         if (this->mapcard[to_string(i)].getInventory().size() >= 1) {
             count++;
         } else {

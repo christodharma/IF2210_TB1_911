@@ -1,13 +1,13 @@
-#include "../../src/Card.hpp"
-#include "../../src/InventoryHolder.hpp"
-#include "../../src/Valueable.hpp"
+#include "../../src/Card.cpp"
+#include "../../src/InventoryHolder.cpp"
+#include "../../src/Valueable.cpp"
 #include <iostream>
 using namespace std;
 
 //g++ -o driver_Inventory driver_Inventory.cpp ../../src/Card.cpp ../../src/InventoryHolder.cpp ../../src/Valueable.cpp
 
 int main(){
-    CardInventory inv;
+    InventoryHolder inv;
     Card a('h', 12);
     Card b('B', 1);
     Card c(5,'K');

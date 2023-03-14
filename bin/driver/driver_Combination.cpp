@@ -30,7 +30,8 @@ int main(){
     InventoryHolder table;
     Card c('k', 12);
     Card d('B', 3);
-    Card e('b', 12);
+    // Card e('b', 12);
+    Card e('m', 7);
     Card f('B', 4);
     Card g('m', 2);
     table += c;
@@ -43,7 +44,7 @@ int main(){
     com.showCombination();
     cout << com.getByParameter("B").getInventory()[0].getAngka() << endl;
     cout << com.getByParameter("B").getInventory().size() << endl;
-    cout << com.getValue() << endl;
+    // cout << com.getValue() << endl;
 
     Combination str(invP2, table);
     str.showCombination();
