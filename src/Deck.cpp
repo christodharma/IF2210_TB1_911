@@ -1,16 +1,9 @@
 #include "Deck.hpp"
 
-Deck::Deck() : InventoryHolder()
-{
-    InitiateDeck();
-    ShuffleDeck();
-}
-
-Deck::~Deck()
-{
-}
-
-void Deck::InitiateDeck()
+template<class T>
+Deck<T>::Deck() : InventoryHolder<T>(){}
+template<>
+Deck<Card>::Deck() : InventoryHolder<Card>()
 {
     for (int i = 0; i < 4; i++)
     {
@@ -29,15 +22,37 @@ void Deck::InitiateDeck()
     }
 }
 
-void Deck::ShuffleDeck()
+template<class T>
+Deck<T>::~Deck(){}
+
+template<class T>
+void Deck<T>::ShuffleDeck()
 {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(this->inventory.begin(), this->inventory.end(), std::default_random_engine(seed));
 }
 
-Card& Deck::DrawCard()
+template<class T>
+T& Deck<T>::Draw()
 {
-    Card& card = this->inventory.back();
+    T& result = this->inventory.back();
     this->inventory.pop_back();
-    return card;
+    return result;
 }
+// template<>
+// Deck<Card>::Deck() : InventoryHolder<Card>(){}
+// template<>
+// Deck<Card>::~Deck(){}
+// template<>
+// void Deck<Card>::ShuffleDeck()
+// {
+//     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+//     std::shuffle(this->inventory.begin(), this->inventory.end(), std::default_random_engine(seed));
+// }
+// template<>
+// Card& Deck<Card>::Draw()
+// {
+//     Card& result = this->inventory.back();
+//     this->inventory.pop_back();
+//     return result;
+// }

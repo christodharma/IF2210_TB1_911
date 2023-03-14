@@ -7,12 +7,18 @@
 #include "Generics.hpp"
 #include "Table.hpp"
 #include "Player.hpp"
+#include <vector>
+#include <string>
+#include <map>
+#include "randomdependency.hpp"
+using namespace std;
 
 class GameState{
 private:
     int round,playerCount;
     static long int prize;
-    Deck* deck;
+    Deck<Card>* cardDeck;
+    Deck<string>* abilityDeck;
     Table* table;
     Player* players; //array of players buat nampung + urutan action
     //mungkin implement queue/deque buat round robin urutan action
@@ -29,8 +35,8 @@ public:
     //gamestate methods
     void nextRound();
     void dealCards(int);
+    void dealAbility();
     // void leaderboard();
-    // void dealAbility();
     // void nextTurn();
 
     //inheritance methods

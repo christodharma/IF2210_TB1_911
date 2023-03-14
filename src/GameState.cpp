@@ -9,7 +9,8 @@ GameState::GameState(Player* p, int n)
     this->prize = 64;
     this->players = p;
     this->playerCount = n;
-    this->deck = new Deck();
+    this->cardDeck = new Deck<Card>();
+    this->abilityDeck = new Deck<string>();
     this->table = new Table();
     dealCards(2);
     cout << "Round " << this->round+1 << " started" << endl;
@@ -24,8 +25,9 @@ GameState::GameState(Player* p, int n)
  
 GameState::~GameState()
 {
-    delete this->deck;
+    delete this->cardDeck;
     delete this->table;
+    delete this->abilityDeck;
 }
 
 int GameState::getRound() const
@@ -45,7 +47,7 @@ void GameState::nextRound()
     cout << "Prize: " << this->prize << endl;
     if (this->round == 1)
     {
-        //bagi ability
+        dealAbility();
     } else if (this->round == 5){
         //show leaderboard
         //bagi prize untuk pemenang
@@ -58,16 +60,37 @@ void GameState::nextRound()
 void GameState::dealCards(int n)
 {
     //shuffledeck
-    this->deck->ShuffleDeck();
+    this->cardDeck->ShuffleDeck();
     //deal cards
     for (int i = 0; i < this->playerCount; i++)
     {
         for (int j = 0; j < n; j++)
         {
             // adding card to player inventory
-            this->players[i]+=this->deck->DrawCard();
+            this->players[i]+=this->cardDeck->Draw();
         }
     }
+}
+
+void GameState::dealAbility()
+{
+    //add abilities to deck
+    this->abilityDeck->getInventory().push_back("RE-ROLL");
+    this->abilityDeck->getInventory().push_back("QUADRUPLE");
+    this->abilityDeck->getInventory().push_back("QUARTER");
+    this->abilityDeck->getInventory().push_back("REVERSE");
+    this->abilityDeck->getInventory().push_back("SWAPCARD");
+    this->abilityDeck->getInventory().push_back("SWITCH");
+    this->abilityDeck->getInventory().push_back("ABILITYLESS");
+    //shuffle abilities vector
+    this->abilityDeck->ShuffleDeck();
+    //deal cards
+    for (int i = 0; i < this->playerCount; i++)
+    {
+        // adding card to player inventory
+        this->players[i].setPlayerAbility(this->abilityDeck->Draw());
+    }
+    delete this->abilityDeck; //delete ability deck karena tidak dipakai selama game
 }
 
 // void GameState::leaderboard()

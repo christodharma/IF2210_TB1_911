@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-Player::Player() : InventoryHolder()
+Player::Player() : InventoryHolder<Card>()
 {
     string name;
     cout<<"Please insert player name: ";
@@ -14,7 +14,7 @@ Player::Player() : InventoryHolder()
     cout << "Player " << name << " initiated" << endl;
 }
 
-Player::Player(string name) : InventoryHolder()
+Player::Player(string name) : InventoryHolder<Card>()
 {
     this->playerName = name;
     this->point = 0;
@@ -37,6 +37,32 @@ void Player::setPlayerPoint(long int input)
     this->point = input;
 }
 
+void Player::setPlayerAbility(string input)
+{
+    if (input == "RE-ROLL")
+    {
+        this->ability = new ReRoll();
+    } else if (input == "QUADRUPLE")
+    {
+        this->ability = new Quadruple();
+    } else if (input == "QUARTER")
+    {
+        this->ability = new Quarter();
+    } else if (input == "REVERSE")
+    {
+        this->ability = new ReverseDirection();
+    } else if (input == "SWAPCARD")
+    {
+        this->ability = new SwapCard();
+    } else if (input == "SWITCH")
+    {
+        this->ability = new Switch();
+    } else if (input == "ABILITYLESS")
+    {
+        this->ability = new Abilityless();
+    }
+}
+
 void Player::showPlayerInfo() const
 {
     cout << "Player name: "<<this->getPlayerName() << endl;
@@ -55,15 +81,11 @@ void Player::inputAction()
         if (valid_inputs.find(input) == -1)
         {
             cout << "Invalid input, please try again" << endl;
+        } else {
+            // action(input);
         }
     } while (valid_inputs.find(input) == -1);
 }
-
-void Player::action_next()
-{
-    cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
-}
-
 
 bool Player::operator>(Player& other)
 {

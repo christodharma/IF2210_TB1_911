@@ -3,17 +3,15 @@
 
 #include "InventoryHolder.hpp"
 #include "Card.hpp"
-#include <algorithm>
-#include <random>
-#include <chrono>
+#include "randomdependency.hpp"
 
-class Deck : virtual public InventoryHolder{
+template<class T>
+class Deck : virtual public InventoryHolder<T>{
 public:
     Deck();
     ~Deck();
-    void InitiateDeck();
     void ShuffleDeck();
-    Card& DrawCard();
+    T& Draw();
 };
 
 #endif

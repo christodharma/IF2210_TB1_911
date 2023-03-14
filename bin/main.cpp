@@ -1,4 +1,3 @@
-// #include "../src/Ability.hpp"
 #include "../src/Card.hpp"
 #include "../src/GameState.hpp"
 #include "../src/InventoryHolder.hpp"
@@ -6,13 +5,12 @@
 #include "../src/Valueable.hpp"
 #include "../src/Deck.hpp"
 #include "../src/Table.hpp"
+#include "../src/Ability.hpp"
 #include <iostream>
-#include <string>
 using namespace std;
 /*
 cd bin/driver
-g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp; if ($?) {./kompetisiKartu}
-../src/Ability.cpp
+g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp ../src/Ability.cpp; if ($?) {./kompetisiKartu}
 */
 
 int main(){
