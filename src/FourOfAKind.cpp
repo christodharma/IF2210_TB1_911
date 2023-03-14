@@ -1,6 +1,6 @@
 #include "FourOfAKind.hpp"
 
-FourOfAKind::FourOfAKind(CardInventory hold, map<string, CardInventory> mapcard) : Value(0) {
+FourOfAKind::FourOfAKind(InventoryHolder hold, map<string, InventoryHolder> mapcard) : Value(0) {
     this->value = 6;
 }
 
