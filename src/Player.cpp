@@ -65,15 +65,15 @@ void Player::showPlayerInfo() const
 {
     cout << "Player name: "<<this->getPlayerName() << endl;
     cout << "Player point: "<<this->getPlayerPoint() << endl;
-    cout << "Player ability: "<<this->ability->showAbility() << endl;
+    // cout << "Player ability: "<<this->ability->showAbility() << endl;
     this->showInventory();
 }
 
-char* Player::action()
+string Player::action()
 {
     //input-input yang valid dimainkan oleh player
     string valid_inputs = "NEXTRE-ROLLDOUBLEQUADRUPLEHALFQUARTERREVERSESWAPCARDSWITCHABILITYLESS";
-    char* input;
+    string input;
     do
     {
         cin >> input;

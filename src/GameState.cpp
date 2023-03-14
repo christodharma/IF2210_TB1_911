@@ -95,7 +95,7 @@ void GameState::dealAbility()
     }
 }
 
-void GameState::actionDo(char* input)
+void GameState::actionDo(string input)
 {
     string abilityInput = "RE-ROLLQUADRUPLEQUARTERREVERSESWAPCARDSWITCHABILITYLESS";
     if (input == "NEXT"){

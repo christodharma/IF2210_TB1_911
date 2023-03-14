@@ -38,7 +38,7 @@ public:
     void playRound();
     void dealCards(int);
     void dealAbility();
-    void actionDo(char*);
+    void actionDo(string);
     // void leaderboard();
     // void nextTurn();
 

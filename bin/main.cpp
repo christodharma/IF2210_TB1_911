@@ -20,7 +20,7 @@ int main(){
     // cin >> playerCount;
     Player* players = new Player[playerCount];
     GameState game(players, playerCount); 
-    while (gameIsOngoing && game.getRound()<6)
+    while (game.getRound()<6)
     {
         //game loop
         if (game.getRound() == 0){

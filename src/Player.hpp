@@ -31,7 +31,7 @@ public:
 
     /*Player method*/
     void showPlayerInfo() const;
-    char* action();
+    string action();
 
     /*operator overloads*/
     bool operator>(Player&);
