@@ -6,7 +6,7 @@
 
 class FourOfAKind : public Value {
     public:
-        FourOfAKind(InventoryHolder hold, map<string, InventoryHolder> mapcard);
+        FourOfAKind(double v);
         ~FourOfAKind();
 };
 
