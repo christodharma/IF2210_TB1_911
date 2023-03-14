@@ -30,6 +30,7 @@ public:
     //getter
     int getRound() const;
     long int getPrize() const;
+    Player* getPlayers() const;
     Player getPlayer(int) const;
 
     //setter

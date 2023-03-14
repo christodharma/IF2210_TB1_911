@@ -39,6 +39,11 @@ long int GameState::getPrize() const
     return this->prize;
 }
 
+Player* GameState::getPlayers() const
+{
+    return this->players;
+}
+
 Player GameState::getPlayer(int i) const
 {
     return this->players[i];

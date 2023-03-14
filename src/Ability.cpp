@@ -44,20 +44,41 @@ void SwapCard::ability(string input, GameState& gs, Player& p){
     string valid = "SWAPCARD";
     if (valid.find(input) != -1){
         cout << "Ability SWAP digunakan" << endl;
-        cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:";
+        cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
         gs.printPlayers();
-        int input;
-        cin >> input;
-        Player& p2 = gs.getPlayer(input);
-        cout << "Silakan pilih kartu kanan/kiri" << p2.getPlayerName() << endl;
+        int p1;
+        cin >> p1;
+        cout << "Silakan pilih pemain lain yang kartunya ingin Anda tukar:" << endl;
+        for (int i = 0; i < 7; i++){
+            if (i != p1-1){
+                cout << "   " << i+1 << ". " << gs.getPlayers()[i].getPlayerName() << endl;
+            }
+        }
+        int p2;
+        cin >> p2;
+        cout << "Silakan pilih kartu kanan/kiri " << gs.getPlayers()[p1-1].getPlayerName() << endl;
         cout << "   1. Kanan" << endl;
         cout << "   2. Kiri" << endl;
-        int input2;
-        cin >> input2;
-        Card c1 = p.getInventory()[0];
-        Card c2 = p.getInventory()[1];
-    
-
+        int c1;
+        cin >> c1;
+        cout << "Silakan pilih kartu kanan/kiri " << gs.getPlayers()[p2-1].getPlayerName() << endl;
+        cout << "   1. Kanan" << endl;
+        cout << "   2. Kiri" << endl;
+        int c2;
+        cin >> c2;
+        vector<Card> res;
+        if (c1 == 1){
+            res.push_back(gs.getPlayers()[p1-1].getInventory()[0]);
+        } else {
+            res.push_back(gs.getPlayers()[p1-1].getInventory()[1]);
+        }
+        if (c2 == 1){
+            res.push_back(gs.getPlayers()[p2-1].getInventory()[0]);
+        } else {
+            res.push_back(gs.getPlayers()[p2-1].getInventory()[1]);
+        }
+        gs.getPlayers()[p1-1].setInventory(res);
+        res.clear();
     } else {
         noAbility(input);
     }
