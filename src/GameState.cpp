@@ -1,59 +1,37 @@
 #include "GameState.hpp"
 
 long int GameState::prize = 64;
-bool GameState::isOngoing = true;
-
-GameState::GameState()
+Deck* GameState::cardDeck = new Deck();
+vector<string> GameState::abilities =
 {
-    cout << "Game State initiated" << endl;
-    this->round = 0;
-    this->table = new CardInventory;
-}
+    "RE-ROLL",
+    "QUADRUPLE",
+    "QUARTER",
+    "REVERSE",
+    "SWAPCARD",
+    "SWITCH",
+    "ABILITYLESS"
+};
 
+GameState::GameState(Player* p, int n)
+{
+    this->round = 0;
+    this->prize = 64;
+    this->players = p;
+    this->playerCount = n;
+    this->table = new Table();
+    cout << "Game State initiated" << endl;
+}
+ 
 GameState::~GameState()
 {
-    delete this->table;
-    // delete this->deck;
+    delete cardDeck;
+    delete this->table; 
 }
 
 int GameState::getRound() const
 {
     return this->round;
-}
-void GameState::GameOver()
-{
-    this->isOngoing = false;
-    //show splashscreen?
-    cout << "GAME IS OVER!" << endl;
-    // string input;
-    // cin >> input;
-    //tanya mau main lagi atau ngga    
-}
-// initiate Cards in the game into an array of cards (deck)
-void GameState::InitiateDeck()
-{
-    int i = 0;
-    for (int j = 0; j < 4; j++)
-    {
-        for (int k = 0; k < 13; k++)
-        {
-            if (j==0)
-            {
-                this->deck[i] = new Card('h', k+1);
-                i++;
-            } else if (j==1){
-                this->deck[i] = new Card('b', k+1);
-                i++;
-            } else if (j==2){
-                this->deck[i] = new Card('k', k+1);
-                i++;
-            } else if (j==3){
-                this->deck[i] = new Card('m', k+1);
-                i++;
-            }
-        }
-    }
-    cout << "Deck of " << i << " Cards initiated" << endl;
 }
 
 long int GameState::getPrize() const
@@ -61,47 +39,98 @@ long int GameState::getPrize() const
     return this->prize;
 }
 
-void GameState::NextRound()
+void GameState::setPrize(long int input)
 {
-    this->round++;
-    //this->prize = this->prize; //do something with the prize according to player actions
-    if (this->round == 6)
+    this->prize = input;
+}
+
+void GameState::nextRound(){
+    this->round = this->round + 1 % 6;
+}
+
+void GameState::playRound()
+{
+    // show current round
+    cout << ":::::::::: Round " << this->round+1 << " ::::::::::"<<endl;
+    // input action from every players
+    for (int i = 0; i < playerCount; i++)
     {
-        this->isOngoing = false;
+        cout << "Player " << this->players[i].getPlayerName() << " turn" << endl;
+        this->actionDo(this->players[i].action());
+    }
+    // deal kartu ke table
+    if (this->round == 5){
+        *this->table += this->cardDeck->Draw();
+        this->table->showInventory();
     }
 }
 
-bool GameState::isGameOngoing()
+void GameState::dealCards(int n)
 {
-    return this->isOngoing;
+    //shuffledeck
+    this->cardDeck->ShuffleDeck();
+    //deal cards
+    for (int i = 0; i < this->playerCount; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            // adding card to player inventory
+            this->players[i]+=this->cardDeck->Draw();
+        }
+    }    
 }
 
-void GameState::showInventory()
+void GameState::dealAbility()
 {
-    this->table->showInventory();
+    //shuffle abilities vector with seed
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    shuffle(this->abilities.begin(), this->abilities.end(), default_random_engine(seed));
+    //deal cards
+    for (int i = 0; i < this->playerCount; i++)
+    {
+        // adding card to player inventory
+        cout << this->players[i].getPlayerName() << " got " << abilities.back() << " ability" << endl;
+        this->players[i].setPlayerAbility(abilities.back());
+        abilities.pop_back();
+    }
 }
 
-bool GameState::isEmpty()
+void GameState::actionDo(string input)
 {
-    return this->table->isEmpty();
+    string abilityInput = "RE-ROLLQUADRUPLEQUARTERREVERSESWAPCARDSWITCHABILITYLESS";
+    if (input == "NEXT"){
+        //do nothing
+    } else if (input == "DOUBLE"){
+        cout << "prize doubled" << endl;
+        this->prize *= 2;
+    } else if (input == "HALF"){
+        cout << "prize halved" << endl;
+        this->prize /= 2;
+    } else if (abilityInput.find(input)!=-1){
+        //input ability
+        cout << input << "invocation" << endl;
+    }
 }
-vector<Card>& GameState::getInventory()
-{
-    return this->table->getInventory();
-}
-vector<Card>& GameState::operator+=(Card& input)
-{
-    return *this->table += input;
-}
-vector<Card>& GameState::operator-=(Card& input)
-{
-    return *this->table -= input;
-}
-vector<Card>& GameState::operator+(Card& input)
-{
-    return *this->table + input;
-}
-vector<Card>& GameState::operator-(Card& input)
-{
-    return *this->table - input;
-}
+
+// void GameState::leaderboard()
+// {
+//     int* pos = new int[this->playerCount];
+//     for (int i = 0; i < this->playerCount; i++)
+//     {
+//         pos[i] = i;
+//     }
+//     for (int i = 0; i < this->playerCount; i++)
+//     {
+//         int min = i;
+//         for (int j = i+1; j < this->playerCount; j++)
+//         {
+//             if (this->players[j] < this->players[min])
+//             {
+//                 min = j;
+//             }
+//         }
+//         int temp = pos[i];
+//         pos[i] = pos[min];
+//         pos[min] = temp;
+//     }
+// }

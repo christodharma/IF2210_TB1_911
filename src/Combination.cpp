@@ -163,16 +163,16 @@ bool Combination::isThereTwoPair(){
         return true;
         }
     }
-    return false;
-}
+    return i;
+} // cek apakah ada 2 kartu yang sama
 
 bool Combination::isThereThreeOfAKind() {
     for (int i=1; i<=13; i++) {
         if (this->mapcard[to_string(i)].getInventory().size() == 3) {
-            return true;
+            return i++;
         }
     }
-    return false;
+    return i;
 } // cek apakah ada 3 kartu yang sama
 
 int Combination::isThere4Angka() {

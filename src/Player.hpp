@@ -3,17 +3,19 @@
 
 #include "InventoryHolder.hpp"
 #include "Ability.hpp"
+#include "Card.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
 
 class Player : 
-    public InventoryHolder 
-    // public Ability
+    public InventoryHolder, 
+    public Ability
     {
 private:
     string playerName;
     long int point;
+    Ability* ability;
 public:
     Player();
     Player(string);
@@ -25,12 +27,11 @@ public:
 
     //setter
     void setPlayerPoint(long int);
+    void setPlayerAbility(string);
 
     /*Player method*/
-    void showPlayerInfo();
-    void inputAction();
-    void action_next();
-    void action_double();
+    void showPlayerInfo() const;
+    string action();
 
     /*operator overloads*/
     bool operator>(Player&);
@@ -40,14 +41,14 @@ public:
     /*function from parent class inheritance*/
     /*Ability member functions*/
     //TBD
-    void action_half();
-    void action_reroll();
-    void action_quadruple();
-    void action_quarter();
-    void action_reverse();
-    void action_swapcard();
-    void action_switch();
-    void action_abilityless();
+    // void action_half();
+    // void action_reroll();
+    // void action_quadruple();
+    // void action_quarter();
+    // void action_reverse();
+    // void action_swapcard();
+    // void action_switch();
+    // void action_abilityless();
 };
 
 #endif
