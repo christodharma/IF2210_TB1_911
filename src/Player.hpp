@@ -10,8 +10,7 @@
 using namespace std;
 
 class Player : 
-    public InventoryHolder, 
-    public Ability
+    public InventoryHolder
     {
 private:
     string playerName;
@@ -25,10 +24,12 @@ public:
     //getter
     string getPlayerName() const;
     long int getPlayerPoint() const;
+    Ability* getPlayerAbility() const;
 
     //setter
     void setPlayerPoint(long int);
     void setPlayerAbility(string);
+    void setPlayerInventory(vector<Card>);
 
     /*Player method*/
     void showPlayerInfo() const;

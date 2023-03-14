@@ -35,6 +35,8 @@ public:
     int getRound() const;
     long int getPrize() const;
     Deck* getCardDeck() const;
+    Player* getPlayers() const;
+    Player getPlayer(int) const;
     //setter
     void setPrize(long int);
 
@@ -44,6 +46,7 @@ public:
     void dealAbility();
     void actionDo(string);
     int nextTurn();
+    void printPlayers();
     // void leaderboard();
     // void nextTurn();
 

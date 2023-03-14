@@ -53,6 +53,24 @@ void GameState::setPrize(long int input)
     this->prize = input;
 }
 
+Player *GameState::getPlayers() const
+{
+    return this->players;
+}
+
+Player GameState::getPlayer(int i) const
+{
+    return this->players[i];
+}
+
+void GameState::printPlayers()
+{
+    for (int i = 0; i < playerCount; i++)
+    {
+        cout << "   " << i+1 << ". " << this->getPlayer(i).getPlayerName() << endl;
+    }
+}
+
 void GameState::nextRound(){
     this->round = this->round + 1 % 6;
 }
