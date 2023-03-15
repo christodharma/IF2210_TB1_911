@@ -23,7 +23,6 @@ using namespace std;
 /*
 cd bin/driver
 g++ -o kompetisiKartu main.cpp ../src/*.cpp ; if ($?) {./kompetisiKartu}
-g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp ../src/Ability.cpp ../src/Generics.cpp ../src/Combination.cpp ../src/Flush.cpp ../src/StraightFlush.cpp ../src/FullHouse.cpp ../src/ThreeOfAKind.cpp ../src/ ; if ($?) {./kompetisiKartu}
 */
 
 int main(){
