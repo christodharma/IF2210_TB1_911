@@ -45,8 +45,6 @@ public:
     void dealAbility();
     void actionDo(string);
     int nextTurn();
-    // void leaderboard();
-    // void nextTurn();
 };
 
 #endif

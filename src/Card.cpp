@@ -10,6 +10,11 @@ Card::Card(char w, int a){
     this->kartu = make_pair(toupper(w), a);
 }
 
+Card::Card(Card & input)
+{
+    this->kartu = make_pair(input.kartu.first, input.kartu.second);
+}
+
 Card::~Card(){
 }
 
@@ -52,7 +57,13 @@ bool Card::operator==(const Card& other)
 {
     return this->kartu == other.kartu;
 }
-ostream& operator<<(ostream& os, const Card& card){
+Card &Card::operator=(const Card &other)
+{
+    this->kartu = other.kartu;
+    return *this;
+}
+ostream &operator<<(ostream &os, const Card &card)
+{
     //find char kartu.first on dictWarna
     map<char,string>::iterator i = card.dictWarna.find(card.kartu.first);
     os << card.kartu.second<< " (" << i->second << ")" /*<< " -> " << card.getValue()*/;

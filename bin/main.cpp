@@ -14,7 +14,8 @@
 using namespace std;
 /*
 cd bin/driver
-g++ main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp ../src/Ability.cpp ../src/Generics.cpp ../src/GameManager.cpp -o kompetisiKartu; if ($?) {./kompetisiKartu}
+g++ main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp ../src/Ability.cpp ../src/Generics.cpp ../src/GameManager.cpp -o main; if ($?) {.\main}
+g++ main.cpp ..\\src\\Card.cpp ..\\src\\GameState.cpp ..\\src\\InventoryHolder.cpp ..\\src\\Player.cpp ..\\src\\Valueable.cpp ..\\src\\Deck.cpp ..\\src\\Table.cpp ..\\src\\Ability.cpp ..\\src\\Generics.cpp ..\\src\\GameManager.cpp -o main; if ($?) {.\main}
 */
 
 int main(){

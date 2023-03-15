@@ -99,7 +99,7 @@ void GameState::playRound()
     turnStartFrom++;
     // deal kartu ke table kecuali round 6
     if (this->round == 5){
-        *this->table += this->cardDeck->Draw();
+        cardDeck->DrawTo(this->table->getInventory());
         this->table->showInventory();
     }
 }
@@ -111,7 +111,7 @@ void GameState::dealCards(int)
     {
         // adding card to player inventory
         Deck*& src = this->cardDeck;
-        this->players[i].drawCards(2, *src);
+        this->players[i].drawCards(2, src);
     }
 }
 
@@ -159,3 +159,4 @@ int GameState::nextTurn()
     }
     return nextPlay;
 }
+

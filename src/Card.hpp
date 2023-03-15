@@ -14,6 +14,7 @@ public:
     Card();
     Card(int,char);
     Card(char,int);
+    Card(Card&);
     ~Card();
     char getWarna() const;
     int getAngka() const;
@@ -22,6 +23,7 @@ public:
     bool operator<(const Card&);
     bool operator>(const Card&);
     bool operator==(const Card&);
+    Card& operator=(const Card& other);
     friend ostream& operator<< (ostream& os, const Card& card);
 };
 

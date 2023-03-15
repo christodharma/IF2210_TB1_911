@@ -14,7 +14,7 @@ public:
     virtual ~Ability(){};
     virtual void ability(string){};
     virtual string showAbility();
-    virtual int getAmmoAbility(){};
+    virtual int getAmmoAbility(){return ammoAbility;};
     void noAbility(string);
 };
 
