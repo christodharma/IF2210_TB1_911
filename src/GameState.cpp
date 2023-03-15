@@ -1,7 +1,5 @@
 #include "GameState.hpp"
 
-long int GameState::prize = 64;
-Deck* GameState::cardDeck = new Deck();
 bool GameState::reverseTurn = false;
 int GameState::turnStartFrom = 0;
 deque<int> GameState::turn;
@@ -24,6 +22,8 @@ GameState::GameState(Player* p, int n)
     this->players = p;
     this->playerCount = n;
     this->table = new Table();
+    this->cardDeck = new Deck();
+    this->prize = 64;
     cout << "Game State initiated" << endl;
 }
  
@@ -101,6 +101,17 @@ void GameState::playRound()
     if (this->round == 5){
         *this->table += this->cardDeck->Draw();
         this->table->showInventory();
+    }
+}
+
+void GameState::dealCards(int)
+{
+    //dealing card by calling drawCard() from players
+    for (int i = 0; i < this->playerCount; i++)
+    {
+        // adding card to player inventory
+        Deck*& src = this->cardDeck;
+        this->players[i].drawCards(2, *src);
     }
 }
 

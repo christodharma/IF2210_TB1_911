@@ -7,6 +7,8 @@
 #include "../src/Table.hpp"
 #include "../src/Ability.hpp"
 #include "../src/GameManager.hpp"
+#include "../src/Generics.hpp"
+#include "../src/Generics.cpp"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -18,18 +20,18 @@ g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/Inven
 int main(){
     bool gameIsOngoing = true;
     int playerCount = 7;
-    long int win = pow(2.0,32.0);
+    long int win = 2000000; //set sebagai limit atau set sampai overflow
     Player* players = new Player[playerCount];
     while (findMax(players, playerCount).getPlayerPoint() != win)
     {
-        GameManager game = GameManager(new GameState(players, playerCount), players);
+        GameState* gameptr = new GameState(players, playerCount);
+        GameManager game(gameptr, players);
         //game loop
         if (game.getGameState()->getRound() == 0){
             for (int i = 0; i < playerCount; i++)
             {
-                players[i].drawCards(2, game.getGameState()->getCardDeck()); //error
+                game.getGameState()->dealCards(2);
             }
-            
             for (int i = 0; i < playerCount; i++)
             {
                 players[i].showPlayerInfo();
@@ -45,6 +47,7 @@ int main(){
         }
         game.getGameState()->playRound();
         game.getGameState()->nextRound();
+        delete game.getGameState();
     }
     cin.ignore();
     return 0;

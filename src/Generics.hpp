@@ -7,7 +7,7 @@
 #include <chrono> // std::chrono::system_clock untuk seed dalam proses random
 // #include "Card.hpp"
 #include <string>
-#include "Player.hpp"
+using namespace std;
 
 template<class T>
 T findMax(T a, T b);

@@ -1,6 +1,6 @@
 #include "GameManager.hpp"
 
-GameManager::GameManager(GameState* g, Player* p)
+GameManager::GameManager(GameState*& g, Player*& p)
 {
     this->gameState = g;
     this->players = p;

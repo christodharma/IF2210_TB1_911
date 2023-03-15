@@ -14,7 +14,7 @@ T findMax(T* a, int size_a){
         }
     }
     return max;
-};
+}
 template <class T>
 T findMax(const std::vector<T>& vec) {
     T max = vec[0];

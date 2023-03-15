@@ -5,9 +5,12 @@
 #include "Ability.hpp"
 #include "Card.hpp"
 #include "Deck.hpp"
+#include "Generics.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
+
+class Deck;
 
 class Player : 
     public InventoryHolder, 

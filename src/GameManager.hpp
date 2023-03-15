@@ -10,7 +10,7 @@ private:
     GameState* gameState;
     Player* players;
 public:
-    GameManager(GameState*, Player*);
+    GameManager(GameState*&, Player*&);
     ~GameManager();
 
     GameState* getGameState();
