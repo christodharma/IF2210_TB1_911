@@ -18,8 +18,7 @@ int main(){
     bool gameIsOngoing = true;
     int playerCount = 7;
     Player* players = new Player[playerCount];
-    GameState game(players, playerCount);
-    int currentTurn = 0; 
+    GameState game(players, playerCount); 
     while (game.getRound()<6)
     {
         //game loop
@@ -44,7 +43,7 @@ int main(){
         }
 
         // try the switch
-        AbilityInterface a(game.getPlayer(currentTurn).getPlayerAbility(), game, game.getPlayer(currentTurn));
+        // AbilityInterface a(game.getPlayer(currentTurn).getPlayerAbility(), game, game.getPlayer(currentTurn));
 
         game.playRound();
         game.nextRound();

@@ -44,7 +44,7 @@ public:
     void nextRound();
     void playRound();
     void dealAbility();
-    void actionDo(string);
+    void actionDo(string, Player*);
     int nextTurn();
     void printPlayers();
     // void leaderboard();

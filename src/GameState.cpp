@@ -107,7 +107,7 @@ void GameState::playRound()
         //     }
         // }
         // cout << endl;
-        actionDo(this->players[nowPlaying].action());
+        actionDo(this->players[nowPlaying].action(), &(this->players[nowPlaying]));
     }
     // memasangkan turn untuk next round ke turn deque
     // turn = temp;
@@ -134,7 +134,7 @@ void GameState::dealAbility()
     }
 }
 
-void GameState::actionDo(string input)
+void GameState::actionDo(string input, Player* p)
 {
     string abilityInput = "RE-ROLLQUADRUPLEQUARTERREVERSESWAPCARDSWITCHABILITYLESS";
     if (input == "NEXT"){
@@ -145,7 +145,27 @@ void GameState::actionDo(string input)
     } else if (input == "HALF"){
         cout << "prize halved" << endl;
         this->prize /= 2;
-    } else if (abilityInput.find(input)!=-1){
+    } else if (input == "SWITCH") {
+        if (p->getPlayerAbility()->showAbility() == "SWITCH") {
+            cout << p->getPlayerName() << " melakukan switch!" << endl;
+            cout << "Kartumu sekarang adalah: " << endl;
+            p->showInventory();
+            cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
+            this->printPlayers();
+            int input;
+            cin >> input;
+            vector<Card> temp = p->getInventory();
+            p->setPlayerInventory(this->getPlayer(input-1).getInventory());
+            this->getPlayer(input-1).setPlayerInventory(temp);
+            cout << "Kedua kartu " << p->getPlayerName() << " telah ditukar dengan " << this->getPlayer(input-1).getPlayerName() << endl;
+            cout << "Kartumu sekarang adalah: " << endl;
+            p->showInventory();
+        } else {
+            cout << "you don't have SWITCH ability" << endl;
+        }
+    }
+    
+    else if (abilityInput.find(input)!=-1){
         //input ability
         cout << input << "invocation" << endl;
     }
