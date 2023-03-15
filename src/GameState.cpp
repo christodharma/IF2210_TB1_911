@@ -139,19 +139,55 @@ void GameState::actionDo(string input, Player* p)
     string abilityInput = "RE-ROLLQUADRUPLEQUARTERREVERSESWAPCARDSWITCHABILITYLESS";
     if (input == "NEXT"){
         //do nothing
+        cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
     } else if (input == "DOUBLE"){
-        cout << "prize doubled" << endl;
+        cout << p->getPlayerName() << " melakukan DOUBLE! " << endl;
+        cout << "Poin hadiah naik dari " << this->prize << " menjadi " << this->prize*2 << "!" << endl;
         this->prize *= 2;
     } else if (input == "HALF"){
-        cout << "prize halved" << endl;
+        cout << p->getPlayerName() << " melakukan HALF! " << endl;
+        cout << "Poin hadiah turun dari " << this->prize << " menjadi " << this->prize/2 << "!" << endl;
         this->prize /= 2;
+    } else if (input == "QUADRUPLE") {
+        if (p->getPlayerAbility()->showAbility() == "QUADRUPLE") {
+            cout << p->getPlayerName() << " melakukan QUADRUPLE! " << endl;
+            cout << "Poin hadiah naik dari " << this->prize << " menjadi " << this->prize*4 << "!" << endl;
+            this->prize *= 4;
+        } else {
+            p->getPlayerAbility()->noAbility(input);
+            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+        }
+    } else if (input == "QUARTER") {
+        if (p->getPlayerAbility()->showAbility() == "QUARTER") {
+            cout << p->getPlayerName() << " melakukan QUARTER! " << endl;
+            cout << "Poin hadiah turun dari " << this->prize << " menjadi " << this->prize/4 << "!" << endl;
+            this->prize /= 4;
+        } else {
+            p->getPlayerAbility()->noAbility(input);
+            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+        }
+    } else if (input == "RE-ROLL") {
+        if (p->getPlayerAbility()->showAbility() == "RE-ROLL") {
+            cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
+            p->getInventory().clear();
+            *p += this->cardDeck->Draw();
+            *p += this->cardDeck->Draw();
+            p->showInventory();
+        } else {
+            p->getPlayerAbility()->noAbility(input);
+            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+        }
     } else if (input == "SWITCH") {
         if (p->getPlayerAbility()->showAbility() == "SWITCH") {
-            cout << p->getPlayerName() << " melakukan switch!" << endl;
+            cout << p->getPlayerName() << " melakukan SWITCH!" << endl;
             cout << "Kartumu sekarang adalah: " << endl;
             p->showInventory();
             cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
-            this->printPlayers();
+            for(int i = 0; i < this->playerCount; i++) {
+                if (this->players[i].getPlayerName() != p->getPlayerName()) {
+                    cout << "   " << i+1 << ". " << this->players[i].getPlayerName() << endl;
+                }
+            }
             int input;
             cin >> input;
             vector<Card> temp = p->getInventory();
@@ -161,10 +197,46 @@ void GameState::actionDo(string input, Player* p)
             cout << "Kartumu sekarang adalah: " << endl;
             p->showInventory();
         } else {
-            cout << "you don't have SWITCH ability" << endl;
+            p->getPlayerAbility()->noAbility(input);
+            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+        }
+    } else if (input == "SWAP") {
+        if (p->getPlayerAbility()->showAbility() == "SWAP") {
+            cout << p->getPlayerName() << " melakukan SWAP!" << endl;
+            cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
+            for (int i = 0; i < this->playerCount; i++) {
+                if (this->players[i].getPlayerName() != p->getPlayerName()) {
+                    cout << "   " << i+1 << ". " << this->players[i].getPlayerName() << endl;
+                }
+            }
+            int p1, p2, c1, c2;
+            cin >> p1;
+            cout << "Silakan pilih pemain lain yang kartunya ingin Anda tukar:" << endl;
+            for (int i = 0; i < this->playerCount; i++) {
+                if (this->players[i].getPlayerName() != p->getPlayerName() && this->players[i].getPlayerName() != this->getPlayer(p1-1).getPlayerName()) {
+                    cout << "   " << i+1 << ". " << this->players[i].getPlayerName() << endl;
+                }
+            }
+            cin >> p2;
+            cout << "Silakan pilih kartu kanan/kiri " << this->getPlayer(p1-1).getPlayerName() << endl;
+            cout << "   1. Kiri" << endl;
+            cout << "   2. Kanan" << endl;
+            cin >> c1;
+            cout << "Silakan pilih kartu kanan/kiri " << this->getPlayer(p2-1).getPlayerName() << endl;
+            cout << "   1. Kiri" << endl;
+            cout << "   2. Kanan" << endl;
+            cin >> c2;
+            Card temp = this->getPlayer(p1-1).getInventory()[c1-1];
+            this->getPlayer(p1-1).getInventory()[c1-1] = this->getPlayer(p2-1).getInventory()[c2-1];
+            this->getPlayer(p2-1).getInventory()[c2-1] = temp;
+            this->getPlayer(p1-1).showInventory();
+            this->getPlayer(p2-1).showInventory();
+        } else {
+            p->getPlayerAbility()->noAbility(input);
+            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
         }
     }
-    
+
     else if (abilityInput.find(input)!=-1){
         //input ability
         cout << input << "invocation" << endl;
