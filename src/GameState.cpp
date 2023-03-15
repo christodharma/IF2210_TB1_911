@@ -104,14 +104,17 @@ void GameState::playRound()
     }
 }
 
-void GameState::dealCards(int)
+void GameState::dealCards(int howMany)
 {
+    // shuffle deck
+    this->cardDeck->ShuffleDeck();
     //dealing card by calling drawCard() from players
     for (int i = 0; i < this->playerCount; i++)
     {
         // adding card to player inventory
         Deck*& src = this->cardDeck;
-        this->players[i].drawCards(2, src);
+        this->players[i].drawCards(howMany, src);
+        this->players[i].showPlayerInfo();
     }
 }
 
