@@ -34,7 +34,7 @@ public:
     //getter
     int getRound() const;
     long int getPrize() const;
-    Deck* getCardDeck() const;
+    Deck* getCardDeck();
     //setter
     void setPrize(long int);
 

@@ -14,7 +14,6 @@ public:
     Card();
     Card(int,char);
     Card(char,int);
-    Card(Card&);
     ~Card();
     char getWarna() const;
     int getAngka() const;

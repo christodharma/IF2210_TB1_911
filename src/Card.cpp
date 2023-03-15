@@ -9,12 +9,6 @@ Card::Card(int a, char w){
 Card::Card(char w, int a){
     this->kartu = make_pair(toupper(w), a);
 }
-
-Card::Card(Card & input)
-{
-    this->kartu = make_pair(input.kartu.first, input.kartu.second);
-}
-
 Card::~Card(){
 }
 

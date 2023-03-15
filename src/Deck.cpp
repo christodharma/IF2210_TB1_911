@@ -29,7 +29,7 @@ void Deck::ShuffleDeck()
 
 void Deck::DrawTo(vector<Card>& target)
 {
-    Card result = this->inventory.back();
+    Card result(this->inventory.back().getAngka(), this->inventory.back().getWarna());
     this->inventory.pop_back(); //gatau kenapa ga bisa pop back
     target.push_back(result);
 }

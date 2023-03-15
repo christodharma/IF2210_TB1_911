@@ -46,7 +46,7 @@ long int GameState::getPrize() const
     return this->prize;
 }
 
-Deck *GameState::getCardDeck() const
+Deck *GameState::getCardDeck()
 {
     return this->cardDeck;
 }
