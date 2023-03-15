@@ -10,7 +10,7 @@ public:
     Deck();
     ~Deck();
     void ShuffleDeck();
-    Card DrawTo(vector<Card>&);
+    void DrawTo(vector<Card>&);
 };
 
 #endif

@@ -27,12 +27,11 @@ void Deck::ShuffleDeck()
     std::shuffle(this->inventory.begin(), this->inventory.end(), std::default_random_engine(seed));
 }
 
-Card Deck::DrawTo(vector<Card>& target)
+void Deck::DrawTo(vector<Card>& target)
 {
     Card result = this->inventory.back();
     this->inventory.pop_back(); //gatau kenapa ga bisa pop back
     target.push_back(result);
-    return result;
 }
 // template<>
 // Deck<Card>::Deck() : InventoryHolder<Card>(){}
