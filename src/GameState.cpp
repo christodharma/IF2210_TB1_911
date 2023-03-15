@@ -3,16 +3,6 @@
 bool GameState::reverseTurn = false;
 int GameState::turnStartFrom = 0;
 deque<int> GameState::turn;
-vector<string> GameState::abilities =
-{
-    "RE-ROLL",
-    "QUADRUPLE",
-    "QUARTER",
-    "REVERSE",
-    "SWAPCARD",
-    "SWITCH",
-    "ABILITYLESS"
-};
 
 
 GameState::GameState(Player* p, int n)
@@ -24,6 +14,16 @@ GameState::GameState(Player* p, int n)
     this->table = new Table();
     this->cardDeck = new Deck();
     this->prize = 64;
+    this->abilities =
+    {
+    "RE-ROLL",
+    "QUADRUPLE",
+    "QUARTER",
+    "REVERSE",
+    "SWAPCARD",
+    "SWITCH",
+    "ABILITYLESS"
+    };
     cout << "Game State initiated" << endl;
 }
  
@@ -32,7 +32,7 @@ GameState::~GameState()
     long int prize = 64;
     bool reverseTurn = false;
     int turnStartFrom = 0;
-    delete cardDeck;
+    delete this->cardDeck;
     delete this->table; 
 }
 
@@ -92,30 +92,32 @@ void GameState::playRound()
         //     }
         // }
         // cout << endl;
-        actionDo(this->players[nowPlaying].action());
+        actionDo("NEXT");
+        // actionDo(this->players[nowPlaying].action());
     }
     // memasangkan turn untuk next round ke turn deque
     // turn = temp;
     turnStartFrom++;
     // deal kartu ke table kecuali round 6
-    if (this->round == 5){
+    if (this->round <= 5){
+        // how many cards in the deck
+        cout << "Deck count:" << this->cardDeck->getInventory().size() << endl;
         cardDeck->DrawTo(this->table->getInventory());
         this->table->showInventory();
+    } else {
+        
     }
 }
 
-void GameState::dealCards(int howMany)
+void GameState::dealCards(int who, int howMany)
 {
     // shuffle deck
     this->cardDeck->ShuffleDeck();
     //dealing card by calling drawCard() from players
-    for (int i = 0; i < this->playerCount; i++)
-    {
-        // adding card to player inventory
-        Deck*& src = this->cardDeck;
-        this->players[i].drawCards(howMany, src);
-        this->players[i].showPlayerInfo();
-    }
+    // adding card to player inventory
+    Deck*& src = this->cardDeck;
+    this->players[who].drawCards(howMany, src);
+    this->players[who].showPlayerInfo();
 }
 
 void GameState::dealAbility()

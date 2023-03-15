@@ -23,33 +23,68 @@ int main(){
     int playerCount = 7;
     long int win = 2000000; //set sebagai limit atau set sampai overflow
     Player* players = new Player[playerCount];
-    while (findMax(players, playerCount).getPlayerPoint() != win)
+    while (findMax(players, playerCount).getPlayerPoint() < win)
     {
-        GameState* gameptr = new GameState(players, playerCount);
-        GameManager game(gameptr, players);
-        //game loop
-        if (game.getGameState()->getRound() == 0){
-            for (int i = 0; i < playerCount; i++)
-            {
-                game.getGameState()->dealCards(2);
+        GameState game(players,playerCount);
+        while (game.getRound() < 6)
+        {
+            //game loop
+            if (game.getRound() == 0){
+                for (int i = 0; i < playerCount; i++)
+                {
+                    game.dealCards(i,2);
+                }
+                for (int i = 0; i < playerCount; i++)
+                {
+                    players[i].showPlayerInfo();
+                }
+            } else if (game.getRound() == 1){
+                game.dealAbility();
+                for (int i = 0; i < playerCount; i++)
+                {
+                    players[i].showPlayerInfo();
+                }
+            } else if (game.getRound() == 5){
+                cout << ":::::::::: Round End ::::::::::"<<endl;
+                findMax(players, playerCount).setPlayerPoint(findMax(players, playerCount).getPlayerPoint()+game.getPrize());
+                cout << "Player " << findMax(players, playerCount).getPlayerName() << " won " << game.getPrize() << " points" << endl;
+                for (int i = 0; i < playerCount; i++)
+                {
+                    players[i].showPlayerInfo();
+                }
             }
-            for (int i = 0; i < playerCount; i++)
-            {
-                players[i].showPlayerInfo();
-            }
-        } else if (game.getGameState()->getRound() == 1){
-            game.getGameState()->dealAbility();
-            for (int i = 0; i < playerCount; i++)
-            {
-                players[i].showPlayerInfo();
-            }
-        } else if (game.getGameState()->getRound() == 5){
-            findMax(game.getPlayers(), playerCount).setPlayerPoint(game.getGameState()->getPrize());
+            game.playRound();
+            game.nextRound();
         }
-        game.getGameState()->playRound();
-        game.getGameState()->nextRound();
-        delete game.getGameState();
+        // GameState* gameptr = new GameState(players, playerCount);
+        // GameManager game(gameptr, players);
+        // while (game.getGameState()->getRound() < 6)
+        // {
+        //     //game loop
+        //     if (game.getGameState()->getRound() == 0){
+        //         for (int i = 0; i < playerCount; i++)
+        //         {
+        //             game.getGameState()->dealCards(i,2);
+        //         }
+        //         for (int i = 0; i < playerCount; i++)
+        //         {
+        //             players[i].showPlayerInfo();
+        //         }
+        //     } else if (game.getGameState()->getRound() == 1){
+        //         game.getGameState()->dealAbility();
+        //         for (int i = 0; i < playerCount; i++)
+        //         {
+        //             players[i].showPlayerInfo();
+        //         }
+        //     } else if (game.getGameState()->getRound() == 5){
+        //         findMax(game.getPlayers(), playerCount).setPlayerPoint(game.getGameState()->getPrize());
+        //     }
+        //     game.getGameState()->playRound();
+        //     game.getGameState()->nextRound();
+        // }
+        // delete game.getGameState();
+        // delete gameptr;
     }
-    cin.ignore();
+    // cin.ignore();
     return 0;
 }

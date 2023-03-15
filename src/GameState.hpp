@@ -16,11 +16,11 @@ using namespace std;
 
 class GameState{
 private:
-    int round,playerCount;
-    static vector<string> abilities;
     static deque<int> turn;
     static int turnStartFrom;
     static bool reverseTurn;
+    int round,playerCount;
+    vector<string> abilities;
     long long int prize;
     Deck* cardDeck;
     Table* table;
@@ -41,7 +41,7 @@ public:
     //gamestate methods
     void nextRound();
     void playRound();
-    void dealCards(int);
+    void dealCards(int playerNumber, int cardCount);
     void dealAbility();
     void actionDo(string);
     int nextTurn();

@@ -35,7 +35,7 @@ void Deck::DrawTo(vector<Card>& target)
         Card result(this->inventory.back().getAngka(), this->inventory.back().getWarna());
         cout << "card drawn: " << result << endl;
         target.push_back(result);
-        this->inventory.pop_back(); //gatau kenapa ga bisa pop back
+        this->inventory.pop_back();
     }
 }
 // template<>
