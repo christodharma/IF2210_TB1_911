@@ -29,6 +29,9 @@ GameState::GameState(Player* p, int n)
  
 GameState::~GameState()
 {
+    long int prize = 64;
+    bool reverseTurn = false;
+    int turnStartFrom = 0;
     delete cardDeck;
     delete this->table; 
 }

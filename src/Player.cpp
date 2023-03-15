@@ -94,11 +94,11 @@ string Player::action()
     return input;
 }
 
-void Player::drawCards(int n, Deck* src)
+void Player::drawCards(int n, Deck& src)
 {
     for (int i = 0; i < n; i++)
     {
-        *this+=src->Draw();
+        *this+=src.Draw();
     }
      
 }

@@ -46,16 +46,6 @@ public:
     int nextTurn();
     // void leaderboard();
     // void nextTurn();
-
-    //inheritance methods
-    //Inventory holder inheritance
-    // void showInventory();
-    // bool isEmpty(); 
-    // vector<Card>& getInventory();
-    // vector<Card>& operator+=(Card&);
-    // vector<Card>& operator-=(Card&);
-    // vector<Card>& operator+(Card&);
-    // vector<Card>& operator-(Card&);
 };
 
 #endif

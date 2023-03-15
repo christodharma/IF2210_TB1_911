@@ -33,7 +33,7 @@ public:
     /*Player method*/
     void showPlayerInfo() const;
     string action();
-    void drawCards(int, Deck*);
+    void drawCards(int, Deck&);
 
     /*operator overloads*/
     bool operator>(Player&);

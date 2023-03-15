@@ -1,11 +1,11 @@
 #include "Generics.hpp"
 
 template<class T>
-T max(T a, T b){
+T findMax(T a, T b){
     return (a>b)?a:b;
 };
 template<class T>
-T max(T* a, int size_a){
+T findMax(T* a, int size_a){
     T max = a[0];
     for (int i = 1; i < size_a; i++)
     {
@@ -16,7 +16,7 @@ T max(T* a, int size_a){
     return max;
 };
 template <class T>
-T max(const std::vector<T>& vec) {
+T findMax(const std::vector<T>& vec) {
     T max = vec[0];
     for (size_t i = 1; i < vec.size(); i++) {
         if (vec[i] > max) {
