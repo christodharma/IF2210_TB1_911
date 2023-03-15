@@ -5,11 +5,8 @@
 // #include "InventoryHolder.hpp"
 
 class ThreeOfAKind : public Value {
-    private:
-        InventoryHolder hold;
-        map<string, InventoryHolder> mapcard;
     public:
-        ThreeOfAKind(InventoryHolder hold, map<string, InventoryHolder> mapcard);
+        ThreeOfAKind(map<string, InventoryHolder> mapcard);
         ~ThreeOfAKind();
 };
 

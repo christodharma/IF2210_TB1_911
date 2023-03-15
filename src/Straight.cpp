@@ -1,18 +1,16 @@
 #include "Straight.hpp"
 
-Straight::Straight(InventoryHolder hold, map<string, InventoryHolder> mapcard) : Value(0) {
-    this->hold = hold;
-    this->mapcard = mapcard;
+Straight::Straight(map<string, InventoryHolder> mapcard) : Value(0) {
     double straight = 0;
     int count = 0;
     for (int i=1; i<=13; i++) {
-        if (this->mapcard[to_string(i)].getInventory().size() >= 1) {
+        if (mapcard[to_string(i)].getInventory().size() >= 1) {
             count++;
         } else {
             count = 0;
         }
         if (count >= 5) {
-            straight = this->mapcard[to_string(i)].getInventory()[0].getValue();
+            straight = mapcard[to_string(i)].getInventory()[0].getValue();
         }
     }
     this->value = straight + 5.56;

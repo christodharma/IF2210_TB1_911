@@ -12,7 +12,6 @@ class HighCard : public Value {
     public:
         HighCard(map<string, InventoryHolder>);
         ~HighCard();
-        double getValue();
 };
 
 #endif

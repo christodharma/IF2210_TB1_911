@@ -38,7 +38,7 @@ Combination::Combination(InventoryHolder hand, InventoryHolder table) {
 
     if(isThereStraightFlush()){
         cout << "YEY STRAIGHT FLUSH" << endl;
-        this->value = new StraightFlush(this->hold, this->mapcard);
+        this->value = new StraightFlush(this->mapcard);
         cout << this->getValue() << endl;
     }
     else if (this->isThere4Angka()) {
@@ -70,22 +70,22 @@ Combination::Combination(InventoryHolder hand, InventoryHolder table) {
     }
     else if (this->isThereFlush()) {
         cout << "YEY FLUSH" << endl;
-        this->value = new Flush(this->hold, this->mapcard);
+        this->value = new Flush(this->mapcard);
         cout << this->getValue() << endl;
     }
     else if (this->isThereStraight()) {
         cout << "YEY STRAIGHT" << endl;
-        this->value = new Straight(this->hold, this->mapcard);
+        this->value = new Straight(this->mapcard);
         cout << this->getValue() << endl;
     }
     else if (this->isThere3Angka()) {
         cout << "Three Of A Kind" << endl;
-        this->value = new ThreeOfAKind(this->hold, this->mapcard);
+        this->value = new ThreeOfAKind(this->mapcard);
         cout << this->getValue() << endl;
     }
     else if (this->isThereTwoPair()) {
         cout << "Two Pair" << endl;
-        this->value = new TwoPair(this->hold, this->mapcard);
+        this->value = new TwoPair(this->mapcard);
         cout << this->getValue() << endl;
     }
     else if(isTherePair()){

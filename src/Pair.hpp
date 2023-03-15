@@ -12,10 +12,6 @@ class Pair : public Value {
     public:
         Pair(map<string, InventoryHolder>);
         ~Pair();
-        double getValue();
-    private:
-        // InventoryHolder hold;
-        map<string, InventoryHolder> mapcard;
 };
 
 #endif

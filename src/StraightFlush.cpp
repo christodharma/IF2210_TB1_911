@@ -8,7 +8,7 @@
 
 using namespace std;
 
-StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder> mapcard) : Value(0) {
+StraightFlush :: StraightFlush(map<string, InventoryHolder> mapcard) : Value(0) {
     int count = 0;
     string m(1, 'M');
     string k(1, 'K');

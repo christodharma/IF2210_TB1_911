@@ -7,11 +7,8 @@
 using namespace std;
 
 class TwoPair : public Value {
-    private:
-        InventoryHolder hold;
-        map<string, InventoryHolder> mapcard;
     public:
-        TwoPair(InventoryHolder hold, map<string, InventoryHolder> mapcard);
+        TwoPair(map<string, InventoryHolder> mapcard);
         ~TwoPair();
 };
 

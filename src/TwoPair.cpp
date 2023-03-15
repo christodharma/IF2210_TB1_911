@@ -1,12 +1,10 @@
 #include "TwoPair.hpp"
 
-TwoPair::TwoPair(InventoryHolder hold, map<string, InventoryHolder> mapcard) : Value(0) {
-    this->hold = hold;
-    this->mapcard = mapcard;
+TwoPair::TwoPair(map<string, InventoryHolder> mapcard) : Value(0) {
     for (int i = 1; i <= 13; i++) {
-        if (this->mapcard[to_string(i)].getInventory().size() == 2) {
-            double kartu1 = this->mapcard[to_string(i)].getInventory()[0].getValue();
-            double kartu2 = this->mapcard[to_string(i)].getInventory()[1].getValue();
+        if (mapcard[to_string(i)].getInventory().size() == 2) {
+            double kartu1 = mapcard[to_string(i)].getInventory()[0].getValue();
+            double kartu2 = mapcard[to_string(i)].getInventory()[1].getValue();
             if (kartu1 > kartu2) {
                 this->value = kartu1 + 2.78;
             }

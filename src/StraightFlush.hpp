@@ -10,7 +10,7 @@ using namespace std;
 
 class StraightFlush : public Value {
     public:
-        StraightFlush(InventoryHolder,map<string, InventoryHolder>);
+        StraightFlush(map<string, InventoryHolder>);
         ~StraightFlush();
         // double getValue();
 };

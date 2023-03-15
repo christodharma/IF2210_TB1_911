@@ -16,7 +16,3 @@ HighCard::HighCard(map<string, InventoryHolder> mapcard) : Value(0) {
 
 HighCard::~HighCard() {
 }
-
-double HighCard::getValue() {
-    return this->value;
-}
