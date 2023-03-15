@@ -2,6 +2,7 @@
 #define __FLUSH_HPP__
 
 #include "Valueable.hpp"
+#include "InventoryHolder.hpp"
 
 class Flush : public Value {
     private:

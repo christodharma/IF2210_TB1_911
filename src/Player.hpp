@@ -25,6 +25,7 @@ public:
     string getPlayerName() const;
     long int getPlayerPoint() const;
     Ability* getPlayerAbility() const;
+    bool doesHaveAbility();
 
     //setter
     void setPlayerPoint(long int);

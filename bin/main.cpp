@@ -6,12 +6,24 @@
 #include "../src/Deck.hpp"
 #include "../src/Table.hpp"
 #include "../src/Ability.hpp"
-#include "../src/AbilityInterface.hpp"
+#include "../src/Combination.hpp"
+#include "../src/Generics.hpp"
+#include "../src/Flush.hpp"
+#include "../src/FullHouse.hpp"
+#include "../src/HighCard.hpp"
+#include "../src/Pair.hpp"
+#include "../src/ThreeOfAKind.hpp"
+#include "../src/FourOfAKind.hpp"
+#include "../src/TwoPair.hpp"
+#include "../src/Straight.hpp"
+#include "../src/StraightFlush.hpp"
+
 #include <iostream>
 using namespace std;
 /*
 cd bin/driver
-g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp ../src/Ability.cpp ../src/Generics.cpp; if ($?) {./kompetisiKartu}
+g++ -o kompetisiKartu main.cpp ../src/*.cpp ; if ($?) {./kompetisiKartu}
+g++ -o kompetisiKartu main.cpp ../src/Card.cpp ../src/GameState.cpp ../src/InventoryHolder.cpp ../src/Player.cpp ../src/Valueable.cpp ../src/Deck.cpp ../src/Table.cpp ../src/Ability.cpp ../src/Generics.cpp ../src/Combination.cpp ../src/Flush.cpp ../src/StraightFlush.cpp ../src/FullHouse.cpp ../src/ThreeOfAKind.cpp ../src/ ; if ($?) {./kompetisiKartu}
 */
 
 int main(){
@@ -38,7 +50,7 @@ int main(){
             {
                 players[i].showPlayerInfo();
             }
-        } else if (game.getRound() == 5){
+        } else if (game.getRound() == 6){
             gameIsOngoing = false;
         }
 
@@ -47,6 +59,21 @@ int main(){
 
         game.playRound();
         game.nextRound();
+
+        if (game.getRound() == 6){
+            Combination* combs = new Combination[playerCount];
+            for (int i=0; i<playerCount; i++) {
+                InventoryHolder *hand = new Player();
+                for (int j=0; j<2; j++) {
+                    *hand += players[i].getInventory()[j];
+                }
+                combs[i] = Combination(*hand, game.getTable());
+            }
+
+            for (int i=0; i<playerCount; i++) {
+                cout << players[i].getPlayerName() << " : " << combs[i].getValue() << " " << combs[i].getType() << endl;
+            }
+        }
     }
     // cin.ignore();
     return 0;

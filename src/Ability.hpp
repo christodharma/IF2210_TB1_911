@@ -6,11 +6,18 @@
 using namespace std;
 
 class Ability{
+protected:
+    bool disabled;
+    bool used;
 public:
     Ability(){};
     virtual ~Ability(){};
     virtual void ability(string){};
     virtual string showAbility();
+    virtual bool isDisabled();
+    virtual bool isUsed();
+    virtual void setDisabled(bool);
+    virtual void setUsed(bool);
     void noAbility(string);
 };
 

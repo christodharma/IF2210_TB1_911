@@ -36,71 +36,162 @@ Combination::Combination(InventoryHolder hand, InventoryHolder table) {
         this->hold += table.getInventory()[i];
     }
 
+    this->calculate();
+}
+
+Combination::~Combination(){
+}
+
+void Combination::calculate() {
     if(isThereStraightFlush()){
-        cout << "YEY STRAIGHT FLUSH" << endl;
         this->value = new StraightFlush(this->hold, this->mapcard);
-        cout << this->getValue() << endl;
+        this->type = "Straight Flush";
     }
     else if (this->isThere4Angka()) {
-        cout << "Four Of A Kind" << endl;
         int i = 1;
         while (this->mapcard[to_string(i)].getInventory().size() < 4) {
             i++;
         }
         this->value = new FourOfAKind(i);
-        cout << this->getValue() << endl; 
+        this->type = "Four Of A Kind";
     }
     else if (this->isThere3Angka() == 2) {
-        cout << "Full House" << endl;
         int i = 13;
         while (this->mapcard[to_string(i)].getInventory().size() < 3) {
             i--;
         }
         this->value = new FullHouse(i);
-        cout << this->getValue() << endl;
+        this->type = "Full House";
     }
     else if (this->isThere3Angka() && this->isThere2Angka()) {
-        cout << "Full House" << endl;
         int i = 1;
         while (this->mapcard[to_string(i)].getInventory().size() < 3) {
             i++;
         }
         this->value = new FullHouse(i);
-        cout << this->getValue() << endl;
+        this->type = "Full House";
     }
     else if (this->isThereFlush()) {
-        cout << "YEY FLUSH" << endl;
         this->value = new Flush(this->hold, this->mapcard);
-        cout << this->getValue() << endl;
+        this->type = "Flush";
     }
     else if (this->isThereStraight()) {
-        cout << "YEY STRAIGHT" << endl;
         this->value = new Straight(this->hold, this->mapcard);
-        cout << this->getValue() << endl;
     }
     else if (this->isThere3Angka()) {
-        cout << "Three Of A Kind" << endl;
         this->value = new ThreeOfAKind(this->hold, this->mapcard);
-        cout << this->getValue() << endl;
+        this->type = "Three Of A Kind";
     }
     else if (this->isThereTwoPair()) {
-        cout << "Two Pair" << endl;
         this->value = new TwoPair(this->hold, this->mapcard);
-        cout << this->getValue() << endl;
+        this->type = "Two Pair";
     }
     else if(isTherePair()){
-        cout << "YEY PAIR" << endl;
         this->value = new Pair(this->mapcard);
-        cout << this->getValue() << endl;
+        this->type = "Pair";
     }
     else{
-        cout << "YEY HIGH CARD" << endl;
         this->value = new HighCard(this->mapcard);
-        cout << this->getValue() << endl;
+        this->type = "High Card";
     }
 }
 
-Combination::~Combination(){
+void Combination::recalculate() {
+    while(true){
+        Value *temp;
+        if (isThereStraightFlush()) {
+            temp = new StraightFlush(this->hold, this->mapcard);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Straight Flush";
+                break;
+            }
+        }
+        if (isThere4Angka()) {
+            int i = 1;
+            while (this->mapcard[to_string(i)].getInventory().size() < 4) {
+                i++;
+            }
+            temp = new FourOfAKind(i);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Four Of A Kind";
+                break;
+            }
+        }
+        if (isThere3Angka() == 2) {
+            int i = 13;
+            while (this->mapcard[to_string(i)].getInventory().size() < 3) {
+                i--;
+            }
+            temp = new FullHouse(i);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Full House";
+                break;
+            }
+        }
+        if (isThere3Angka() && isThere2Angka()) {
+            int i = 1;
+            while (this->mapcard[to_string(i)].getInventory().size() < 3) {
+                i++;
+            }
+            temp = new FullHouse(i);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Full House";
+                break;
+            }
+        }
+        if (isThereFlush()) {
+            temp = new Flush(this->hold, this->mapcard);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Flush";
+                break;
+            }
+        }
+        if (isThereStraight()) {
+            temp = new Straight(this->hold, this->mapcard);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Straight";
+                break;
+            }
+        }
+        if (isThere3Angka()) {
+            temp = new ThreeOfAKind(this->hold, this->mapcard);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Three Of A Kind";
+                break;
+            }
+        }
+        if (isThereTwoPair()) {
+            temp = new TwoPair(this->hold, this->mapcard);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Two Pair";
+                break;
+            }
+        }
+        if (isTherePair()) {
+            temp = new Pair(this->mapcard);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "Pair";
+                break;
+            }
+        }
+        else  {
+            temp = new HighCard(this->mapcard);
+            if (this->getValue() != temp->getValue()) {
+                this->value = temp;
+                this->type = "High Card";
+                break;
+            }
+        }
+    }
 }
 
 void Combination::setMap(InventoryHolder hand, InventoryHolder table){
@@ -166,6 +257,10 @@ double Combination::getValue() {
 void Combination::setValue(Value *value) {
     this->value = value;
 } // mengeset pointer value
+
+string Combination::getType() {
+    return this->type;
+} // mengembalikan tipe kombinasi
 
 int Combination::isThere2Angka() {
     int i = 0;
@@ -272,19 +367,15 @@ bool Combination::isTherePair() {
 bool Combination::isThereStraightFlush() {
     bool affh = false;
     int count = 0;
-    string m(1, 'M');
-    string k(1, 'K');
-    string b(1, 'B');
-    string h(1, 'H');
-    if (this->mapcard[m].getInventory().size() >= 5) {
-        int arr[mapcard[m].getInventory().size()];
-        for (int i = 0; i<mapcard[m].getInventory().size(); i++) {
-            arr[i] = mapcard[m].getInventory()[i].getAngka();
+    if (this->mapcard["M"].getInventory().size() >= 5) {
+        vector<int> arr;
+        for (int i = 0; i<mapcard["M"].getInventory().size(); i++) {
+            arr.push_back(mapcard["M"].getInventory()[i].getAngka());
         }
         int n = sizeof(arr) / sizeof(arr[0]);
-        sort(arr, arr + n);
+        sort(arr.begin(), arr.end());
 
-        for (int i = 1; i<mapcard[m].getInventory().size(); i++) {
+        for (int i = 1; i<mapcard["M"].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
                 if (count >= 4) {
@@ -297,15 +388,15 @@ bool Combination::isThereStraightFlush() {
         }
         
     } 
-    else if (this->mapcard[k].getInventory().size() >= 5) {
-        int arr[mapcard[k].getInventory().size()];
-        for (int i = 0; i<mapcard[k].getInventory().size(); i++) {
-            arr[i] = mapcard[k].getInventory()[i].getAngka();
+    else if (this->mapcard["K"].getInventory().size() >= 5) {
+        vector<int> arr;
+        for (int i = 0; i<mapcard["K"].getInventory().size(); i++) {
+            arr.push_back(mapcard["K"].getInventory()[i].getAngka());
         }
         int n = sizeof(arr) / sizeof(arr[0]);
-        sort(arr, arr + n);
+        sort(arr.begin(), arr.end());
 
-        for (int i = 1; i<mapcard[k].getInventory().size(); i++) {
+        for (int i = 1; i<mapcard["K"].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
                 if (count >= 4) {
@@ -317,15 +408,14 @@ bool Combination::isThereStraightFlush() {
             }
         }
     } 
-    else if (this->mapcard[b].getInventory().size() >= 5) {
-        int arr[mapcard[b].getInventory().size()];
-        for (int i = 0; i<mapcard[b].getInventory().size(); i++) {
-            arr[i] = mapcard[b].getInventory()[i].getAngka();
+    else if (this->mapcard["B"].getInventory().size() >= 5) {
+        vector<int> arr;
+        for (int i = 0; i<mapcard["B"].getInventory().size(); i++) {
+            arr.push_back(mapcard["B"].getInventory()[i].getAngka());
         }
-        int n = sizeof(arr) / sizeof(arr[0]);
-        sort(arr, arr + n);
+        sort(arr.begin(), arr.end());
 
-        for (int i = 1; i<mapcard[b].getInventory().size(); i++) {
+        for (int i = 1; i<mapcard["B"].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
                 if (count >= 4) {
@@ -337,15 +427,14 @@ bool Combination::isThereStraightFlush() {
             }
         }
     } 
-    else if (this->mapcard[h].getInventory().size() >= 5) {
-        int arr[mapcard[h].getInventory().size()];
-        for (int i = 0; i<mapcard[h].getInventory().size(); i++) {
-            arr[i] = mapcard[h].getInventory()[i].getAngka();
+    else if (this->mapcard["H"].getInventory().size() >= 5) {
+        vector<int> arr;
+        for (int i = 0; i<mapcard["H"].getInventory().size(); i++) {
+            arr.push_back(mapcard["H"].getInventory()[i].getAngka());
         }
-        int n = sizeof(arr) / sizeof(arr[0]);
-        sort(arr, arr + n);    
+        sort(arr.begin(), arr.end()); 
 
-        for (int i = 1; i<mapcard[h].getInventory().size(); i++) {
+        for (int i = 1; i<mapcard["H"].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
                 if (count >= 4) {

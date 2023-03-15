@@ -73,6 +73,10 @@ void Player::setPlayerInventory(vector<Card> input)
     this->inventory = input;
 }
 
+bool Player::doesHaveAbility() {
+    return this->ability != NULL;
+}
+
 void Player::showPlayerInfo() const
 {
     cout << "==========\tPlayer Info\t==========" <<endl;

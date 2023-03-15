@@ -2,6 +2,7 @@
 #define __STRAIGHT_HPP__
 
 #include "Valueable.hpp"
+#include "InventoryHolder.hpp"
 
 class Straight : public Value {
     private:

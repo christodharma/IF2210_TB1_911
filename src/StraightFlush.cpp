@@ -10,19 +10,14 @@ using namespace std;
 
 StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder> mapcard) : Value(0) {
     int count = 0;
-    string m(1, 'M');
-    string k(1, 'K');
-    string b(1, 'B');
-    string h(1, 'H');
-    if (mapcard[h].getInventory().size() >= 5) {
-        int arr[mapcard[h].getInventory().size()];
-        for (int i = 0; i<mapcard[h].getInventory().size(); i++) {
-            arr[i] = mapcard[h].getInventory()[i].getAngka();
+    if (mapcard["H"].getInventory().size() >= 5) {
+        vector<int> arr;
+        for (int i = 0; i<mapcard["H"].getInventory().size(); i++) {
+            arr.push_back(mapcard["H"].getInventory()[i].getAngka());
         }
-        int n = sizeof(arr) / sizeof(arr[0]);
-        sort(arr, arr + n);
+        sort(arr.begin(), arr.end()); 
 
-        for (int i = 1; i<mapcard[h].getInventory().size(); i++) {
+        for (int i = 1; i<mapcard["H"].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
                 if (count >= 4) {
@@ -35,15 +30,14 @@ StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder>
         }
     }
 
-    else if (mapcard[b].getInventory().size() >= 5) {
-        int arr[mapcard[b].getInventory().size()];
-        for (int i = 0; i<mapcard[b].getInventory().size(); i++) {
-            arr[i] = mapcard[b].getInventory()[i].getAngka();
+    else if (mapcard["B"].getInventory().size() >= 5) {
+        vector<int> arr;
+        for (int i = 0; i<mapcard["B"].getInventory().size(); i++) {
+            arr.push_back(mapcard["B"].getInventory()[i].getAngka());
         }
-        int n = sizeof(arr) / sizeof(arr[0]);
-        sort(arr, arr + n);
+        sort(arr.begin(), arr.end());
 
-        for (int i = 1; i<mapcard[b].getInventory().size(); i++) {
+        for (int i = 1; i<mapcard["B"].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
                 if (count >= 4) {
@@ -56,15 +50,15 @@ StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder>
         }
     }
 
-    else if (mapcard[k].getInventory().size() >= 5) {
-        int arr[mapcard[k].getInventory().size()];
-        for (int i = 0; i<mapcard[k].getInventory().size(); i++) {
-            arr[i] = mapcard[k].getInventory()[i].getAngka();
+    else if (mapcard["K"].getInventory().size() >= 5) {
+        vector<int> arr;
+        for (int i = 0; i<mapcard["K"].getInventory().size(); i++) {
+            arr.push_back(mapcard["K"].getInventory()[i].getAngka());
         }
         int n = sizeof(arr) / sizeof(arr[0]);
-        sort(arr, arr + n);
+        sort(arr.begin(), arr.end());
 
-        for (int i = 1; i<mapcard[k].getInventory().size(); i++) {
+        for (int i = 1; i<mapcard["K"].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
                 if (count >= 4) {
@@ -77,15 +71,15 @@ StraightFlush :: StraightFlush(InventoryHolder hold,map<string, InventoryHolder>
         }
     }
 
-    else if (mapcard[m].getInventory().size() >= 5) {
-        int arr[mapcard[m].getInventory().size()];
-        for (int i = 0; i<mapcard[m].getInventory().size(); i++) {
-            arr[i] = mapcard[m].getInventory()[i].getAngka();
+    else if (mapcard["M"].getInventory().size() >= 5) {
+        vector<int> arr;
+        for (int i = 0; i<mapcard["M"].getInventory().size(); i++) {
+            arr.push_back(mapcard["M"].getInventory()[i].getAngka());
         }
         int n = sizeof(arr) / sizeof(arr[0]);
-        sort(arr, arr + n);
+        sort(arr.begin(), arr.end());
 
-        for (int i = 1; i<mapcard[m].getInventory().size(); i++) {
+        for (int i = 1; i<mapcard["M"].getInventory().size(); i++) {
             if (arr[i] == arr[i-1] + 1) {
                 count++;
                 if (count >= 4) {

@@ -2,7 +2,7 @@
 #define __THREEOFAKIND_HPP__
 
 #include "Valueable.hpp"
-// #include "InventoryHolder.hpp"
+#include "InventoryHolder.hpp"
 
 class ThreeOfAKind : public Value {
     private:

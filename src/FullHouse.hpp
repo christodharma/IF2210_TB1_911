@@ -2,7 +2,8 @@
 #define __FULLHOUSE_HPP__
 
 #include "Valueable.hpp"
-#include "InventoryHolder.hpp"
+#include <iostream>
+using namespace std;
 
 class FullHouse : public Value {
     public:
