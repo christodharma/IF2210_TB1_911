@@ -19,6 +19,22 @@ Deck::Deck() : InventoryHolder()
     }
 }
 
+Deck::Deck(string path)
+{
+    ifstream file;
+    file.open(path);
+    char warna[52] = {0};
+    int angka[52] = {0};
+
+    for( int i=0; i<52; i++)
+        file >> warna[i] >> angka[i];
+
+    for( int i=0; i<52; i++)
+        this->inventory.push_back(Card(warna[i], angka[i]));
+
+    file.close();
+}
+
 Deck::~Deck(){}
 
 void Deck::ShuffleDeck()
