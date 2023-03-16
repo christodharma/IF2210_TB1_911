@@ -24,7 +24,6 @@ public:
     virtual vector<Card>& operator+(Card&);
     virtual vector<Card>& operator-(Card&);
     virtual vector<Card>& operator=(const vector<Card>&);
-    static vector<Card> emptyInventory; //dummy inventory if inventoryHolder methods is called
 };
 
 #endif

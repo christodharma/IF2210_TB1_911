@@ -32,6 +32,8 @@ public:
     //setter
     void setPlayerPoint(long int);
     void setPlayerAbility(string);
+    void initializeHand();
+    void clearHand();
 
     /*Player method*/
     void showPlayerInfo() const;

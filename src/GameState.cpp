@@ -5,7 +5,7 @@ int GameState::turnStartFrom = 0;
 deque<int> GameState::turn;
 
 
-GameState::GameState(Player*& p, int n) : Deck(), Table()
+GameState::GameState(Player*& p, int n) : Table()
 {
     this->round = 0;
     this->prize = 64;
@@ -22,6 +22,7 @@ GameState::GameState(Player*& p, int n) : Deck(), Table()
     "SWITCH",
     "ABILITYLESS"
     };
+    this->cardDeck = new Deck;
     cout << "Game State initiated" << endl;
 }
  
@@ -30,6 +31,12 @@ GameState::~GameState()
     long int prize = 64;
     bool reverseTurn = false;
     int turnStartFrom = 0;
+    delete cardDeck;
+    //delete player inventories
+    for (int i = 0; i < playerCount; i++)
+    {
+        players[i].clearHand();
+    }
 }
 
 int GameState::getRound() const
@@ -92,22 +99,12 @@ void GameState::playRound()
     // deal kartu ke table kecuali round 6
     if (this->round <= 5){
         // how many cards in the deck
-        cout << "Deck count:" << Deck::getInventory().size() << endl;
-        DrawTo(Table::getInventory());
-        Table::showInventory();
+        cout << "Deck count:" << this->getDeck().size() << endl;
+        DrawTo(this->getInventory());
+        this->showInventory('t');
     } else {
         
     }
-}
-
-void GameState::dealCards(Player& who, int howMany)
-{
-    // adding card to player inventory
-    for (int i = 0; i < howMany; i++)
-    {
-        DrawTo(who.getInventory());
-    }
-    who.showPlayerInfo();
 }
 
 void GameState::dealAbility()
@@ -155,33 +152,18 @@ int GameState::nextTurn()
     return nextPlay;
 }
 
-void GameState::showInventory() const
+void GameState::showInventory(char input) const
 {
-    cout << "show Deck or Table?(D/T)" << endl;
-    string input;
-    cin >> input;
-    if (input == "D"){
+    if (input == 'D'){
         Deck::showInventory();
-    } else if (input == "T"){
+    } else if (input == 'T'){
         Table::showInventory();
     } else {
         cout << "invalid input" << endl;
     }
 }
 
-vector<Card> &GameState::getInventory(Deck)
-{
-    return Deck::getInventory();
-}
-vector<Card> &GameState::getInventory(Table)
+vector<Card> &GameState::getInventory()
 {
     return Table::getInventory();
-}
-void GameState::showInventory(Deck) const
-{
-    Deck::showInventory();
-}
-void GameState::showInventory(Table) const
-{
-    Table::showInventory();
 }

@@ -23,7 +23,7 @@ int main(){
     int playerCount = 7;
     long int win = 2000000; //set sebagai limit atau set sampai overflow
     Player* players = new Player[playerCount];
-    while (findMax(players, playerCount).getPlayerPoint() < win)
+    while (findMax(players, playerCount).getPlayerPoint() < win && gameIsOngoing)
     {
         GameState game(players,playerCount);
         while (game.getRound() < 6)
@@ -34,7 +34,10 @@ int main(){
             if (game.getRound() == 0){
                 for (int i = 0; i < playerCount; i++)
                 {
-                    game.dealCards(players[i],2);
+                    for (int j = 0; j < 2; j++)
+                    {
+                        game.DrawTo(players[i].getInventory());
+                    }
                 }
                 for (int i = 0; i < playerCount; i++)
                 {
@@ -62,8 +65,15 @@ int main(){
             {
                 e->what();
             }
-            
         }
+        //F.S. dtor gamestate, hand is cleared
+        if (findMax(players, playerCount).getPlayerPoint() < win){
+            for (int i = 0; i < playerCount; i++)
+            {
+               players[i].initializeHand();
+            }
+        }
+        gameIsOngoing = false;
     }
     // cin.ignore();
     return 0;

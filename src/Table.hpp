@@ -5,7 +5,7 @@
 #include "Inventory.hpp"
 #include "Card.hpp"
 
-class Table : virtual public InventoryHolder
+class Table : public InventoryHolder
 {
 private:
     InventoryHolder* _table;
@@ -13,6 +13,12 @@ public:
     Table();
     ~Table();
     void showInventory() const;
+    vector<Card>& getInventory();
+    vector<Card>& operator+=(Card&);
+    vector<Card>& operator-=(Card&);
+    vector<Card>& operator+(Card&);
+    vector<Card>& operator-(Card&);
+    vector<Card>& operator=(const vector<Card>&);
 };
 
 #endif

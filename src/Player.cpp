@@ -41,29 +41,45 @@ void Player::setPlayerPoint(long int input)
 
 void Player::setPlayerAbility(string input)
 {
-    delete this->ability;
     if (input == "RE-ROLL")
     {
+        delete this->ability;
         this->ability = new ReRoll();
     } else if (input == "QUADRUPLE")
     {
+        delete this->ability;
         this->ability = new Quadruple();
     } else if (input == "QUARTER")
     {
+        delete this->ability;
         this->ability = new Quarter();
     } else if (input == "REVERSE")
     {
+        delete this->ability;
         this->ability = new ReverseDirection();
     } else if (input == "SWAPCARD")
     {
+        delete this->ability;
         this->ability = new SwapCard();
     } else if (input == "SWITCH")
     {
+        delete this->ability;
         this->ability = new Switch();
     } else if (input == "ABILITYLESS")
     {
+        delete this->ability;
         this->ability = new Abilityless();
     }
+}
+
+void Player::initializeHand()
+{
+    this->hand = new Inventory;
+}
+
+void Player::clearHand()
+{
+    delete this->hand;
 }
 
 void Player::showPlayerInfo() const
@@ -71,7 +87,7 @@ void Player::showPlayerInfo() const
     cout << "==========\tPlayer Info\t==========" <<endl;
     cout << "Player name: "<<this->getPlayerName() << endl;
     cout << "Player point: "<<this->getPlayerPoint() << endl;
-    // cout << "Player ability: "<<ability->showAbility() << endl; // error
+    cout << "Player ability: "<<this->ability->showAbility() << endl; // error
     cout << "Player inventory: " << endl;
     this->hand->showInventory();
 }

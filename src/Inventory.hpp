@@ -7,7 +7,7 @@
 
 class Inventory : public InventoryHolder
 {
-private:
+protected:
     vector<Card> inventory;
 public:
     Inventory();

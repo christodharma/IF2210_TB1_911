@@ -5,8 +5,15 @@ void Ability::noAbility(string input){
     cout << "Ets, tidak bisa. kamu tidak memilki Ability "<<input<<"."<< endl;
 }
 
-string Ability::showAbility(){
-    return " ";
+Ability::Ability()
+{
+    this->ammoAbility = 0;
+    this->typeAb = "NONE";
+}
+
+string Ability::showAbility()
+{
+    return this->typeAb;
 }
 
 int Ability::getAmmoAbility()
@@ -89,51 +96,29 @@ void Abilityless::ability(string input, Ability* targetAb){
 //ctor
 ReRoll::ReRoll(){
     this->ammoAbility = 1;
+    this->typeAb = "RE-ROLL";
 }
 Quadruple::Quadruple(){
     this->ammoAbility = 1;
+    this->typeAb = "QUADRUPLE";
 }
 Quarter::Quarter(){
     this->ammoAbility = 1;
+    this->typeAb = "QUARTER";
 }
 ReverseDirection::ReverseDirection(){
     this->ammoAbility = 1;
+    this->typeAb = "REVERSE";
 }
 SwapCard::SwapCard(){
     this->ammoAbility = 1;
+    this->typeAb = "SWAPCARD";
 }
 Switch::Switch(){
     this->ammoAbility = 1;
+    this->typeAb = "SWITCH";
 }
 Abilityless::Abilityless(){
     this->ammoAbility = 1;
-}
-
-string ReRoll::showAbility(){
-    string valid = "RE-ROLL";
-    return valid;
-}
-string Quadruple::showAbility(){
-    string valid = "QUADRUPLE";
-    return valid;
-}
-string Quarter::showAbility(){
-    string valid = "QUARTER";
-    return valid;
-}
-string ReverseDirection::showAbility(){
-    string valid = "REVERSE";
-    return valid;
-}
-string SwapCard::showAbility(){
-    string valid = "SWAP";
-    return valid;
-}
-string Switch::showAbility(){
-    string valid = "SWITCH";
-    return valid;
-}
-string Abilityless::showAbility(){
-    string valid = "ABILITYLESS";
-    return valid;
+    this->typeAb = "ABILITYLESS";
 }

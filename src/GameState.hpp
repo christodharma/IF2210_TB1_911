@@ -23,6 +23,7 @@ private:
     vector<string> abilities;
     long long int prize;
     Player* players;
+    Deck* cardDeck;
 public:
     //ctor dengan menerima player yang sudah dideklarasi dan n player
     GameState(Player*&, int n);
@@ -37,27 +38,13 @@ public:
     //gamestate methods
     void nextRound();
     void playRound();
-    void dealCards(Player& who, int cardCount);
     void dealAbility();
     void actionDo(string);
     int nextTurn();
 
     /*inheritance methods*/
-    void showInventory() const override;
-    // bool isEmpty() override;
-    //Deck
-    vector<Card>& getInventory(Deck);
-    void showInventory(Deck) const;
-    // void ShuffleDeck();
-    // void DrawTo(vector<Card>&);
-    // vector<Card>& operator+=(Card&) ;
-    // vector<Card>& operator-=(Card&) ;
-    // vector<Card>& operator+(Card&) ;
-    // vector<Card>& operator-(Card&) ;
-    // vector<Card>& operator=(const vector<Card>&) ;
-    //Table
-    vector<Card>& getInventory(Table);
-    void showInventory(Table) const;
+    void showInventory(char) const;
+    vector<Card>& getInventory();
 };
 
 #endif

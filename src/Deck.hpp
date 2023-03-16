@@ -5,24 +5,19 @@
 #include "Inventory.hpp"
 #include "Card.hpp"
 #include "Generics.hpp"
+#include <vector>
 
-class Deck : virtual public InventoryHolder{
-private:
-    InventoryHolder* _deck;
+class Deck {
+protected:
+    vector<Card> _deck;
 public:
     Deck();
     ~Deck();
     void InitializeDeck();
     void ShuffleDeck();
     void DrawTo(vector<Card>&);
-    bool isEmpty();
     void showInventory() const;
-    vector<Card>& getInventory();
-    // vector<Card>& operator+=(Card&) ;
-    // vector<Card>& operator-=(Card&) ;
-    // vector<Card>& operator+(Card&) ;
-    // vector<Card>& operator-(Card&) ;
-    vector<Card>& operator=(const vector<Card>&) ;
+    vector<Card>& getDeck();
 };
 
 #endif

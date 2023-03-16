@@ -20,3 +20,26 @@ void Table::showInventory() const
     
     cout << endl;
 }
+
+vector<Card> &Table::getInventory()
+{
+    return this->_table->getInventory();
+}
+
+vector<Card> &Table::operator+=(Card &input)
+{
+    return *this->_table += input;
+}
+
+vector<Card>& Table::operator-=(Card& input){
+    return *this->_table -= input;
+}
+vector<Card>& Table::operator+(Card& input){
+    return this->_table->operator+(input);
+}
+vector<Card>& Table::operator-(Card& input){
+    return this->_table->operator-(input);
+}
+vector<Card>& Table::operator=(const vector<Card>& src){
+    return this->_table->operator=(src);
+}

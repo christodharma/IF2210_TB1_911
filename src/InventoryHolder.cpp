@@ -1,6 +1,5 @@
 #include "InventoryHolder.hpp"
 
-vector<Card> InventoryHolder::emptyInventory = vector<Card>();
 InventoryHolder::InventoryHolder(){};
 InventoryHolder::~InventoryHolder(){};
 bool InventoryHolder::isEmpty(){
