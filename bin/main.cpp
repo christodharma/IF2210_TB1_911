@@ -99,7 +99,9 @@ int main(){
             {
                 players[i].showPlayerInfo();
             }
-
+        cout << "\tPress enter to continue\t" << endl;
+        cin.ignore();
+        cin.get();
         }
     }
     return 0;

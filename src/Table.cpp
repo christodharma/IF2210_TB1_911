@@ -12,7 +12,7 @@ Table::~Table()
 void Table::showTable()
 {
     cout << "=======================================" << endl;
-    cout << "Table: ";
+    cout << "Table: " << endl;
     for (int i = 0; i < this->inventory.size(); i++)
     {
         cout << this->inventory[i] << "\t";

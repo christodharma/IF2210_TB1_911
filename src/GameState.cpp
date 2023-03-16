@@ -157,6 +157,8 @@ void GameState::gameEnd(Player& winner)
         players[i].getInventory().clear();
     }
     this->table->getInventory().clear();
+    cout << "Press enter to continue" << endl;
+    cin.ignore();cin.get();
 }
 
 void GameState::dealCards(int who, int howMany)
