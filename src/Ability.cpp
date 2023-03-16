@@ -92,7 +92,21 @@ void Abilityless::ability(string input, Ability* targetAb){
         cout << "Target tidak memiliki ability" << endl;
     }
 }
-
+//ctor
+ReRoll::ReRoll():Ability(){
+}
+Quadruple::Quadruple():Ability(){
+}
+Quarter::Quarter():Ability(){
+}
+ReverseDirection::ReverseDirection():Ability(){
+}
+SwapCard::SwapCard():Ability(){
+}
+Switch::Switch():Ability(){
+}
+Abilityless::Abilityless():Ability(){
+}
 string ReRoll::showAbility(){
     string valid = "RE-ROLL";
     return valid;
