@@ -7,6 +7,7 @@
 #include "Generics.hpp"
 #include "Table.hpp"
 #include "Player.hpp"
+#include "Exception.hpp"
 #include <vector>
 #include <string>
 #include <map>

@@ -20,6 +20,7 @@
 #include "../src/TwoPair.hpp"
 #include "../src/Straight.hpp"
 #include "../src/StraightFlush.hpp"
+#include "../src/splashScreen.hpp"
 
 #include <iostream>
 #include <cmath>
@@ -33,6 +34,7 @@ int main(){
     bool gameIsOngoing = true;
     int playerCount = 7;
     long int win = pow(2,32);
+    splashScreen();
     Player* players = new Player[playerCount];
     while (findMax(players, playerCount).getPlayerPoint() < win)
     {
@@ -63,14 +65,20 @@ int main(){
                 {
                     players[i].showPlayerInfo();
                 }
-            }else if (game.getRound() == 5){
+            }
+        // try the switch
+        // AbilityInterface a(game.getPlayer(currentTurn).getPlayerAbility(), game, game.getPlayer(currentTurn));
+
+        game.playRound();
+        game.nextRound();
+            if (game.getRound() == 6){
                 Combination* combs = new Combination[playerCount];
                 for (int i=0; i<playerCount; i++) {
-                    InventoryHolder *hand = new Player();
-                    for (int j=0; j<2; j++) {
-                        *hand += players[i].getInventory()[j];
-                    }
-                    combs[i] = Combination(*hand, game.getTable());
+                    // InventoryHolder *hand = new Player();
+                    // for (int j=0; j<2; j++) {
+                    //     *hand += players[i].getInventory()[j];
+                    // }
+                    combs[i] = Combination(players[i], game.getTable());
                 }
 
                 double* points = new double[playerCount];
@@ -91,12 +99,9 @@ int main(){
             {
                 players[i].showPlayerInfo();
             }
-        // try the switch
-        // AbilityInterface a(game.getPlayer(currentTurn).getPlayerAbility(), game, game.getPlayer(currentTurn));
-
-        game.playRound();
-        game.nextRound();
-
+        cout << "\tPress enter to continue\t" << endl;
+        cin.ignore();
+        cin.get();
         }
     }
     return 0;

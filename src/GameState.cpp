@@ -103,7 +103,10 @@ void GameState::playRound()
     deque<int> temp;
     // set start from turnStartFrom
     // show current round
-    cout << ":::::::::: Round " << this->round+1 << " ::::::::::"<<endl;
+    cout    <<  "::::::::::\t ROUND \t ::::::::::"          << endl 
+            <<  "::::::::::\t   " << this->round+1 << "\t ::::::::::"<<endl
+            <<  "::::::::::\t PRIZE \t ::::::::::"<< endl <<
+                "::::::::::\t   " << this->prize << "\t ::::::::::"<<endl;
     cout << "current queue will be: ";
     for (int i=0; i<turn.size(); i++)
     {
@@ -157,7 +160,7 @@ void GameState::playRound()
 
 void GameState::gameEnd(Player& winner)
 {
-    cout << ":::::::::: Game End ::::::::::"<<endl;
+    cout <<",---.                   |                                |         |\n|  _.,---.,-.-.,---.    |---.,---.,---.    ,---.,---.,---|,---.,---|\n|   |,---|| | ||---'    |   |,---|`---.    |---'|   ||   ||---'|   |\n`---'`---^` ' '`---'    `   '`---^`---'    `---'`   '`---'`---'`---'\n" << endl;
     winner.setPlayerPoint(winner.getPlayerPoint() + this->prize);
     cout << "Player " << winner.getPlayerName() << " won " << this->prize << " points" << endl;
     this->prize = 64; //reset prize
@@ -167,6 +170,8 @@ void GameState::gameEnd(Player& winner)
         players[i].getInventory().clear();
     }
     this->table->getInventory().clear();
+    cout << "Press enter to continue" << endl;
+    cin.ignore();cin.get();
 }
 
 void GameState::dealCards(int who, int howMany)
@@ -268,6 +273,9 @@ void GameState::actionDo(string input, Player* p)
             }
             int input;
             cin >> input;
+            if (input < 1 || input > this->playerCount) {
+                throw new IndexOutOfRangeException(input);
+            }
             vector<Card> temp = p->getInventory();
             p->setPlayerInventory(this->getPlayer(input-1).getInventory());
             this->getPlayer(input-1).setPlayerInventory(temp);
@@ -292,6 +300,9 @@ void GameState::actionDo(string input, Player* p)
             }
             int p1, p2, c1, c2;
             cin >> p1;
+            if (p1 < 1 || p1 > this->playerCount) {
+                throw new IndexOutOfRangeException(p1);
+            }
             cout << "Silakan pilih pemain lain yang kartunya ingin Anda tukar:" << endl;
             for (int i = 0; i < this->playerCount; i++) {
                 if (this->players[i].getPlayerName() != p->getPlayerName() && this->players[i].getPlayerName() != this->getPlayer(p1-1).getPlayerName()) {
@@ -299,14 +310,23 @@ void GameState::actionDo(string input, Player* p)
                 }
             }
             cin >> p2;
+            if (p2 < 1 || p2 > this->playerCount) {
+                throw new IndexOutOfRangeException(p2);
+            }
             cout << "Silakan pilih kartu kanan/kiri " << this->getPlayer(p1-1).getPlayerName() << endl;
             cout << "   1. Kiri" << endl;
             cout << "   2. Kanan" << endl;
             cin >> c1;
+            if (c1 < 1 || c1 > 2) {
+                throw new IndexOutOfRangeException(c1);
+            }
             cout << "Silakan pilih kartu kanan/kiri " << this->getPlayer(p2-1).getPlayerName() << endl;
             cout << "   1. Kiri" << endl;
             cout << "   2. Kanan" << endl;
             cin >> c2;
+            if (c2 < 1 || c2 > 2) {
+                throw new IndexOutOfRangeException(c2);
+            }
             Card temp = this->getPlayer(p1-1).getInventory()[c1-1];
             this->getPlayer(p1-1).getInventory()[c1-1] = this->getPlayer(p2-1).getInventory()[c2-1];
             this->getPlayer(p2-1).getInventory()[c2-1] = temp;

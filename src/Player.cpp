@@ -100,6 +100,7 @@ string Player::action()
         {
             cout << "Invalid input, please try again" << endl;
         } else {
+            cout << endl;
             cout << "|||||||||||\t\t" << this->getPlayerName() << "\t\t|||||||||||" << endl;
             cout << "\t\tHAS CHOSEN TO DO " << input << endl;
             cout << "===================================================" << endl;
