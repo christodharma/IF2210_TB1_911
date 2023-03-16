@@ -7,8 +7,9 @@
 #include <chrono> // std::chrono::system_clock untuk seed dalam proses random
 // #include "Card.hpp"
 #include <string>
+#include "Player.hpp"
 using namespace std;
-
+class Player;
 template<class T>
 T findMax(T a, T b);
 template<class T>
@@ -17,7 +18,5 @@ template <typename T>
 T findMax(const std::vector<T>& vec);
 template <class T>
 void ShuffleT(std::vector<T>& c);
-template <>
-void ShuffleT(std::vector<std::string>& c);
 
 #endif

@@ -40,6 +40,7 @@ public:
     //gamestate methods
     void nextRound();
     void playRound();
+    void gameEnd(Player& Winner);
     void dealCards(int playerNumber, int cardCount);
     void dealAbility();
     void actionDo(string);

@@ -57,7 +57,7 @@ void GameState::setPrize(long int input)
 }
 
 void GameState::nextRound(){
-    this->round = this->round + 1 % 6;
+    this->round = this->round + 1;
 }
 
 void GameState::playRound()
@@ -99,13 +99,23 @@ void GameState::playRound()
     // turn = temp;
     turnStartFrom++;
     // deal kartu ke table kecuali round 6
-    if (this->round <= 5){
+    if (this->round < 6){
         // how many cards in the deck
         cout << "Deck count:" << this->cardDeck->getInventory().size() << endl;
         cardDeck->DrawTo(this->table->getInventory());
         this->table->showInventory();
-    } else {
-        
+    }
+}
+
+void GameState::gameEnd(Player& winner)
+{
+    cout << ":::::::::: Game End ::::::::::"<<endl;
+    winner.setPlayerPoint(winner.getPlayerPoint() + this->prize);
+    cout << "Player " << winner.getPlayerName() << " won " << this->prize << " points" << endl;
+    this->prize = 64; //reset prize
+    for (int i = 0; i < playerCount; i++)
+    {
+        players[i].showPlayerInfo();
     }
 }
 
