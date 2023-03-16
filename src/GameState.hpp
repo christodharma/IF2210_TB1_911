@@ -41,6 +41,23 @@ public:
     void dealAbility();
     void actionDo(string);
     int nextTurn();
+
+    /*inheritance methods*/
+    void showInventory() const override;
+    // bool isEmpty() override;
+    //Deck
+    vector<Card>& getInventory(Deck);
+    void showInventory(Deck) const;
+    // void ShuffleDeck();
+    // void DrawTo(vector<Card>&);
+    // vector<Card>& operator+=(Card&) ;
+    // vector<Card>& operator-=(Card&) ;
+    // vector<Card>& operator+(Card&) ;
+    // vector<Card>& operator-(Card&) ;
+    // vector<Card>& operator=(const vector<Card>&) ;
+    //Table
+    vector<Card>& getInventory(Table);
+    void showInventory(Table) const;
 };
 
 #endif

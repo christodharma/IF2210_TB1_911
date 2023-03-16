@@ -41,6 +41,17 @@ public:
     bool operator>(Player&);
     bool operator<(Player&);
     bool operator==(Player&);
+
+    /*inheritance methods*/
+    //inventoryHolder
+    bool isEmpty();
+    void showInventory() const;
+    vector<Card>& getInventory();
+    vector<Card>& operator+=(Card&);
+    vector<Card>& operator-=(Card&);
+    vector<Card>& operator+(Card&);
+    vector<Card>& operator-(Card&);
+    vector<Card>& operator=(const vector<Card>&);
 };
 
 #endif

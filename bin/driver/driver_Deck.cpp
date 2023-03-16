@@ -8,9 +8,10 @@ g++ -o driver_Deck driver_Deck.cpp ../../src/Deck.cpp ../../src/InventoryHolder.
 
 int main(){
     Deck deck;
-    deck.InitiateDeck();
+    Inventory inv;
     deck.showInventory();
     deck.ShuffleDeck();
-    deck.DrawCard();
+    deck.DrawTo(inv.getInventory());
+    inv.showInventory();
     return 0;
 }
