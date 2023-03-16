@@ -124,7 +124,7 @@ string ReverseDirection::showAbility(){
     return valid;
 }
 string SwapCard::showAbility(){
-    string valid = "SWAP";
+    string valid = "SWAPCARD";
     return valid;
 }
 string Switch::showAbility(){

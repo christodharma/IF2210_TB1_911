@@ -7,8 +7,8 @@ using namespace std;
 
 class Ability{
 protected:
-    bool disabled;
-    bool used;
+    bool disabled = false;
+    bool used = false;
 public:
     Ability(){};
     virtual ~Ability(){};

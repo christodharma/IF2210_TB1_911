@@ -10,7 +10,20 @@ GameState::GameState(Player*& p, int n)
     this->players = p;
     this->playerCount = n;
     this->table = new Table();
-    this->cardDeck = new Deck();
+    cout << "Pilih input Deck: " << endl;
+    cout << "1. Random" << endl;
+    cout << "2. Custom dari file" << endl;
+    cout << "Masukkan pilihan: ";
+    int input;
+    cin >> input;
+    if (input == 1){
+        this->cardDeck = new Deck();
+    } else if (input == 2){
+        string filename;
+        cout << "Masukkan nama file: ";
+        cin >> filename;
+        this->cardDeck = new Deck(filename);
+    }
     this->prize = 64;
     this->abilities =
     {
@@ -207,6 +220,7 @@ void GameState::actionDo(string input, Player* p)
     } else if (input == "QUADRUPLE") {
         if (p->getPlayerAbility()->showAbility() == "QUADRUPLE" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
             cout << p->getPlayerName() << " melakukan QUADRUPLE! " << endl;
+            p->getPlayerAbility()->ability(input);
             cout << "Poin hadiah naik dari " << this->prize << " menjadi " << this->prize*4 << "!" << endl;
             this->prize *= 4;
             p->getPlayerAbility()->setUsed(true);
@@ -218,6 +232,7 @@ void GameState::actionDo(string input, Player* p)
     } else if (input == "QUARTER") {
         if (p->getPlayerAbility()->showAbility() == "QUARTER" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
             cout << p->getPlayerName() << " melakukan QUARTER! " << endl;
+            p->getPlayerAbility()->ability(input);
             cout << "Poin hadiah turun dari " << this->prize << " menjadi " << this->prize/4 << "!" << endl;
             this->prize /= 4;
             p->getPlayerAbility()->setUsed(true);
@@ -227,6 +242,7 @@ void GameState::actionDo(string input, Player* p)
         }
     } else if (input == "RE-ROLL") {
         if (p->getPlayerAbility()->showAbility() == "RE-ROLL" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
+            p->getPlayerAbility()->ability(input);
             cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
             p->getInventory().clear();
             this->cardDeck->DrawTo(p->getInventory());
@@ -241,6 +257,7 @@ void GameState::actionDo(string input, Player* p)
     } else if (input == "SWITCH") {
         if (p->getPlayerAbility()->showAbility() == "SWITCH" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
             cout << p->getPlayerName() << " melakukan SWITCH!" << endl;
+            p->getPlayerAbility()->ability(input);
             cout << "Kartumu sekarang adalah: " << endl;
             p->showInventory();
             cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
@@ -263,9 +280,10 @@ void GameState::actionDo(string input, Player* p)
             // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
         }
 
-    } else if (input == "SWAP") {
+    } else if (input == "SWAPCARD") {
         if (p->getPlayerAbility()->showAbility() == "SWAPCARD" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
-            cout << p->getPlayerName() << " melakukan SWAP!" << endl;
+            cout << p->getPlayerName() << " melakukan SWAPCARD!" << endl;
+            p->getPlayerAbility()->ability(input);
             cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
             for (int i = 0; i < this->playerCount; i++) {
                 if (this->players[i].getPlayerName() != p->getPlayerName()) {
@@ -306,8 +324,9 @@ void GameState::actionDo(string input, Player* p)
     else if (input == "REVERSE") {
         if (p->getPlayerAbility()->showAbility() == "REVERSE"  && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
             cout << p->getPlayerName() << " melakukan REVERSE!" << endl;
-            this->reverseTurn = true;
+            p->getPlayerAbility()->ability(input);
             p->getPlayerAbility()->setUsed(true);
+            this->reverseTurn = true;
         }
         else {
             p->getPlayerAbility()->noAbility(input);
@@ -325,6 +344,7 @@ void GameState::actionDo(string input, Player* p)
 
             if (countPAb > 0) {
                 cout << p->getPlayerName() << " akan mematikan kartu ability lawan!" << endl;
+                p->getPlayerAbility()->ability(input);
                 cout << "Silakan pilih pemain yang kartu ability-nya ingin dimatikan:" << endl;
                 for (int i=0; i<this->playerCount; i++) {
                     if (p->getPlayerName() != this->players[i].getPlayerName()) {
