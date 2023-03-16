@@ -43,11 +43,16 @@ void Deck::ShuffleDeck()
     std::shuffle(this->inventory.begin(), this->inventory.end(), std::default_random_engine(seed));
 }
 
-Card& Deck::Draw()
+void Deck::DrawTo(vector<Card>& target)
 {
-    Card& result = this->inventory.back();
-    this->inventory.pop_back();
-    return result;
+    if (this->inventory.empty()){
+        // throw emptyException
+    } else {
+        Card result(this->inventory.back().getAngka(), this->inventory.back().getWarna());
+        // cout << "card drawn: " << result << endl;
+        target.push_back(result);
+        this->inventory.pop_back();
+    }
 }
 // template<>
 // Deck<Card>::Deck() : InventoryHolder<Card>(){}

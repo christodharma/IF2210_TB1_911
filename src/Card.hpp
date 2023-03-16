@@ -22,6 +22,7 @@ public:
     bool operator<(const Card&);
     bool operator>(const Card&);
     bool operator==(const Card&);
+    Card& operator=(const Card& other);
     friend ostream& operator<< (ostream& os, const Card& card);
 };
 

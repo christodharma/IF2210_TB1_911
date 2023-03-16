@@ -1,12 +1,21 @@
 #include "GameState.hpp"
 
-long int GameState::prize = 64;
-Deck* GameState::cardDeck = new Deck();
 bool GameState::reverseTurn = false;
 int GameState::turnStartFrom = 0;
 deque<int> GameState::turn;
-vector<string> GameState::abilities =
+
+
+GameState::GameState(Player*& p, int n)
 {
+    this->round = 0;
+    this->prize = 64;
+    this->players = p;
+    this->playerCount = n;
+    this->table = new Table();
+    this->cardDeck = new Deck();
+    this->prize = 64;
+    this->abilities =
+    {
     "RE-ROLL",
     "QUADRUPLE",
     "QUARTER",
@@ -14,22 +23,20 @@ vector<string> GameState::abilities =
     "SWAPCARD",
     "SWITCH",
     "ABILITYLESS"
-};
-
-
-GameState::GameState(Player* p, int n)
-{
-    this->round = 0;
-    this->prize = 64;
-    this->players = p;
-    this->playerCount = n;
-    this->table = new Table();
+    };
     cout << "Game State initiated" << endl;
+    cout    <<  "::::::::::\t ROUND \t ::::::::::"          << endl 
+            <<  "::::::::::\t   " << this->round+1 << "\t ::::::::::"<<endl
+            <<  "::::::::::\t PRIZE \t ::::::::::"<< endl <<
+                "::::::::::\t   " << this->prize << "\t ::::::::::"<<endl;
 }
  
 GameState::~GameState()
 {
-    delete cardDeck;
+    long int prize = 64;
+    bool reverseTurn = false;
+    int turnStartFrom = 0;
+    delete this->cardDeck;
     delete this->table; 
 }
 
@@ -43,7 +50,7 @@ long int GameState::getPrize() const
     return this->prize;
 }
 
-Deck *GameState::getCardDeck() const
+Deck *GameState::getCardDeck()
 {
     return this->cardDeck;
 }
@@ -54,7 +61,7 @@ void GameState::setPrize(long int input)
 }
 
 void GameState::nextRound(){
-    this->round = this->round + 1 % 6;
+    this->round = this->round + 1;
 }
 
 void GameState::playRound()
@@ -66,16 +73,19 @@ void GameState::playRound()
     turn.push_back((i+turnStartFrom)%7);
     }
     // show current round
-    cout << ":::::::::: Round " << this->round+1 << " ::::::::::"<<endl;
-    cout << "current queue will be: ";
-    for (auto i = turn.begin(); i != turn.end(); i++)
-    {
-        cout << "player " << *i + 1;
-        if (i!=turn.end()-1){
-            cout << "->";
-        }
-    }
-    cout << endl;
+    cout    <<  "::::::::::\t ROUND \t ::::::::::"          << endl 
+            <<  "::::::::::\t   " << this->round+1 << "\t ::::::::::"<<endl
+            <<  "::::::::::\t PRIZE \t ::::::::::"<< endl <<
+                "::::::::::\t   " << this->prize << "\t ::::::::::"<<endl;
+    // cout << "current queue will be: ";
+    // for (auto i = turn.begin(); i != turn.end(); i++)
+    // {
+    //     cout << "player " << *i + 1;
+    //     if (i!=turn.end()-1){
+    //         cout << "->";
+    //     }
+    // }
+    // cout << endl;
     // input action from every players
     while (!turn.empty())
     {
@@ -89,16 +99,45 @@ void GameState::playRound()
         //     }
         // }
         // cout << endl;
+        this->players[nowPlaying].showPlayerInfo();
         actionDo(this->players[nowPlaying].action());
+
     }
     // memasangkan turn untuk next round ke turn deque
     // turn = temp;
     turnStartFrom++;
     // deal kartu ke table kecuali round 6
-    if (this->round == 5){
-        *this->table += this->cardDeck->Draw();
-        this->table->showInventory();
+    if (this->round < 6){
+        // how many cards in the deck
+        // cout << "Deck count:" << this->cardDeck->getInventory().size() << endl;
+        cardDeck->DrawTo(this->table->getInventory());
+        this->table->showTable();
     }
+}
+
+void GameState::gameEnd(Player& winner)
+{
+    cout << ":::::::::: Game End ::::::::::"<<endl;
+    winner.setPlayerPoint(winner.getPlayerPoint() + this->prize);
+    cout << "Player " << winner.getPlayerName() << " won " << this->prize << " points" << endl;
+    this->prize = 64; //reset prize
+    for (int i = 0; i < playerCount; i++)
+    {
+        players[i].showPlayerInfo();
+        players[i].getInventory().clear();
+    }
+    this->table->getInventory().clear();
+}
+
+void GameState::dealCards(int who, int howMany)
+{
+    // shuffle deck
+    this->cardDeck->ShuffleDeck();
+    //dealing card by calling drawCard() from players
+    // adding card to player inventory
+    Deck*& src = this->cardDeck;
+    this->players[who].drawCards(howMany, src);
+    this->players[who].showPlayerInfo();
 }
 
 void GameState::dealAbility()
@@ -122,10 +161,16 @@ void GameState::actionDo(string input)
     if (input == "NEXT"){
         //do nothing
     } else if (input == "DOUBLE"){
-        cout << "prize doubled" << endl;
+        cout << "PRIZE HAS BEEN DOUBLED!" << endl;
+        cout << "FROM \t" << this->prize << " TO\t\t" << this->prize*2 << endl;
+        cout << endl;
+        cout << endl;
         this->prize *= 2;
     } else if (input == "HALF"){
-        cout << "prize halved" << endl;
+        cout << "PRIZE HAS BEEN HALVED!" << endl;
+        cout << "FROM \t" << this->prize << " TO\t\t" << this->prize*2 << endl;
+        cout << endl;
+        cout << endl;
         this->prize /= 2;
     } else if (abilityInput.find(input)!=-1){
         //input ability
@@ -145,3 +190,4 @@ int GameState::nextTurn()
     }
     return nextPlay;
 }
+

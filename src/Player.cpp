@@ -87,18 +87,20 @@ string Player::action()
         {
             cout << "Invalid input, please try again" << endl;
         } else {
-
+            cout << "|||||||||||\t\t" << this->getPlayerName() << "\t\t|||||||||||" << endl;
+            cout << "\t\tHAS CHOSEN TO DO" << input << endl;
+            cout << "===================================================" << endl;
             break;
         }
     } while (valid_inputs.find(input) == -1);
     return input;
 }
 
-void Player::drawCards(int n, Deck* src)
+void Player::drawCards(int n, Deck*& src)
 {
     for (int i = 0; i < n; i++)
     {
-        *this+=src->Draw();
+        src->DrawTo(this->inventory);
     }
      
 }

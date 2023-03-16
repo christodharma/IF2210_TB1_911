@@ -16,7 +16,7 @@ public:
     Deck(string);
     ~Deck();
     void ShuffleDeck();
-    Card& Draw();
+    void DrawTo(vector<Card>&);
 };
 
 #endif

@@ -15,8 +15,7 @@ g++ -o driver_Player driver_Player.cpp ../../src/InventoryHolder.cpp ../../src/P
 int main(){
     Player p1("Alice");
     Player p2("Bobby");
-    Deck<Card> deck;
-    deck.InitiateDeck();
+    Deck deck;
     deck.ShuffleDeck();
     cout << "Player name: "<<p1.getPlayerName() << endl;
     cout << "Player point: "<<p1.getPlayerPoint() << endl;
