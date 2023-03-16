@@ -33,7 +33,10 @@ public:
     //getter
     int getRound() const;
     long int getPrize() const;
-    Deck* getCardDeck();
+    Deck* getCardDeck() const;
+    Player* getPlayers() const;
+    Player& getPlayer(int) const;
+    InventoryHolder& getTable() const;
     //setter
     void setPrize(long int);
 
@@ -43,8 +46,9 @@ public:
     void gameEnd(Player& Winner);
     void dealCards(int playerNumber, int cardCount);
     void dealAbility();
-    void actionDo(string);
+    void actionDo(string, Player*);
     int nextTurn();
+    void printPlayers();
 };
 
 #endif

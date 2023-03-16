@@ -2,7 +2,10 @@
 #define __FOUROFAKIND_HPP__
 
 #include "Valueable.hpp"
-#include "InventoryHolder.hpp"
+#include <iostream>
+using namespace std;
+
+#include "Valueable.hpp"
 
 class FourOfAKind : public Value {
     public:

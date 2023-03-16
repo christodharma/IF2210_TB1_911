@@ -2,7 +2,7 @@
 #define __TWOPAIR_HPP__
 
 #include "Valueable.hpp"
-// #include "InventoryHolder.hpp"
+#include "InventoryHolder.hpp"
 
 using namespace std;
 

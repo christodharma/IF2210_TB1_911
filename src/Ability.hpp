@@ -1,20 +1,23 @@
 #ifndef __ABILITY_HPP__
 #define __ABILITY_HPP__
 
-#include "InventoryHolder.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
 
 class Ability{
 protected:
-    int ammoAbility = 0;
+    bool disabled;
+    bool used;
 public:
     Ability(){};
     virtual ~Ability(){};
     virtual void ability(string){};
     virtual string showAbility();
-    virtual int getAmmoAbility(){return ammoAbility;};
+    virtual bool isDisabled();
+    virtual bool isUsed();
+    virtual void setDisabled(bool);
+    virtual void setUsed(bool);
     void noAbility(string);
 };
 

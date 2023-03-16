@@ -2,7 +2,30 @@
 using namespace std;
 
 void Ability::noAbility(string input){
-    cout << "Ets, tidak bisa. kamu tidak memilki Ability "<<input<<"."<< endl;
+    if (this->isDisabled()) {
+        cout << "Oops kartu ability " << input << "-mu telah dimatikan sebelumnya :()" << endl;
+    } else if (this->isUsed()) {
+        cout << "Kamu sudah menggunakan ability " << input << " sebelumnya." << endl;
+    } else {
+        cout << "Ets, tidak bisa. kamu tidak memilki Ability "<<input<<"."<< endl;
+    }
+    
+}
+
+bool Ability::isDisabled() {
+    return this->disabled;
+}
+
+bool Ability::isUsed() {
+    return this->used;
+}
+
+void Ability::setDisabled(bool b) {
+    this->disabled = b;
+}
+
+void Ability::setUsed(bool b) {
+    this->used = b;
 }
 
 string Ability::showAbility(){
