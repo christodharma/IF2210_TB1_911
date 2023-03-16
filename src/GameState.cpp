@@ -155,3 +155,33 @@ int GameState::nextTurn()
     return nextPlay;
 }
 
+void GameState::showInventory() const
+{
+    cout << "show Deck or Table?(D/T)" << endl;
+    string input;
+    cin >> input;
+    if (input == "D"){
+        Deck::showInventory();
+    } else if (input == "T"){
+        Table::showInventory();
+    } else {
+        cout << "invalid input" << endl;
+    }
+}
+
+vector<Card> &GameState::getInventory(Deck)
+{
+    return Deck::getInventory();
+}
+vector<Card> &GameState::getInventory(Table)
+{
+    return Table::getInventory();
+}
+void GameState::showInventory(Deck) const
+{
+    Deck::showInventory();
+}
+void GameState::showInventory(Table) const
+{
+    Table::showInventory();
+}

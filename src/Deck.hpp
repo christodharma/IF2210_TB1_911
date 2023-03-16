@@ -14,6 +14,14 @@ public:
     ~Deck();
     void ShuffleDeck();
     void DrawTo(vector<Card>&);
+    bool isEmpty();
+    void showInventory() const;
+    vector<Card>& getInventory();
+    // vector<Card>& operator+=(Card&) ;
+    // vector<Card>& operator-=(Card&) ;
+    // vector<Card>& operator+(Card&) ;
+    // vector<Card>& operator-(Card&) ;
+    vector<Card>& operator=(const vector<Card>&) ;
 };
 
 #endif

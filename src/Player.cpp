@@ -108,3 +108,43 @@ bool Player::operator==(Player& other)
 {
     return this->getPlayerPoint() == other.getPlayerPoint();
 }
+
+bool Player::isEmpty()
+{
+    return this->hand->isEmpty();
+}
+
+void Player::showInventory() const
+{
+    this->hand->showInventory();
+}
+
+vector<Card> &Player::getInventory()
+{
+    return this->hand->getInventory();
+}
+
+vector<Card> &Player::operator+=(Card &input )
+{
+    return this->hand->operator+=(input);
+}
+
+vector<Card> &Player::operator-=(Card &input)
+{
+    return this->hand->operator-=(input);
+}
+
+vector<Card> &Player::operator+(Card &input)
+{
+    return this->hand->operator+(input);
+}
+
+vector<Card> &Player::operator-(Card &input)
+{
+    return this->hand->operator-(input);
+}
+
+vector<Card> &Player::operator=(const vector<Card> &copy)
+{
+    return this->hand->operator=(copy);
+}

@@ -5,16 +5,27 @@ Deck::Deck()
     this->_deck = new Inventory;
     for (int i = 0; i < 4; i++)
     {
-        for (int j = 1; j < 14; j++)
+        for (int j = 0; j < 13; j++)
         {
-            if (i==0){
-                this->_deck->getInventory().push_back(Card ('h', j));
-            } else if (i==1){
-                this->_deck->getInventory().push_back(Card ('b', j));
-            } else if (i==2){
-                this->_deck->getInventory().push_back(Card ('k', j));
-            } else if (i==3){
-                this->_deck->getInventory().push_back(Card ('m', j));
+            if (i == 0)
+            {
+                Card card(j+1, 'H');
+                this->_deck->getInventory().push_back(card);
+            }
+            else if (i == 1)
+            {
+                Card card(j+1, 'B');
+                this->_deck->getInventory().push_back(card);
+            }
+            else if (i == 2)
+            {
+                Card card(j+1, 'K');
+                this->_deck->getInventory().push_back(card);
+            }
+            else if (i == 3)
+            {
+                Card card(j+1, 'M');
+                this->_deck->getInventory().push_back(card);
             }
         }
     }
@@ -34,9 +45,48 @@ void Deck::DrawTo(vector<Card>& target)
     if (this->_deck->isEmpty()){
         // throw emptyException
     } else {
-        Card result(this->_deck->getInventory().back());
+        cout << "before draw:" << Deck::getInventory().back() << endl;
+        Card result(Deck::getInventory().back());
         cout << "card drawn: " << result << endl;
         target.push_back(result);
-        this->_deck->getInventory().pop_back();
+        Deck::getInventory().pop_back();
+        cout << "after draw:" << Deck::getInventory().back() << endl;
     }
+}
+
+bool Deck::isEmpty()
+{
+    return this->_deck->isEmpty();
+}
+void Deck::showInventory() const
+{
+    for (int i = 0; i < this->_deck->getInventory().size(); i++)
+    {
+        cout << this->_deck->getInventory()[i].getAngka() << this->_deck->getInventory()[i].getWarna() << " ";
+    }
+    cout << endl;
+}
+vector<Card>& Deck::getInventory()
+{
+    return this->_deck->getInventory();
+}
+// vector<Card>& Deck::operator+=(Card& card)
+// {
+//     return this->_deck->getInventory() += (card);
+// }
+// vector<Card>& Deck::operator-=(Card& card)
+// {
+//     return this->_deck->getInventory() -=(card);
+// }
+// vector<Card>& Deck::operator+(Card& card)
+// {
+//     return this->_deck->getInventory() +(card);
+// }
+// vector<Card>& Deck::operator-(Card& card)
+// {
+//     return this->_deck->getInventory() -(card);
+// }
+vector<Card>& Deck::operator=(const vector<Card>& input)
+{
+    return this->_deck->getInventory().operator=(input);
 }
