@@ -256,6 +256,9 @@ void GameState::actionDo(string input, Player* p)
             }
             int input;
             cin >> input;
+            if (input < 1 || input > this->playerCount) {
+                throw new IndexOutOfRangeException(input);
+            }
             vector<Card> temp = p->getInventory();
             p->setPlayerInventory(this->getPlayer(input-1).getInventory());
             this->getPlayer(input-1).setPlayerInventory(temp);
@@ -279,6 +282,9 @@ void GameState::actionDo(string input, Player* p)
             }
             int p1, p2, c1, c2;
             cin >> p1;
+            if (p1 < 1 || p1 > this->playerCount) {
+                throw new IndexOutOfRangeException(p1);
+            }
             cout << "Silakan pilih pemain lain yang kartunya ingin Anda tukar:" << endl;
             for (int i = 0; i < this->playerCount; i++) {
                 if (this->players[i].getPlayerName() != p->getPlayerName() && this->players[i].getPlayerName() != this->getPlayer(p1-1).getPlayerName()) {
@@ -286,14 +292,23 @@ void GameState::actionDo(string input, Player* p)
                 }
             }
             cin >> p2;
+            if (p2 < 1 || p2 > this->playerCount) {
+                throw new IndexOutOfRangeException(p2);
+            }
             cout << "Silakan pilih kartu kanan/kiri " << this->getPlayer(p1-1).getPlayerName() << endl;
             cout << "   1. Kiri" << endl;
             cout << "   2. Kanan" << endl;
             cin >> c1;
+            if (c1 < 1 || c1 > 2) {
+                throw new IndexOutOfRangeException(c1);
+            }
             cout << "Silakan pilih kartu kanan/kiri " << this->getPlayer(p2-1).getPlayerName() << endl;
             cout << "   1. Kiri" << endl;
             cout << "   2. Kanan" << endl;
             cin >> c2;
+            if (c2 < 1 || c2 > 2) {
+                throw new IndexOutOfRangeException(c2);
+            }
             Card temp = this->getPlayer(p1-1).getInventory()[c1-1];
             this->getPlayer(p1-1).getInventory()[c1-1] = this->getPlayer(p2-1).getInventory()[c2-1];
             this->getPlayer(p2-1).getInventory()[c2-1] = temp;
