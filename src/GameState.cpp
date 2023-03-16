@@ -90,7 +90,10 @@ void GameState::playRound()
     deque<int> temp;
     // set start from turnStartFrom
     // show current round
-    cout << ":::::::::: Round " << this->round+1 << " ::::::::::"<<endl;
+    cout    <<  "::::::::::\t ROUND \t ::::::::::"          << endl 
+            <<  "::::::::::\t   " << this->round+1 << "\t ::::::::::"<<endl
+            <<  "::::::::::\t PRIZE \t ::::::::::"<< endl <<
+                "::::::::::\t   " << this->prize << "\t ::::::::::"<<endl;
     cout << "current queue will be: ";
     for (int i=0; i<turn.size(); i++)
     {
@@ -144,7 +147,7 @@ void GameState::playRound()
 
 void GameState::gameEnd(Player& winner)
 {
-    cout << ":::::::::: Game End ::::::::::"<<endl;
+    cout <<",---.                   |                                |         |\n|  _.,---.,-.-.,---.    |---.,---.,---.    ,---.,---.,---|,---.,---|\n|   |,---|| | ||---'    |   |,---|`---.    |---'|   ||   ||---'|   |\n`---'`---^` ' '`---'    `   '`---^`---'    `---'`   '`---'`---'`---'\n" << endl;
     winner.setPlayerPoint(winner.getPlayerPoint() + this->prize);
     cout << "Player " << winner.getPlayerName() << " won " << this->prize << " points" << endl;
     this->prize = 64; //reset prize

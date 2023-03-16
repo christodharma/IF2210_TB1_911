@@ -95,11 +95,13 @@ string Player::action()
     do
     {
         cout << "Input your action, "<<this->getPlayerName()<<"! ";
-        cin >> input;
+        // cin >> input;
+        input = "NEXT";
         if (valid_inputs.find(input) == -1)
         {
             cout << "Invalid input, please try again" << endl;
         } else {
+            cout << endl;
             cout << "|||||||||||\t\t" << this->getPlayerName() << "\t\t|||||||||||" << endl;
             cout << "\t\tHAS CHOSEN TO DO " << input << endl;
             cout << "===================================================" << endl;
