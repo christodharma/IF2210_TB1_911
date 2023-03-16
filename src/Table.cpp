@@ -11,10 +11,12 @@ Table::~Table()
 
 void Table::showTable()
 {
+    cout << "=======================================" << endl;
     cout << "Table: ";
     for (int i = 0; i < this->inventory.size(); i++)
     {
-        cout << this->inventory[i] << " ";
+        cout << this->inventory[i] << "\t";
     }
     cout << endl;
+    cout << "=======================================" << endl;
 }

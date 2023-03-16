@@ -25,6 +25,10 @@ GameState::GameState(Player*& p, int n)
     "ABILITYLESS"
     };
     cout << "Game State initiated" << endl;
+    cout    <<  "::::::::::\t ROUND \t ::::::::::"          << endl 
+            <<  "::::::::::\t   " << this->round+1 << "\t ::::::::::"<<endl
+            <<  "::::::::::\t PRIZE \t ::::::::::"<< endl <<
+                "::::::::::\t   " << this->prize << "\t ::::::::::"<<endl;
 }
  
 GameState::~GameState()
@@ -69,16 +73,19 @@ void GameState::playRound()
     turn.push_back((i+turnStartFrom)%7);
     }
     // show current round
-    cout << ":::::::::: Round " << this->round+1 << " ::::::::::"<<endl;
-    cout << "current queue will be: ";
-    for (auto i = turn.begin(); i != turn.end(); i++)
-    {
-        cout << "player " << *i + 1;
-        if (i!=turn.end()-1){
-            cout << "->";
-        }
-    }
-    cout << endl;
+    cout    <<  "::::::::::\t ROUND \t ::::::::::"          << endl 
+            <<  "::::::::::\t   " << this->round+1 << "\t ::::::::::"<<endl
+            <<  "::::::::::\t PRIZE \t ::::::::::"<< endl <<
+                "::::::::::\t   " << this->prize << "\t ::::::::::"<<endl;
+    // cout << "current queue will be: ";
+    // for (auto i = turn.begin(); i != turn.end(); i++)
+    // {
+    //     cout << "player " << *i + 1;
+    //     if (i!=turn.end()-1){
+    //         cout << "->";
+    //     }
+    // }
+    // cout << endl;
     // input action from every players
     while (!turn.empty())
     {
@@ -92,8 +99,9 @@ void GameState::playRound()
         //     }
         // }
         // cout << endl;
-        actionDo("NEXT");
-        // actionDo(this->players[nowPlaying].action());
+        this->players[nowPlaying].showPlayerInfo();
+        actionDo(this->players[nowPlaying].action());
+
     }
     // memasangkan turn untuk next round ke turn deque
     // turn = temp;
@@ -101,9 +109,9 @@ void GameState::playRound()
     // deal kartu ke table kecuali round 6
     if (this->round < 6){
         // how many cards in the deck
-        cout << "Deck count:" << this->cardDeck->getInventory().size() << endl;
+        // cout << "Deck count:" << this->cardDeck->getInventory().size() << endl;
         cardDeck->DrawTo(this->table->getInventory());
-        this->table->showInventory();
+        this->table->showTable();
     }
 }
 
@@ -116,7 +124,9 @@ void GameState::gameEnd(Player& winner)
     for (int i = 0; i < playerCount; i++)
     {
         players[i].showPlayerInfo();
+        players[i].getInventory().clear();
     }
+    this->table->getInventory().clear();
 }
 
 void GameState::dealCards(int who, int howMany)
@@ -151,10 +161,16 @@ void GameState::actionDo(string input)
     if (input == "NEXT"){
         //do nothing
     } else if (input == "DOUBLE"){
-        cout << "prize doubled" << endl;
+        cout << "PRIZE HAS BEEN DOUBLED!" << endl;
+        cout << "FROM \t" << this->prize << " TO\t\t" << this->prize*2 << endl;
+        cout << endl;
+        cout << endl;
         this->prize *= 2;
     } else if (input == "HALF"){
-        cout << "prize halved" << endl;
+        cout << "PRIZE HAS BEEN HALVED!" << endl;
+        cout << "FROM \t" << this->prize << " TO\t\t" << this->prize*2 << endl;
+        cout << endl;
+        cout << endl;
         this->prize /= 2;
     } else if (abilityInput.find(input)!=-1){
         //input ability

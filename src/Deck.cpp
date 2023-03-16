@@ -33,7 +33,7 @@ void Deck::DrawTo(vector<Card>& target)
         // throw emptyException
     } else {
         Card result(this->inventory.back().getAngka(), this->inventory.back().getWarna());
-        cout << "card drawn: " << result << endl;
+        // cout << "card drawn: " << result << endl;
         target.push_back(result);
         this->inventory.pop_back();
     }

@@ -21,15 +21,19 @@ g++ main.cpp ..\\src\\Card.cpp ..\\src\\GameState.cpp ..\\src\\InventoryHolder.c
 int main(){
     bool gameIsOngoing = true;
     int playerCount = 7;
-    long int win = 2000000; //set sebagai limit atau set sampai overflow
+    long int win = pow(2,32);
     Player* players = new Player[playerCount];
-    while (findMax(players, playerCount).getPlayerPoint() < win && gameIsOngoing)
+    while (findMax(players, playerCount).getPlayerPoint() < win)
     {
         GameState game(players,playerCount);
         while (game.getRound() < 6)
         {
             //game loop
             if (game.getRound() == 0){
+                cout << "\tIn this round, you will get 2 cards\t" << endl
+                    << "\tPress enter to continue\t" << endl;
+                cin.ignore();
+                cin.get();
                 for (int i = 0; i < playerCount; i++)
                 {
                     game.dealCards(i,2);
@@ -39,6 +43,10 @@ int main(){
                     players[i].showPlayerInfo();
                 }
             } else if (game.getRound() == 1){
+                cout << "\tIn this round, you will get an ability!\t" << endl
+                    << "\tPress enter to continue\t" << endl;
+                cin.ignore();
+                cin.get();
                 game.dealAbility();
                 for (int i = 0; i < playerCount; i++)
                 {
@@ -48,12 +56,13 @@ int main(){
             game.playRound();
             game.nextRound();
         }
-        game.gameEnd(players[0]);
-        gameIsOngoing = false;
+        game.gameEnd(players[0]); // Pemain menang
+        cout << "Game ended" << endl
+            << "Press enter to continue" << endl;
+        cin.ignore();
+        cin.get();
     }
-    // I.S. limit menang != pow(2,32) emphasis: TIDAK SAMA DENGAN
     // F.S. SATU game selesai dan pemain PERTAMA menang
     // set sesuai mekanik game
-    // cin.ignore();
     return 0;
 }
