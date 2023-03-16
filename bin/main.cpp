@@ -28,7 +28,9 @@ int main(){
         GameState game(players,playerCount);
         while (game.getRound() < 6)
         {
-            //game loop
+            try
+            {
+                //game loop
             if (game.getRound() == 0){
                 for (int i = 0; i < playerCount; i++)
                 {
@@ -55,35 +57,13 @@ int main(){
             }
             game.playRound();
             game.nextRound();
+            }
+            catch(Exception* e)
+            {
+                e->what();
+            }
+            
         }
-        // GameState* gameptr = new GameState(players, playerCount);
-        // GameManager game(gameptr, players);
-        // while (game.getGameState()->getRound() < 6)
-        // {
-        //     //game loop
-        //     if (game.getGameState()->getRound() == 0){
-        //         for (int i = 0; i < playerCount; i++)
-        //         {
-        //             game.getGameState()->dealCards(i,2);
-        //         }
-        //         for (int i = 0; i < playerCount; i++)
-        //         {
-        //             players[i].showPlayerInfo();
-        //         }
-        //     } else if (game.getGameState()->getRound() == 1){
-        //         game.getGameState()->dealAbility();
-        //         for (int i = 0; i < playerCount; i++)
-        //         {
-        //             players[i].showPlayerInfo();
-        //         }
-        //     } else if (game.getGameState()->getRound() == 5){
-        //         findMax(game.getPlayers(), playerCount).setPlayerPoint(game.getGameState()->getPrize());
-        //     }
-        //     game.getGameState()->playRound();
-        //     game.getGameState()->nextRound();
-        // }
-        // delete game.getGameState();
-        // delete gameptr;
     }
     // cin.ignore();
     return 0;

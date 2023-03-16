@@ -2,6 +2,7 @@
 #define __INVENTORYHOLDER_HPP__
 
 #include "Card.hpp"
+#include "Exception.hpp"
 #include <vector>
 #include <string>
 #include <utility>

@@ -54,9 +54,9 @@ class InventoryHolderException : public Exception {
     public:
         InventoryHolderException(){}
         void what(){
+            //handling exception
             cout << "Inventory Holder tidak dapat diakes secara langsung!" << endl;
         }
-    
 };
 
 // class FalseAction : public Exceptio
