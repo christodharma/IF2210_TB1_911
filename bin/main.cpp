@@ -33,7 +33,7 @@ g++ -o kompetisiKartu main.cpp ../src/*.cpp ; if ($?) {./kompetisiKartu}
 int main(){
     bool gameIsOngoing = true;
     int playerCount = 7;
-    long int win = pow(2,32);
+    double win = pow(2,32);
     splashScreen();
     Player* players = new Player[playerCount];
     while (findMax(players, playerCount).getPlayerPoint() < win)
@@ -86,14 +86,31 @@ int main(){
                     cout << players[i].getPlayerName() << " : " << combs[i].getValue() << " " << combs[i].getType() << endl;
                     points[i] = combs[i].getValue();
                 }
+
                 double winnersPoint = findMax(points, playerCount);
-                int winnerIndex;
+                vector<int> winnerIndex;
                 for (int i=0; i<playerCount; i++) {
                     if (points[i] == winnersPoint) {
-                        winnerIndex = i;
+                        winnerIndex.push_back(i);
                     }
                 }
-                game.gameEnd(players[winnerIndex]);
+
+                while (winnerIndex.size() > 1) {
+                    for (int i=0; i<winnerIndex.size(); i++) {
+                        combs[winnerIndex[i]].recalculate();
+                        points[winnerIndex[i]] = combs[winnerIndex[i]].getValue();
+                    }
+
+                    winnersPoint = findMax(points, playerCount);
+                    winnerIndex.clear();
+                    for (int i=0; i<playerCount; i++) {
+                        if (points[i] == winnersPoint) {
+                            winnerIndex.push_back(i);
+                        }
+                    }
+                }
+
+                game.gameEnd(players[winnerIndex[0]]);
             }
             for (int i = 0; i < playerCount; i++)
             {
