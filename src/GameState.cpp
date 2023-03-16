@@ -5,7 +5,7 @@ int GameState::turnStartFrom = 0;
 deque<int> GameState::turn;
 
 
-GameState::GameState(Player* p, int n)
+GameState::GameState(Player*& p, int n)
 {
     this->round = 0;
     this->prize = 64;

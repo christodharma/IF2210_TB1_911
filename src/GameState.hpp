@@ -24,11 +24,10 @@ private:
     long long int prize;
     Deck* cardDeck;
     Table* table;
-    Player* players; //array of players buat nampung + urutan action
-    //mungkin implement queue/deque buat round robin urutan action
+    Player* players;
 public:
     //ctor dengan menerima player yang sudah dideklarasi dan n player
-    GameState(Player*, int n);
+    GameState(Player*&, int n);
     ~GameState();
 
     //getter
