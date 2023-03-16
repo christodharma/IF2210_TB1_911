@@ -12,6 +12,7 @@ private:
 public:
     Deck();
     ~Deck();
+    void InitializeDeck();
     void ShuffleDeck();
     void DrawTo(vector<Card>&);
 };
