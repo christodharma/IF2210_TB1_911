@@ -122,7 +122,7 @@ void GameState::playRound()
             nowPlaying = this->turn.at((turnStartFrom+i)%7);
             temp.push_front(nowPlaying);
         }
-        actionDo(this->players[nowPlaying].action(), &(this->players[nowPlaying]));
+        actionDo(this->players[nowPlaying].action(), &(this->players[nowPlaying]), nowPlaying);
     }
     // memasangkan turn untuk next round ke turn deque
     // turn = temp;
@@ -187,7 +187,7 @@ void GameState::dealAbility()
     }
 }
 
-void GameState::actionDo(string input, Player* p)
+void GameState::actionDo(string input, Player* p, int currentTurn)
 {
     string abilityInput = "RE-ROLLQUADRUPLEQUARTERREVERSESWAPCARDSWITCHABILITYLESS";
     
@@ -217,7 +217,7 @@ void GameState::actionDo(string input, Player* p)
             p->getPlayerAbility()->setUsed(true);
         } else {
             p->getPlayerAbility()->noAbility(input);
-            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+            actionDo(this->players[currentTurn].action(), p, currentTurn);
         }
 
     } else if (input == "QUARTER") {
@@ -228,7 +228,7 @@ void GameState::actionDo(string input, Player* p)
             p->getPlayerAbility()->setUsed(true);
         } else {
             p->getPlayerAbility()->noAbility(input);
-            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+            actionDo(this->players[currentTurn].action(), p, currentTurn);
         }
     } else if (input == "RE-ROLL") {
         if (p->getPlayerAbility()->showAbility() == "RE-ROLL" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
@@ -240,11 +240,13 @@ void GameState::actionDo(string input, Player* p)
             p->getPlayerAbility()->setUsed(true);
         } else {
             p->getPlayerAbility()->noAbility(input);
-            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+            actionDo(this->players[currentTurn].action(), p, currentTurn);
         }
 
     } else if (input == "SWITCH") {
         if (p->getPlayerAbility()->showAbility() == "SWITCH" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
+            try
+            {
             cout << p->getPlayerName() << " melakukan SWITCH!" << endl;
             cout << "Kartumu sekarang adalah: " << endl;
             p->showInventory();
@@ -266,13 +268,18 @@ void GameState::actionDo(string input, Player* p)
             cout << "Kartumu sekarang adalah: " << endl;
             p->showInventory();
             p->getPlayerAbility()->setUsed(true);
+            } catch (IndexOutOfRangeException* e) {
+                cout << "Input tidak valid. Silakan coba lagi." << endl;
+                actionDo("SWITCH", p, currentTurn);
+            }
         } else {
             p->getPlayerAbility()->noAbility(input);
-            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+            actionDo(this->players[currentTurn].action(), p, currentTurn);
         }
 
     } else if (input == "SWAP") {
         if (p->getPlayerAbility()->showAbility() == "SWAPCARD" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
+            try {
             cout << p->getPlayerName() << " melakukan SWAP!" << endl;
             cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
             for (int i = 0; i < this->playerCount; i++) {
@@ -316,10 +323,14 @@ void GameState::actionDo(string input, Player* p)
             this->getPlayer(p2-1).showInventory();
 
             p->getPlayerAbility()->setUsed(true);
-
+            }
+            catch (IndexOutOfRangeException* e) {
+                cout << "Input tidak valid!" << endl;
+                actionDo("SWAP", p, currentTurn);
+            }
         } else {
             p->getPlayerAbility()->noAbility(input);
-            // actionDo(this->players[this->nextTurn()].action(), &(this->players[this->nextTurn()]));
+            actionDo(this->players[currentTurn].action(), p, currentTurn);
         }
     }
 
@@ -351,8 +362,13 @@ void GameState::actionDo(string input, Player* p)
                         cout << "   " << i+1 << ". " << this->players[i].getPlayerName() << endl;
                     }
                 }
-                int pinput;
-                cin >> pinput;
+                try
+                {
+                    int pinput;
+                    cin >> pinput;
+                    if (pinput < 1 || pinput > this->playerCount) {
+                        throw new IndexOutOfRangeException(pinput);
+                    }                
                 if (this->getPlayer(pinput-1).doesHaveAbility() && !this->getPlayer(pinput-1).getPlayerAbility()->isUsed()) {
                     this->getPlayer(pinput-1).getPlayerAbility()->setDisabled(true);
                     cout << "Kartu ability " << this->getPlayer(pinput-1).getPlayerName() << " telah dimatikan." << endl;
@@ -360,13 +376,19 @@ void GameState::actionDo(string input, Player* p)
                 } else if (this->getPlayer(pinput-1).getPlayerAbility()->isUsed()) {
                     cout << "Kartu ability " << this->getPlayer(pinput-1).getPlayerName() << " telah dipakai sebelumnya. Yah, sayang penggunaan kartu ini sia-sia" << endl;
                 }
-                
+                }
+                catch (IndexOutOfRangeException* e) {
+                    cout << "Input tidak valid!" << endl;
+                    actionDo("ABILITYLESS", p, currentTurn);
+                }
             } else {
                 cout << "Eitss, ternyata semua pemain sudah memakai kartu kemampuan. Yah, penggunaan kartu ini sia-sia" << endl;
             }
             p->getPlayerAbility()->setUsed(true);
         } else {
             p->getPlayerAbility()->noAbility(input);
+            actionDo(this->players[currentTurn].action(), p, currentTurn);
+
         }
     }
 

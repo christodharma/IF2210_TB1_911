@@ -47,7 +47,7 @@ public:
     void gameEnd(Player& Winner);
     void dealCards(int playerNumber, int cardCount);
     void dealAbility();
-    void actionDo(string, Player*);
+    void actionDo(string, Player* p, int currentTurn);
     int nextTurn();
     void printPlayers();
 };
