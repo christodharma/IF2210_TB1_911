@@ -2,9 +2,8 @@
 #define __PLAYER_HPP__
 
 #include "InventoryHolder.hpp"
+#include "Inventory.hpp"
 #include "Ability.hpp"
-#include "Card.hpp"
-#include "Deck.hpp"
 #include "Generics.hpp"
 #include <string>
 #include <iostream>
@@ -20,6 +19,7 @@ private:
     string playerName;
     long int point;
     Ability* ability;
+    InventoryHolder* hand;
 public:
     Player();
     Player(string);
@@ -36,24 +36,11 @@ public:
     /*Player method*/
     void showPlayerInfo() const;
     string action();
-    void drawCards(int, Deck*&);
 
     /*operator overloads*/
     bool operator>(Player&);
     bool operator<(Player&);
     bool operator==(Player&);
-    
-    /*function from parent class inheritance*/
-    /*Ability member functions*/
-    //TBD
-    // void action_half();
-    // void action_reroll();
-    // void action_quadruple();
-    // void action_quarter();
-    // void action_reverse();
-    // void action_swapcard();
-    // void action_switch();
-    // void action_abilityless();
 };
 
 #endif

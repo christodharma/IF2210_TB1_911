@@ -12,18 +12,18 @@ using namespace std;
 // Kelas abstract yang di-inherit ke GameState dan Player
 // Berkaitan dalam hal kepemilikan kartu
 class InventoryHolder{
-protected:
-    vector<Card> inventory;
 public:
     InventoryHolder();
-    ~InventoryHolder();
-    bool isEmpty();
-    void showInventory() const;
-    vector<Card>& getInventory();
-    vector<Card>& operator+=(Card&);
-    vector<Card>& operator-=(Card&);
-    vector<Card>& operator+(Card&);
-    vector<Card>& operator-(Card&);
+    virtual ~InventoryHolder();
+    virtual bool isEmpty();
+    virtual void showInventory() const;
+    virtual vector<Card>& getInventory();
+    virtual vector<Card>& operator+=(Card&);
+    virtual vector<Card>& operator-=(Card&);
+    virtual vector<Card>& operator+(Card&);
+    virtual vector<Card>& operator-(Card&);
+    virtual vector<Card>& operator=(const vector<Card>&);
+    static vector<Card> emptyInventory; //dummy inventory if inventoryHolder methods is called
 };
 
 #endif

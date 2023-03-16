@@ -5,6 +5,7 @@
 using namespace std;
 
 map<char,double> Valueable::valueMap = {
+    {' ', 0.0},
     {'H', 0.0},
     {'B', 0.03},
     {'K', 0.06},

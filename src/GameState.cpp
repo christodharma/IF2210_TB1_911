@@ -5,14 +5,12 @@ int GameState::turnStartFrom = 0;
 deque<int> GameState::turn;
 
 
-GameState::GameState(Player*& p, int n)
+GameState::GameState(Player*& p, int n) : Deck(), Table()
 {
     this->round = 0;
     this->prize = 64;
     this->players = p;
     this->playerCount = n;
-    this->table = new Table();
-    this->cardDeck = new Deck();
     this->prize = 64;
     this->abilities =
     {
@@ -32,8 +30,6 @@ GameState::~GameState()
     long int prize = 64;
     bool reverseTurn = false;
     int turnStartFrom = 0;
-    delete this->cardDeck;
-    delete this->table; 
 }
 
 int GameState::getRound() const
@@ -44,11 +40,6 @@ int GameState::getRound() const
 long int GameState::getPrize() const
 {
     return this->prize;
-}
-
-Deck *GameState::getCardDeck()
-{
-    return this->cardDeck;
 }
 
 void GameState::setPrize(long int input)
@@ -101,23 +92,22 @@ void GameState::playRound()
     // deal kartu ke table kecuali round 6
     if (this->round <= 5){
         // how many cards in the deck
-        cout << "Deck count:" << this->cardDeck->getInventory().size() << endl;
-        cardDeck->DrawTo(this->table->getInventory());
-        this->table->showInventory();
+        cout << "Deck count:" << Deck::getInventory().size() << endl;
+        DrawTo(Table::getInventory());
+        Table::showInventory();
     } else {
         
     }
 }
 
-void GameState::dealCards(int who, int howMany)
+void GameState::dealCards(Player& who, int howMany)
 {
-    // shuffle deck
-    this->cardDeck->ShuffleDeck();
-    //dealing card by calling drawCard() from players
     // adding card to player inventory
-    Deck*& src = this->cardDeck;
-    this->players[who].drawCards(howMany, src);
-    this->players[who].showPlayerInfo();
+    for (int i = 0; i < howMany; i++)
+    {
+        DrawTo(who.getInventory());
+    }
+    who.showPlayerInfo();
 }
 
 void GameState::dealAbility()

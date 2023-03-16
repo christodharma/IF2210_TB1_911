@@ -9,7 +9,12 @@ Card::Card(int a, char w){
 Card::Card(char w, int a){
     this->kartu = make_pair(toupper(w), a);
 }
-Card::~Card(){
+Card::Card(const Card &other)
+{
+    this->kartu = make_pair(toupper(other.kartu.first), other.kartu.second);
+}
+Card::~Card()
+{
 }
 
 char Card::getWarna() const{

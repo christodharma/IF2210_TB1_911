@@ -1,7 +1,6 @@
 #ifndef __ABILITY_HPP__
 #define __ABILITY_HPP__
 
-#include "InventoryHolder.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -14,7 +13,7 @@ public:
     virtual ~Ability(){};
     virtual void ability(string){};
     virtual string showAbility();
-    virtual int getAmmoAbility(){return ammoAbility;};
+    virtual int getAmmoAbility();
     void noAbility(string);
 };
 

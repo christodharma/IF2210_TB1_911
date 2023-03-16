@@ -1,20 +1,22 @@
 #include "Table.hpp"
 
-Table::Table() : InventoryHolder()
+Table::Table()
 {
-    cout << "Table initiated" << endl;
+    this->_table = new Inventory();
 }
 
 Table::~Table()
 {
+    delete this->_table;
 } 
 
-void Table::showTable()
+void Table::showInventory() const
 {
     cout << "Table: ";
-    for (int i = 0; i < this->inventory.size(); i++)
+    for (int i = 0; i < this->_table->getInventory().size(); i++)
     {
-        cout << this->inventory[i] << " ";
+        cout << this->_table->getInventory()[i] << " ";
     }
+    
     cout << endl;
 }

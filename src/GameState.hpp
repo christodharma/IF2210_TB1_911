@@ -14,7 +14,7 @@
 #include <chrono>
 using namespace std;
 
-class GameState{
+class GameState : public Deck, public Table{
 private:
     static deque<int> turn;
     static int turnStartFrom;
@@ -22,8 +22,6 @@ private:
     int round,playerCount;
     vector<string> abilities;
     long long int prize;
-    Deck* cardDeck;
-    Table* table;
     Player* players;
 public:
     //ctor dengan menerima player yang sudah dideklarasi dan n player
@@ -33,14 +31,13 @@ public:
     //getter
     int getRound() const;
     long int getPrize() const;
-    Deck* getCardDeck();
     //setter
     void setPrize(long int);
 
     //gamestate methods
     void nextRound();
     void playRound();
-    void dealCards(int playerNumber, int cardCount);
+    void dealCards(Player& who, int cardCount);
     void dealAbility();
     void actionDo(string);
     int nextTurn();

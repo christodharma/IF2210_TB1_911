@@ -2,10 +2,13 @@
 #define __DECK_HPP__
 
 #include "InventoryHolder.hpp"
+#include "Inventory.hpp"
 #include "Card.hpp"
 #include "Generics.hpp"
 
 class Deck : virtual public InventoryHolder{
+private:
+    InventoryHolder* _deck;
 public:
     Deck();
     ~Deck();

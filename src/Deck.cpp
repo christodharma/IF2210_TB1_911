@@ -1,22 +1,24 @@
 #include "Deck.hpp"
 
-Deck::Deck() : InventoryHolder()
+Deck::Deck()
 {
+    this->_deck = new Inventory;
     for (int i = 0; i < 4; i++)
     {
         for (int j = 1; j < 14; j++)
         {
             if (i==0){
-                this->inventory.push_back(Card ('h', j));
+                this->_deck->getInventory().push_back(Card ('h', j));
             } else if (i==1){
-                this->inventory.push_back(Card ('b', j));
+                this->_deck->getInventory().push_back(Card ('b', j));
             } else if (i==2){
-                this->inventory.push_back(Card ('k', j));
+                this->_deck->getInventory().push_back(Card ('k', j));
             } else if (i==3){
-                this->inventory.push_back(Card ('m', j));
+                this->_deck->getInventory().push_back(Card ('m', j));
             }
         }
     }
+    ShuffleDeck();
 }
 
 Deck::~Deck(){}
@@ -24,34 +26,17 @@ Deck::~Deck(){}
 void Deck::ShuffleDeck()
 {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::shuffle(this->inventory.begin(), this->inventory.end(), std::default_random_engine(seed));
+    std::shuffle(this->_deck->getInventory().begin(), this->_deck->getInventory().end(), std::default_random_engine(seed));
 }
 
 void Deck::DrawTo(vector<Card>& target)
 {
-    if (this->inventory.empty()){
+    if (this->_deck->isEmpty()){
         // throw emptyException
     } else {
-        Card result(this->inventory.back().getAngka(), this->inventory.back().getWarna());
+        Card result(this->_deck->getInventory().back());
         cout << "card drawn: " << result << endl;
         target.push_back(result);
-        this->inventory.pop_back();
+        this->_deck->getInventory().pop_back();
     }
 }
-// template<>
-// Deck<Card>::Deck() : InventoryHolder<Card>(){}
-// template<>
-// Deck<Card>::~Deck(){}
-// template<>
-// void Deck<Card>::ShuffleDeck()
-// {
-//     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-//     std::shuffle(this->inventory.begin(), this->inventory.end(), std::default_random_engine(seed));
-// }
-// template<>
-// Card& Deck<Card>::Draw()
-// {
-//     Card& result = this->inventory.back();
-//     this->inventory.pop_back();
-//     return result;
-// }

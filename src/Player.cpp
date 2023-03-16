@@ -1,8 +1,6 @@
 #include "Player.hpp"
-#include <iostream>
-using namespace std;
 
-Player::Player() : InventoryHolder()
+Player::Player()
 {
     string name;
     cout<<"Please insert player name: ";
@@ -10,18 +8,22 @@ Player::Player() : InventoryHolder()
     this->playerName = name;
     this->point = 0;
     this->ability = new Ability;
+    this->hand = new Inventory;
     cout << "Player " << name << " initiated" << endl;
 }
 
-Player::Player(string name) : InventoryHolder()
+Player::Player(string name)
 {
     this->playerName = name;
     this->point = 0;
     this->ability = new Ability;
+    this->hand = new Inventory;
     cout << "Player " << name << " initiated" << endl;
 }
 
 Player::~Player(){
+    delete this->ability;
+    delete this->hand;
 }
 
 string Player::getPlayerName()const {
@@ -69,9 +71,9 @@ void Player::showPlayerInfo() const
     cout << "==========\tPlayer Info\t==========" <<endl;
     cout << "Player name: "<<this->getPlayerName() << endl;
     cout << "Player point: "<<this->getPlayerPoint() << endl;
-    cout << "Player ability: "<<this->ability->showAbility() << endl;
+    // cout << "Player ability: "<<ability->showAbility() << endl; // error
     cout << "Player inventory: " << endl;
-    this->showInventory();
+    this->hand->showInventory();
 }
 
 string Player::action()
@@ -92,15 +94,6 @@ string Player::action()
         }
     } while (valid_inputs.find(input) == -1);
     return input;
-}
-
-void Player::drawCards(int n, Deck*& src)
-{
-    for (int i = 0; i < n; i++)
-    {
-        src->DrawTo(this->inventory);
-    }
-     
 }
 
 bool Player::operator>(Player& other)

@@ -6,7 +6,12 @@ void Ability::noAbility(string input){
 }
 
 string Ability::showAbility(){
-    return "NONE";
+    return " ";
+}
+
+int Ability::getAmmoAbility()
+{
+    return 0;
 }
 
 void ReRoll::ability(string input){
