@@ -44,7 +44,7 @@ Combination::~Combination(){
 
 void Combination::calculate() {
     if(isThereStraightFlush()){
-        this->value = new StraightFlush(this->hold, this->mapcard);
+        this->value = new StraightFlush(this->mapcard);
         this->type = "Straight Flush";
     }
     else if (this->isThere4Angka()) {
@@ -72,18 +72,18 @@ void Combination::calculate() {
         this->type = "Full House";
     }
     else if (this->isThereFlush()) {
-        this->value = new Flush(this->hold, this->mapcard);
+        this->value = new Flush(this->mapcard);
         this->type = "Flush";
     }
     else if (this->isThereStraight()) {
-        this->value = new Straight(this->hold, this->mapcard);
+        this->value = new Straight(this->mapcard);
     }
     else if (this->isThere3Angka()) {
-        this->value = new ThreeOfAKind(this->hold, this->mapcard);
+        this->value = new ThreeOfAKind(this->mapcard);
         this->type = "Three Of A Kind";
     }
     else if (this->isThereTwoPair()) {
-        this->value = new TwoPair(this->hold, this->mapcard);
+        this->value = new TwoPair(this->mapcard);
         this->type = "Two Pair";
     }
     else if(isTherePair()){
@@ -100,7 +100,7 @@ void Combination::recalculate() {
     while(true){
         Value *temp;
         if (isThereStraightFlush()) {
-            temp = new StraightFlush(this->hold, this->mapcard);
+            temp = new StraightFlush(this->mapcard);
             if (this->getValue() != temp->getValue()) {
                 this->value = temp;
                 this->type = "Straight Flush";
@@ -144,7 +144,7 @@ void Combination::recalculate() {
             }
         }
         if (isThereFlush()) {
-            temp = new Flush(this->hold, this->mapcard);
+            temp = new Flush(this->mapcard);
             if (this->getValue() != temp->getValue()) {
                 this->value = temp;
                 this->type = "Flush";
@@ -152,7 +152,7 @@ void Combination::recalculate() {
             }
         }
         if (isThereStraight()) {
-            temp = new Straight(this->hold, this->mapcard);
+            temp = new Straight(this->mapcard);
             if (this->getValue() != temp->getValue()) {
                 this->value = temp;
                 this->type = "Straight";
@@ -160,7 +160,7 @@ void Combination::recalculate() {
             }
         }
         if (isThere3Angka()) {
-            temp = new ThreeOfAKind(this->hold, this->mapcard);
+            temp = new ThreeOfAKind(this->mapcard);
             if (this->getValue() != temp->getValue()) {
                 this->value = temp;
                 this->type = "Three Of A Kind";
@@ -168,7 +168,7 @@ void Combination::recalculate() {
             }
         }
         if (isThereTwoPair()) {
-            temp = new TwoPair(this->hold, this->mapcard);
+            temp = new TwoPair(this->mapcard);
             if (this->getValue() != temp->getValue()) {
                 this->value = temp;
                 this->type = "Two Pair";

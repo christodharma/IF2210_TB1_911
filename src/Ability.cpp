@@ -39,7 +39,6 @@ void ReRoll::ability(string input){
     } else {
         noAbility(input);
     }
-    ammoAbility--;
 }
 void Quadruple::ability(string input){
     string valid = "QUADRUPLE";
@@ -48,7 +47,6 @@ void Quadruple::ability(string input){
     } else {
         noAbility(input);
     }
-    ammoAbility--;
 }
 void Quarter::ability(string input){
     string valid = "QUARTER";
@@ -57,7 +55,6 @@ void Quarter::ability(string input){
     } else {
         noAbility(input);
     }
-    ammoAbility--;
 }
 void ReverseDirection::ability(string input){
     string valid = "REVERSEDIRECTION";
@@ -66,7 +63,6 @@ void ReverseDirection::ability(string input){
     } else {
         noAbility(input);
     }
-    ammoAbility--;
 }
 void SwapCard::ability(string input){
     string valid = "SWAPCARD";
@@ -75,7 +71,6 @@ void SwapCard::ability(string input){
     } else {
         noAbility(input);
     }
-    ammoAbility--;
 }
 void Switch::ability(string input){
     string valid = "SWITCH";
@@ -84,7 +79,6 @@ void Switch::ability(string input){
     } else {
         noAbility(input);
     }
-    ammoAbility--;
 }
 void Abilityless::ability(string input, Ability* targetAb){
     string valid = "ABILITYLESS";
@@ -96,35 +90,7 @@ void Abilityless::ability(string input, Ability* targetAb){
         noAbility(input);
     } else if (targetAb == nullptr || targetAb->showAbility() == "NONE"){
         cout << "Target tidak memiliki ability" << endl;
-    } else if (targetAb->getAmmoAbility() == 0){
-        cout << "Target sudah menggunakan abilitynya!" << endl;
-    } else if (this->ammoAbility == 0){
-        cout << "Kamu sudah menggunakan ability mu!" << endl;
     }
-    ammoAbility--;
-}
-
-//ctor
-ReRoll::ReRoll(){
-    this->ammoAbility = 1;
-}
-Quadruple::Quadruple(){
-    this->ammoAbility = 1;
-}
-Quarter::Quarter(){
-    this->ammoAbility = 1;
-}
-ReverseDirection::ReverseDirection(){
-    this->ammoAbility = 1;
-}
-SwapCard::SwapCard(){
-    this->ammoAbility = 1;
-}
-Switch::Switch(){
-    this->ammoAbility = 1;
-}
-Abilityless::Abilityless(){
-    this->ammoAbility = 1;
 }
 
 string ReRoll::showAbility(){

@@ -3,7 +3,7 @@
 bool GameState::reverseTurn = false;
 int GameState::turnStartFrom = 0;
 deque<int> GameState::turn = {0,1,2,3,4,5,6};
-vector<string> GameState::abilities =
+GameState::GameState(Player*& p, int n)
 {
     this->round = 0;
     this->prize = 64;
@@ -48,7 +48,7 @@ long int GameState::getPrize() const
     return this->prize;
 }
 
-Deck *GameState::getCardDeck()
+Deck *GameState::getCardDeck() const
 {
     return this->cardDeck;
 }
@@ -229,8 +229,8 @@ void GameState::actionDo(string input, Player* p)
         if (p->getPlayerAbility()->showAbility() == "RE-ROLL" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
             cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
             p->getInventory().clear();
-            *p += this->cardDeck->Draw();
-            *p += this->cardDeck->Draw();
+            this->cardDeck->DrawTo(p->getInventory());
+            this->cardDeck->DrawTo(p->getInventory());
             p->showInventory();
             p->getPlayerAbility()->setUsed(true);
         } else {
