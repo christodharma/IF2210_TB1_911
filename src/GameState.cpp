@@ -296,6 +296,7 @@ void GameState::actionDo(string input, Player* p, int currentTurn)
 
     } else if (input == "SWAPCARD") {
         if (p->getPlayerAbility()->showAbility() == "SWAPCARD" && !p->getPlayerAbility()->isDisabled() && !p->getPlayerAbility()->isUsed()) {
+            try{
             cout << p->getPlayerName() << " melakukan SWAPCARD!" << endl;
             p->getPlayerAbility()->ability(input);
             cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
@@ -410,7 +411,7 @@ void GameState::actionDo(string input, Player* p, int currentTurn)
 
         }
     }
-
+    
     else if (abilityInput.find(input)!=-1){
         //input ability
         cout << input << "invocation" << endl;
