@@ -63,8 +63,30 @@ int main(){
                 {
                     players[i].showPlayerInfo();
                 }
+            }else if (game.getRound() == 5){
+                Combination* combs = new Combination[playerCount];
+                for (int i=0; i<playerCount; i++) {
+                    InventoryHolder *hand = new Player();
+                    for (int j=0; j<2; j++) {
+                        *hand += players[i].getInventory()[j];
+                    }
+                    combs[i] = Combination(*hand, game.getTable());
+                }
+
+                double* points = new double[playerCount];
+                for (int i=0; i<playerCount; i++) {
+                    cout << players[i].getPlayerName() << " : " << combs[i].getValue() << " " << combs[i].getType() << endl;
+                    points[i] = combs[i].getValue();
+                }
+                double winnersPoint = findMax(points, playerCount);
+                int winnerIndex;
+                for (int i=0; i<playerCount; i++) {
+                    if (points[i] == winnersPoint) {
+                        winnerIndex = i;
+                    }
+                }
+                game.gameEnd(players[winnerIndex]);
             }
-            
             for (int i = 0; i < playerCount; i++)
             {
                 players[i].showPlayerInfo();
@@ -75,20 +97,6 @@ int main(){
         game.playRound();
         game.nextRound();
 
-            if (game.getRound() == 6){
-                Combination* combs = new Combination[playerCount];
-                for (int i=0; i<playerCount; i++) {
-                    InventoryHolder *hand = new Player();
-                    for (int j=0; j<2; j++) {
-                        *hand += players[i].getInventory()[j];
-                    }
-                    combs[i] = Combination(*hand, game.getTable());
-                }
-
-                for (int i=0; i<playerCount; i++) {
-                    cout << players[i].getPlayerName() << " : " << combs[i].getValue() << " " << combs[i].getType() << endl;
-                }
-            }
         }
     }
     return 0;
