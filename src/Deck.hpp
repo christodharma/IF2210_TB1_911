@@ -7,6 +7,7 @@
 #include "InventoryHolder.hpp"
 #include "Card.hpp"
 #include "Generics.hpp"
+#include "Exception.hpp"
 
 using namespace std;
 

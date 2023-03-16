@@ -22,7 +22,30 @@ Deck::Deck() : InventoryHolder()
 Deck::Deck(string path)
 {
     ifstream file;
+    while (true) {
+        try {
+            if (path.substr(path.find_last_of(".") + 1) != "txt") {
+                throw new FalseFileType();
+            }
+            else if (!std::filesystem::exists(path)) {
+                throw new UndetectedFile();
+            }
+            else if (std::filesystem::file_size(path) == 0) {
+                throw new EmptyFile();
+            }
+            else if (std::filesystem::file_size(path) < 189) {
+                throw new NotEnoughCard();
+            } else {
+                break;
+            }
+        } catch (Exception* e) {
+            e->what();
+            cout << "Masukkan path file yang benar: ";
+            cin >> path;
+        }
+    }
     file.open(path);
+
     char warna[52] = {0};
     int angka[52] = {0};
 

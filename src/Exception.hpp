@@ -2,7 +2,7 @@
 #define __EXCEPTION_HPP__
 
 #include <iostream>
-
+#include <filesystem>
 using namespace std;
 
 class Exception {
@@ -58,6 +58,47 @@ class InventoryHolderException : public Exception {
         }
     
 };
+
+class ActionException : public Exception {
+    public:
+        ActionException(){}
+        void what(){
+            cout << "Action invalid! Silakan masukkan lagi." << endl;
+        }
+};
+
+class UndetectedFile : public Exception {
+    public:
+        UndetectedFile(){}
+        void what(){
+            cout << "File tidak terdeteksi. Silakan masukkan input lagi: " << endl;
+        }
+};
+
+class FalseFileType : public Exception {
+    public:
+        FalseFileType(){}
+        void what(){
+            cout << "File yang dimasukkan bukan file .txt" << endl;
+        }
+};
+
+class EmptyFile : public Exception {
+    public:
+        EmptyFile(){}
+        void what(){
+            cout << "File yang dimasukkan kosong" << endl;
+        }
+};
+
+class NotEnoughCard : public Exception {
+    public:
+        NotEnoughCard(){}
+        void what(){
+            cout << "File tidak berisi kartu berjumlah 52 warna dan angka" << endl;
+        }
+};
+
 
 // class FalseAction : public Exceptio
 
