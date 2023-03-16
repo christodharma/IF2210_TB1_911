@@ -6,7 +6,6 @@
 #include "../src/Deck.hpp"
 #include "../src/Table.hpp"
 #include "../src/Ability.hpp"
-#include "../src/GameManager.hpp"
 #include "../src/Generics.hpp"
 #include "../src/Generics.cpp"
 #include "../src/Combination.hpp"
