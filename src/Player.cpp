@@ -95,8 +95,7 @@ string Player::action()
     do
     {
         cout << "Input your action, "<<this->getPlayerName()<<"! ";
-        // cin >> input;
-        input = "NEXT";
+        cin >> input;
         if (valid_inputs.find(input) == -1)
         {
             cout << "Invalid input, please try again" << endl;
